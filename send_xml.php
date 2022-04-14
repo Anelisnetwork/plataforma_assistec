@@ -1,7 +1,7 @@
 <?php
 $prexml=file_get_contents("plantilla_xml.xml");//URL del XML generado
 
-$ch=curl_init("http://www.assistec.es/plataforma/take_xml_test.php");//URL de destino donde se enviará el XML
+$ch=curl_init("http://www.plataforma.assistec.es/take_xml_test.php");//URL de destino donde se enviará el XML
 //$ch=curl_init("https://localhost/proyectos/Assistec/plataforma/take_xml_test.php");//URL de destino donde se enviará el XML
 
 curl_setopt($ch, CURLOPT_POSTFIELDS, array('dato'=>$prexml));

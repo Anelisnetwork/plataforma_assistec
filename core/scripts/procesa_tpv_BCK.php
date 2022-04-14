@@ -9,7 +9,7 @@ $amount = $total*100;
 
 $trans_type=0;
 
-$url_comercio='http://www.assistec.es/plataforma/proceso_de_pago/';
+$url_comercio='http://www.plataforma.assistec.es/proceso_de_pago/';
 
 $firma=sha1($amount.$orderid.$merchantid.$curr.$trans_type.$url_comercio.$secret);
 

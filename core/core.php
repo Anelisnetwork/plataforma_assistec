@@ -62,10 +62,10 @@ define( '_IVA_', '1.21');
 define('DS',DIRECTORY_SEPARATOR);
 
 if(_TEST_){
-	define( '_PATH_', 'C:'.DS.'Users'.DS.'Gerardo Barrasa'.DS.'Documents'.DS.'Proyectos'.DS.'Assistec'.DS.'plataforma'.DS);
-	define( '_RAIZ_', '/proyectos/Assistec/plataforma/');
+	define( '_PATH_', 'C:'.DS.'Users'.DS.'gerar'.DS.'Documents'.DS.'Proyectos'.DS.'plataforma_assistec'.DS);
+	define( '_RAIZ_', '/proyectos/plataforma_assistec/');
     define( '_WEB_', '/proyectos/Assistec/');
-	define( '_ZEND_', 'C:'.DS.'Users'.DS.'Gerardo Barrasa'.DS.'Documents'.DS.'Proyectos'.DS.'Assistec'.DS.'plataforma'.DS.'core'.DS);
+	define( '_ZEND_', 'C:'.DS.'Users'.DS.'gerar'.DS.'Documents'.DS.'Proyectos'.DS.'plataforma_assistec'.DS.'core'.DS);
 
 	define( '_BD_NAME_', 'bbdd_assistec');
 	define( '_BD_USER_', 'root');
@@ -74,7 +74,7 @@ if(_TEST_){
 else{
 	define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS);
 	define( '_RAIZ_', 'https://plataforma.assistec.es/');
-	define( '_WEB_', 'https://plataforma.assistec.es/');
+	define( '_WEB_', 'https://assistec.es/');
 	define( '_ZEND_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS.'core'.DS);
 
 	define( '_BD_NAME_', 'bbdd_assistec');
