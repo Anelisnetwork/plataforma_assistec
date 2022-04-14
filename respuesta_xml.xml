@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<respuesta>
+	<rs_resultado>
+		<resultado></resultado><!--OK/KO-->
+		<mensaje></mensaje><!--Texto descriptivo-->
+	</rs_resultado>
+	<rs_datos_acceso>
+		<resultado></resultado><!--OK/KO-->
+		<mensaje></mensaje><!--Texto descriptivo-->
+	</rs_datos_acceso>
+	
+	<!--Por cada dato de actividad enviado-->
+	<rs_datos_actividad>
+		<resultado></resultado><!--OK/KO-->
+		<mensaje></mensaje><!--Texto descriptivo-->
+		<!--Por cada empleado-->
+		<rs_empleado>
+			<resultado></resultado><!--OK/KO-->
+			<mensaje></mensaje><!--Texto descriptivo-->
+		</rs_empleado>
+	</rs_datos_actividad>
+	
+	<!--Por cada alta de nuevo taller-->
+	<rs_nuevo_taller>
+		<resultado></resultado><!--OK/KO-->
+		<mensaje></mensaje><!--Texto descriptivo-->
+	</rs_nuevo_taller>
+</respuesta>

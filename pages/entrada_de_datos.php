@@ -1,0 +1,1 @@
+<div style="width:100%; text-align:center; padding-top:50px"><span class="oswald texto_r fs_16">NO DISPONIBLE</span></div>
