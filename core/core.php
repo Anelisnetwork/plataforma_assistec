@@ -23,7 +23,7 @@ if ( _DEBUG_ ){
     error_reporting(E_ALL ^E_DEPRECATED);
 }
 else{
-	ini_set("display_errors", 0);
+    ini_set("display_errors", 0);
 }
 
 date_default_timezone_set('Europe/Madrid');
@@ -62,34 +62,34 @@ define( '_IVA_', '1.21');
 define('DS',DIRECTORY_SEPARATOR);
 
 if(_TEST_){
-	define( '_PATH_', 'C:'.DS.'Users'.DS.'gerar'.DS.'Documents'.DS.'Proyectos'.DS.'plataforma_assistec'.DS);
-	define( '_RAIZ_', '/proyectos/plataforma_assistec/');
+    define( '_PATH_', 'C:'.DS.'xampp'.DS.'htdocs'.DS.'Proyectos'.DS.'Assistec'.DS.'plataforma'.DS);
+    define( '_RAIZ_', '/proyectos/Assistec/plataforma/');
     define( '_WEB_', '/proyectos/Assistec/');
-	define( '_ZEND_', 'C:'.DS.'Users'.DS.'gerar'.DS.'Documents'.DS.'Proyectos'.DS.'plataforma_assistec'.DS.'core'.DS);
+    define( '_ZEND_', 'C:'.DS.'xampp'.DS.'htdocs'.DS.'Proyectos'.DS.'Assistec'.DS.'plataforma'.DS.'core'.DS);
 
-	define( '_BD_NAME_', 'bbdd_assistec');
-	define( '_BD_USER_', 'root');
-	define( '_BD_PASS_', '');
+    define( '_BD_NAME_', 'bbdd_assistec');
+    define( '_BD_USER_', 'root');
+    define( '_BD_PASS_', '');
 }
 else{
-	define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS);
-	define( '_RAIZ_', 'https://plataforma.assistec.es/');
-	define( '_WEB_', 'https://assistec.es/');
-	define( '_ZEND_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS.'core'.DS);
+    define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'httpdocs'.DS.'plataforma'.DS);
+    define( '_RAIZ_', 'https://assistec.es/plataforma/');
+    define( '_WEB_', 'https://assistec.es/plataforma/');
+    define( '_ZEND_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'httpdocs'.DS.'plataforma'.DS.'core'.DS);
 
-	define( '_BD_NAME_', 'bbdd_assistec');
-	define( '_BD_USER_', 'usr_assistec');
-	define( '_BD_PASS_', 'Us3r&@sS1sT3c');
+    define( '_BD_NAME_', 'bbdd_assistec');
+    define( '_BD_USER_', 'usr_assistec');
+    define( '_BD_PASS_', 'Us3r&@sS1sT3c');
 }
 
 function c_(){
-	$db_host = _BD_HOST_;
-	$db_nombre = _BD_NAME_;
-	$db_user = _BD_USER_;
-	$db_pass = _BD_PASS_;
+    $db_host = _BD_HOST_;
+    $db_nombre = _BD_NAME_;
+    $db_user = _BD_USER_;
+    $db_pass = _BD_PASS_;
 
-	$link= mysqli_connect($db_host, $db_user, $db_pass, $db_nombre) or die ("Ups! Error conectando a la base de datos.");
-	return $link;
+    $link= mysqli_connect($db_host, $db_user, $db_pass, $db_nombre) or die ("Ups! Error conectando a la base de datos.");
+    return $link;
 }
 
 /*         ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡  DEFINIR RAIZ EN funciones.js   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    */
@@ -104,23 +104,23 @@ define( '_DEFAULT_MODULE_','inicio' );
 
 $_core_mods_ = array(
 
-	/*
-		-------------------------------------------------------
-		  Cargamos modulos del nucleo
-		-------------------------------------------------------
-	*/
+    /*
+        -------------------------------------------------------
+          Cargamos modulos del nucleo
+        -------------------------------------------------------
+    */
 
-	0 => 'stuff',
-	1 => 'func',
-	2 => 'modulos',
-	3 => 'usuarios'
+    0 => 'stuff',
+    1 => 'func',
+    2 => 'modulos',
+    3 => 'usuarios'
 
 );
 
 $_m = count($_core_mods_);
 
 for ( $i=0; $i<$_m; $i++ ){
-	require _ZEND_.module_folder.DS.module_prev.$_core_mods_[$i].'.php';
+    require _ZEND_.module_folder.DS.module_prev.$_core_mods_[$i].'.php';
 }
 
 ?>
