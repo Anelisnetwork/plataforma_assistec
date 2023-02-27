@@ -13,6 +13,7 @@ $almcondatos=array_comas('select distinct da_idtaller from datos_actividad where
 $filtro_condatos=$almcondatos==''?'':' and ta_idtaller not in('.$almcondatos.')';
 $noenviar[]=1341;// Cerdá Motors
 $noenviar[]=1646;// GREGORIO RODRIGUEZ BUENDIA
+$noenviar[]=6;// VETURILO
 $noenviar=implode(',',$noenviar);
 $filtro_noenvio=$noenviar==''?'':' and ta_idtaller not in('.$noenviar.')';
 $datosact=list_object('select * from talleres, usuarios where ta_idtaller=us_idtaller and us_estado!=3 and us_rango=3'.$filtro_condatos.$filtro_noenvio.'');
@@ -49,7 +50,7 @@ foreach ($datosact as $dato){
 		$correos_fallidos[]=array('nombre'=>u8d_($dato->ta_nombre),'correo'=>$dato->ta_email);
 	}
 }
-
+/*
 $mail_destino='g.barrasa@grupoanelis.com';
 $nombre='Manuel Baez';
 
@@ -78,6 +79,6 @@ $cuerpo .= '<span style="color:#666; font-size:11px">AVISO LEGAL<br>
 $cuerpo .= "</body></html>"; 
 
 enviar_email($mail_destino, $nombre, 'g.barrasa@grupoanelis.com', 'Grupo Anelis', $asunto, $cuerpo, $nombre_com, _RECEPTOR_, '', '', '', '', '', '', '', '');
-	
+	*/
 close_bd();
 ?>
