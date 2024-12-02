@@ -33,9 +33,9 @@ $fidelizacion=porcentaje_($dato_mensual[0]->da_entradastaller,$totalbbdd);;
 
 
 $horas_productivas=horas_presencia_pot($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])*($obj_prod/100);//Un 10% de tiempo no productivo
-$tiempo_medio_cliente=$horas_productivas/$dato_mensual[0]->da_entradastaller;//21.6
+$tiempo_medio_cliente=$hfacturadas/$dato_mensual[0]->da_entradastaller;//21.6
 $entradas_dia=$dato_mensual[0]->da_entradastaller/$dato_mensual[0]->da_diaslaborables;
-$capacidad_teorica=$horas_productivas/$tiempo_medio_cliente/$dato_mensual[0]->da_diaslaborables;
+$capacidad_teorica=$hfacturadas/$tiempo_medio_cliente/$dato_mensual[0]->da_diaslaborables;
 
 //echo 'Horas productivas: '.$horas_productivas;
 

@@ -47,7 +47,7 @@ else{//Iniciamos proceso de pago
 	<script src="<?=_RAIZ_?>js/jquery-1.11.2.js" type="text/javascript"></script>
 	<title>Assistec - Proceso de pago</title>
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu|Oswald:400,300' rel='stylesheet' type='text/css'>
-	<link href="<?=_RAIZ_?>estilos/estilos.css?v=30032023" rel="stylesheet" type="text/css" />
+	<link href="<?=_RAIZ_?>estilos/estilos.css" rel="stylesheet" type="text/css" />
 	</head>
 	
 	<body>
