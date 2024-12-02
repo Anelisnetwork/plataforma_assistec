@@ -4,13 +4,15 @@ $ventamo=$dato_mensual[0]->da_facturadomo;
 $ventapr=$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
 $costepr=$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros;
 $margenpr=$ventapr-$dato_mensual[0]->da_pagadoprovrec;
-$porcentpr=margen_sobre_coste($dato_mensual[0]->da_pagadoprovrec,$ventapr);
+//$porcentpr=margen_sobre_coste($dato_mensual[0]->da_pagadoprovrec,$ventapr);
+$porcentpr=$margenpr/$ventapr*100;
 $costepers=$dato_mensual[0]->da_costepersonal;
 $costeestr=$dato_mensual[0]->da_costeestructura;
 $total_ingresos=$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
 $total_gastos=$costepr+$costepers+$costeestr;
 $margenbruto=$total_ingresos-$total_gastos;
-$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+//$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+$porcmargenbruto=$margenbruto/$total_ingresos*100;
 ?>
 		<div id="informemes" class="div_mostrarocultar colizq" style="float:left;">	
 			<div class="linea">

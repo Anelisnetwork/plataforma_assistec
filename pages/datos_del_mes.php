@@ -127,7 +127,7 @@ $gastos_taller=dame_coste_personal($_SESSION['datos_'._ID_PAG_]['datos_user']['i
             
             <div class="linea">
                 <label class="ancho faq">N&ordm; horas presencia:</label>
-                <input type="text" id="horaspresencia_<?=$iddato?>" style="text-align:right<?=$iddato=='NEW'?(isset($tipopresencia)?($tipopresencia==1?'; background-color:#FFD2D2':''):''):($dato_mensual[0]->da_tipopresencia==1?'; background-color:#FFD2D2':'')?>" name="horaspresencia_<?=$iddato?>" class="peq orig" value="<?=moneda_punto($iddato=='NEW'?(isset($horaspresencia)?$horaspresencia:0):$dato_mensual[0]->da_horaspresencia, 2)?>" onkeyup="comprueba_num(this.id); datos_presencia('<?=$iddato?>'); comprueba_cambios('edita_datomensual')"<?=$iddato=='NEW'?(isset($tipopresencia)?($tipopresencia==1?' readonly="readonly"':''):''):($dato_mensual[0]->da_tipopresencia==1?' readonly="readonly"':'')?>>
+                <input type="text" id="horaspresencia_<?=$iddato?>" style="text-align:right<?=$iddato=='NEW'?(isset($tipopresencia)?($tipopresencia==1?'; background-color:#ffd7b4':''):''):($dato_mensual[0]->da_tipopresencia==1?'; background-color:#ffd7b4':'')?>" name="horaspresencia_<?=$iddato?>" class="peq orig" value="<?=moneda_punto($iddato=='NEW'?(isset($horaspresencia)?$horaspresencia:0):$dato_mensual[0]->da_horaspresencia, 2)?>" onkeyup="comprueba_num(this.id); datos_presencia('<?=$iddato?>'); comprueba_cambios('edita_datomensual')"<?=$iddato=='NEW'?(isset($tipopresencia)?($tipopresencia==1?' readonly="readonly"':''):''):($dato_mensual[0]->da_tipopresencia==1?' readonly="readonly"':'')?>>
                 <input type="hidden" id="horaspresencia_<?=$iddato?>_def" name="horaspresencia_<?=$iddato?>_def" value="<?=moneda_punto($iddato=='NEW'?(isset($horaspresencia)?$horaspresencia:0):$dato_mensual[0]->da_horaspresencia, 2)?>" />
             </div>
             
@@ -203,7 +203,7 @@ $gastos_taller=dame_coste_personal($_SESSION['datos_'._ID_PAG_]['datos_user']['i
             </div>
             <div class="linea">
                 <label class="ancho">Total importes facturados:</label>
-                <input type="text" id="facturado_<?=$iddato?>" style="text-align:right; background-color:#FFD2D2" name="facturado_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?0:$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros, 2)?>" disabled="disabled">
+                <input type="text" id="facturado_<?=$iddato?>" style="text-align:right; background-color:#ffd7b4" name="facturado_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?0:$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros, 2)?>" disabled="disabled">
             </div>
             <?php if(1==0){?>
             <div class="linea">
@@ -223,7 +223,7 @@ $gastos_taller=dame_coste_personal($_SESSION['datos_'._ID_PAG_]['datos_user']['i
             </div>
             <div class="linea">
                 <label class="ancho">Total importes cobrado:</label>
-                <input type="text" id="cobrado_<?=$iddato?>" style="text-align:right; background-color:#FFD2D2" name="cobrado_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?0:$dato_mensual[0]->da_cobradomo+$dato_mensual[0]->da_cobradorec+$dato_mensual[0]->da_cobradootros, 2)?>" disabled="disabled">
+                <input type="text" id="cobrado_<?=$iddato?>" style="text-align:right; background-color:#ffd7b4" name="cobrado_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?0:$dato_mensual[0]->da_cobradomo+$dato_mensual[0]->da_cobradorec+$dato_mensual[0]->da_cobradootros, 2)?>" disabled="disabled">
             </div>
             <?php }?>
             <div class="linea">
@@ -261,15 +261,15 @@ $gastos_taller=dame_coste_personal($_SESSION['datos_'._ID_PAG_]['datos_user']['i
             </div>
             <div class="linea">
                 <label class="ancho">N&ordm; horas facturadas:</label>
-                <input type="text" id="horasfac_<?=$iddato?>" style="text-align:right; background-color:#FFD2D2" name="horasfac_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?(isset($horasfac)?$horasfac:0):$dato_mensual[0]->da_horasfac, 2)?>" readonly="readonly">
+                <input type="text" id="horasfac_<?=$iddato?>" style="text-align:right; background-color:#ffd7b4" name="horasfac_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?(isset($horasfac)?$horasfac:0):$dato_mensual[0]->da_horasfac, 2)?>" readonly="readonly">
             </div>
             <div class="linea">
                 <label class="ancho faq" title="Horas que se podían haber facturado en base al objetivo de eficacia">Horas perdidas:</label>
-                <input type="text" id="horasimproductivas_<?=$iddato?>" style="text-align:right; background-color:#FFD2D2" name="horasimproductivas_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?(isset($horasimproductivas)?$horasimproductivas:0):$dato_mensual[0]->da_horasimproductivas, 2)?>" readonly="readonly">
+                <input type="text" id="horasimproductivas_<?=$iddato?>" style="text-align:right; background-color:#ffd7b4" name="horasimproductivas_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?(isset($horasimproductivas)?$horasimproductivas:0):$dato_mensual[0]->da_horasimproductivas, 2)?>" readonly="readonly">
             </div>
             <div class="linea">
                 <label class="ancho faq" title="Cálculo del importe no facturado en base al objetivo de eficacia">Importe no facturado:</label>
-                <input type="text" id="nofacturado_<?=$iddato?>" style="text-align:right; background-color:#FFD2D2" name="nofacturado_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?(isset($nofacturado)?$nofacturado:0):$dato_mensual[0]->da_nofacturado, 2)?>" readonly="readonly">
+                <input type="text" id="nofacturado_<?=$iddato?>" style="text-align:right; background-color:#ffd7b4" name="nofacturado_<?=$iddato?>" class="peq" value="<?=moneda_punto($iddato=='NEW'?(isset($nofacturado)?$nofacturado:0):$dato_mensual[0]->da_nofacturado, 2)?>" readonly="readonly">
             </div>
             <div class="linea">
                 <label class="ancho faq" title="Número de órdenes de repación abiertas en el mes">Entradas al taller:</label>

@@ -20,7 +20,7 @@ if(isset($_POST['Ds_Order'])&&isset($_POST['Ds_Response'])&&isset($_POST['Ds_Aut
 	<script src="<?=_RAIZ_?>js/jquery-1.11.2.js" type="text/javascript"></script>
 	<title>Assistec - Proceso de pago</title>
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu|Oswald:400,300' rel='stylesheet' type='text/css'>
-	<link href="<?=_RAIZ_?>estilos/estilos.css" rel="stylesheet" type="text/css" />
+	<link href="<?=_RAIZ_?>estilos/estilos.css?v=30032023" rel="stylesheet" type="text/css" />
 	</head>
 	
 	<body>
@@ -50,11 +50,11 @@ if(isset($_POST['Ds_Order'])&&isset($_POST['Ds_Response'])&&isset($_POST['Ds_Aut
 	?>
     <div style="width:600px; text-align:center; margin:5% auto 0% auto; line-height:140%; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#555">
         <img src="<?=_RAIZ_?>imagenes/assistec.png" /><br /><br />
-        No ha sido posible realizar el pago; por favor contacte con nosotros desde el siguiente enlace: <a href="http://www.assistec.es/contactar_con_assistec.php"><strong style="color:#E2001A">Contactar con Assistec</strong></a>
+        No ha sido posible realizar el pago; por favor contacte con nosotros desde el siguiente enlace: <a href="http://www.assistec.es/contactar_con_assistec.php"><strong style="color:#EF7F1F">Contactar con Assistec</strong></a>
         <br /><br /><br />
         <?=$mensaje_error?>
         <br /><br /><br /><br />
-        <a target="_blank" href="<?=_RAIZ_?>pdf/<?=en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'')?>/" class="indent redondo link" style="width:300px; background-color:#E2001A; color:#FFF">Descargar factura</a>
+        <a target="_blank" href="<?=_RAIZ_?>pdf/<?=en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'')?>/" class="indent redondo link" style="width:300px; background-color:#EF7F1F; color:#FFF">Descargar factura</a>
         <br /><br />
         <a href="http://www.assistec.es/">Volver a la web</a>
     </div>
@@ -64,11 +64,11 @@ if(isset($_POST['Ds_Order'])&&isset($_POST['Ds_Response'])&&isset($_POST['Ds_Aut
 	?>
 	<div style="width:600px; text-align:center; margin:5% auto 0% auto; line-height:140%; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#555">
         <img src="<?=_RAIZ_?>imagenes/assistec.png" /><br /><br />
-        El pago ha sido realizado correctamente; ya puede acceder a su panel de control desde el siguiente enlace: <a href="http://www.plataforma.assistec.es/"><strong style="color:#E2001A">Acceder a Assistec Online</strong></a>
+        El pago ha sido realizado correctamente; ya puede acceder a su panel de control desde el siguiente enlace: <a href="http://www.plataforma.assistec.es/"><strong style="color:#EF7F1F">Acceder a Assistec Online</strong></a>
         <br /><br />
         Muchas gracias por su confianza.
         <br /><br /><br /><br />
-        <a target="_blank" href="<?=_RAIZ_?>pdf/<?=en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'')?>/" class="indent redondo link" style="width:300px; background-color:#E2001A; color:#FFF">Descargar factura</a>
+        <a target="_blank" href="<?=_RAIZ_?>pdf/<?=en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'')?>/" class="indent redondo link" style="width:300px; background-color:#EF7F1F; color:#FFF">Descargar factura</a>
     </div>
     <?php
 	}
@@ -116,7 +116,7 @@ else{//Iniciamos proceso de pago
 	<script src="<?=_RAIZ_?>js/jquery-1.11.2.js" type="text/javascript"></script>
 	<title>Assistec - Proceso de pago</title>
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu|Oswald:400,300' rel='stylesheet' type='text/css'>
-	<link href="<?=_RAIZ_?>estilos/estilos.css" rel="stylesheet" type="text/css" />
+	<link href="<?=_RAIZ_?>estilos/estilos.css?v=30032023" rel="stylesheet" type="text/css" />
 	</head>
 	
 	<body>
@@ -135,9 +135,9 @@ else{//Iniciamos proceso de pago
             <img src="<?=_RAIZ_?>imagenes/assistec.png" /><br /><br />
             Se ha generado la factura correspondiente al servicio seleccionado; puede descargarla pulsando el siguiente bot&oacute;n:
             <br /><br />
-            <a target="_blank" href="<?=_RAIZ_?>pdf/<?=en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'')?>/" class="indent redondo link" style="width:300px; background-color:#E2001A; color:#FFF">Descargar factura</a>
+            <a target="_blank" href="<?=_RAIZ_?>pdf/<?=en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'')?>/" class="indent redondo link" style="width:300px; background-color:#EF7F1F; color:#FFF">Descargar factura</a>
             <br /><br />
-            En la misma encontrar&aacute; los datos de la cuenta a la que debe hacer la transferencia por el importe total de la factura, una vez realizado el ingreso puede agilizar el proceso de activaci&oacute;n enviando el justificante de la operaci&oacute;n por correo electr&oacute;nico a <strong style="color:#E2001A">web@assistec.es</strong>.
+            En la misma encontrar&aacute; los datos de la cuenta a la que debe hacer la transferencia por el importe total de la factura, una vez realizado el ingreso puede agilizar el proceso de activaci&oacute;n enviando el justificante de la operaci&oacute;n por correo electr&oacute;nico a <strong style="color:#EF7F1F">web@assistec.es</strong>.
             <br /><br />
             Muchas gracias por su confianza.
         </div>

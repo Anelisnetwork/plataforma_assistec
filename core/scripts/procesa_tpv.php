@@ -105,5 +105,5 @@ $(document).ready(function() {
         <img src="<?=_RAIZ_?>imagenes/assistec.png" /><br /><br />
         Ser&aacute; redirigido a un servidor seguro para realizar el pago; si el navegador no le redirige autom&aacute;ticamente en 10 segundos, pulse el bot&oacute;n de abajo.
         <br /><br /><br /><br /><br /><br />
-        <input form="pago_tpv" type=submit value="Ir a un servidor seguro" class=" indent redondo link" style="width:300px; background-color:#E2001A; color:#FFF">
+        <input form="pago_tpv" type=submit value="Ir a un servidor seguro" class=" indent redondo link" style="width:300px; background-color:#EF7F1F; color:#FFF">
     </div>

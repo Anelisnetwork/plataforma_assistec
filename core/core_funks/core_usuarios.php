@@ -231,15 +231,17 @@ function margen_rec($idtaller=''){
 	$idtaller=$idtaller==''?$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']:$idtaller;
 	$ult_3mes=list_object('select da_facturadorec, da_facturadootros, da_pagadoprovrec, da_pagadoprovotros from datos_actividad where da_idtaller='.$idtaller.' and da_idtipo=1 order by da_ano desc, da_mes desc limit 0,3','FACTURADO');
 	if(count($ult_3mes)>0){
-		$ult_mes=margen_sobre_coste(($ult_3mes[0]->da_pagadoprovrec+$ult_3mes[0]->da_pagadoprovotros), ($ult_3mes[0]->da_facturadorec+$ult_3mes[0]->da_facturadootros));
+		//$ult_mes=margen_sobre_coste(($ult_3mes[0]->da_pagadoprovrec+$ult_3mes[0]->da_pagadoprovotros), ($ult_3mes[0]->da_facturadorec+$ult_3mes[0]->da_facturadootros));
+		$ult_mes = $ult_3mes[0]->da_facturadorec+$ult_3mes[0]->da_facturadootros > 0 ? (($ult_3mes[0]->da_facturadorec+$ult_3mes[0]->da_facturadootros)-$ult_3mes[0]->da_pagadoprovrec)/($ult_3mes[0]->da_facturadorec+$ult_3mes[0]->da_facturadootros)*100 : 0;
 		$sumapag=0;
 		$sumafac=0;
 		foreach($ult_3mes as $mes){
 			$margen=$mes->da_pagadoprovrec>0?margen_sobre_coste(($mes->da_pagadoprovrec+$mes->da_pagadoprovotros), ($mes->da_facturadorec+$mes->da_facturadootros)):100;
-			$sumapag+=$mes->da_pagadoprovrec+$mes->da_pagadoprovotros;
+			$sumapag+=$mes->da_pagadoprovrec;
 			$sumafac+=$mes->da_facturadorec+$mes->da_facturadootros;
 		}
-		$media=$sumapag>0?margen_sobre_coste($sumapag, $sumafac):100;
+		//$media=$sumapag>0?margen_sobre_coste($sumapag, $sumafac):100;
+		$media = $sumafac>0 ? ($sumafac-$sumapag)/$sumafac*100 : 0;
 		$datos=array($ult_mes, $media);
 	}
 	else{
@@ -401,10 +403,12 @@ function dame_acumulado($anho,$idtaller=''){
 		//$sum_hprod+=horas_presencia($dato->da_iddato);
 	}
 	$margenpr=$ventapr-$costeprov;
-	$porcentpr=margen_sobre_coste($costeprov,$ventapr);
+	//$porcentpr=margen_sobre_coste($costeprov,$ventapr);
+    $porcentpr=$margenpr/$ventapr*100;
 	$total_gastos=$costepr+$costepers+$costeestr;
 	$margenbruto=$total_ingresos-$total_gastos;
-	$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+	//$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+	$porcmargenbruto=$margenbruto/$total_ingresos*100;
 	$productividad=porcentaje_($fichadasor,$hpresencia);
 	$eficacia=porcentaje_($hfacturadas,$hpresencia);
 	$rendimiento=porcentaje_($hfacturadas,$fichadasor);
@@ -491,10 +495,12 @@ LIMIT 0,1");
         $hpresencia+=horas_presencia($dato->da_iddato);
     }
     $margenpr=$ventapr-$costeprov;
-    $porcentpr=margen_sobre_coste($costeprov,$ventapr);
+    //$porcentpr=margen_sobre_coste($costeprov,$ventapr);
+    $porcentpr=$margenpr/$ventapr*100;
     $total_gastos=$costepr+$costepers+$costeestr;
     $margenbruto=$total_ingresos-$total_gastos;
-    $porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+    //$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+    $porcmargenbruto=$margenbruto/$total_ingresos*100;
     $productividad=porcentaje_($fichadasor,$hpresencia);
     $eficacia=porcentaje_($hfacturadas,$hpresencia);
     $rendimiento=porcentaje_($hfacturadas,$fichadasor);

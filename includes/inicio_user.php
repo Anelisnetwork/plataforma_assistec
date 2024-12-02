@@ -72,14 +72,14 @@ else if($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']==2||$_SESSION['da
             </tr>
             <tr>
                 <td align="center" style="height: 41px"><h3 style="margin: 0"><?=$horaspotenciales.' h/año'?></h3></td>
-                <td align="center" style="height: 41px"><h3 style="margin: 0; color: #E2001A"><?=$horasimproductivas>0 ? $horasimproductivas.' h/año':'---'?></h3></td>
+                <td align="center" style="height: 41px"><h3 style="margin: 0; color: #EF7F1F"><?=$horasimproductivas>0 ? $horasimproductivas.' h/año':'---'?></h3></td>
             </tr>
         </table>
     </div>
 
     <br clear="all"><br clear="all">
 
-    <div style="display: flex; align-items: center; flex-flow: row nowrap; justify-content: center; color: #E2001A">
+    <div style="display: flex; align-items: center; flex-flow: row nowrap; justify-content: center; color: #EF7F1F">
         <span style="font-size: 10px; color: #333">(Beta) </span>El taller ha dejado de facturar <?=number_format(($horaspotenciales-$hfacturadas)*$coste_hora_teorico,2,',','.')?> € de mano de obra.<span style="font-size: 10px; color: #333"> (Beta) </span>
     </div>
 

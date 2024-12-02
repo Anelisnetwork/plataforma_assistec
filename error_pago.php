@@ -18,7 +18,7 @@ $datos=clean_get('datos');
 <script src="<?=_RAIZ_?>js/jquery-1.11.2.js" type="text/javascript"></script>
 <title>Assistec - Proceso de pago</title>
 <link href='https://fonts.googleapis.com/css?family=Ubuntu|Oswald:400,300' rel='stylesheet' type='text/css'>
-<link href="<?=_RAIZ_?>estilos/estilos.css" rel="stylesheet" type="text/css" />
+<link href="<?=_RAIZ_?>estilos/estilos.css?v=30032023" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -44,9 +44,9 @@ a:hover{
 </style>
 <div style="width:600px; text-align:center; margin:5% auto 0% auto; line-height:140%; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#555">
     <img src="<?=_RAIZ_?>imagenes/assistec.png" /><br /><br />
-    No ha sido posible realizar el pago; por favor contacte con nosotros desde el siguiente enlace: <a href="http://www.assistec.es/contactar_con_assistec.php"><strong style="color:#E2001A">Contactar con Assistec</strong></a>
+    No ha sido posible realizar el pago; por favor contacte con nosotros desde el siguiente enlace: <a href="http://www.assistec.es/contactar_con_assistec.php"><strong style="color:#EF7F1F">Contactar con Assistec</strong></a>
     <br /><br /><br /><br />
-    <a target="_blank" href="<?=_RAIZ_?>pdf/<?=$datos?>/" class="indent redondo link" style="width:300px; background-color:#E2001A; color:#FFF">Descargar factura</a>
+    <a target="_blank" href="<?=_RAIZ_?>pdf/<?=$datos?>/" class="indent redondo link" style="width:300px; background-color:#EF7F1F; color:#FFF">Descargar factura</a>
     <br /><br />
     <a href="http://www.assistec.es/">Volver a la web</a>
 </div>

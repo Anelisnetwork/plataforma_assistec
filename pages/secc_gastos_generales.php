@@ -51,7 +51,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
             </div>
             <div class="linea">
                 <label for="gastos_pers_<?=$idtaller?>" class="texto_r ancho">Total gastos de personal:</label>
-                <input type="text" id="gastos_pers_<?=$idtaller?>" name="gastos_pers_<?=$idtaller?>" class="peq orig" value="<?=$nominas+$seg_social?>" style="width:70px; text-align:right; background-color:#FFD2D2" disabled>
+                <input type="text" id="gastos_pers_<?=$idtaller?>" name="gastos_pers_<?=$idtaller?>" class="peq orig" value="<?=$nominas+$seg_social?>" style="width:70px; text-align:right; background-color:#ffd7b4" disabled>
                 <span class="fs_14" style="float:left; margin:7px;">&euro;</span>
             </div>
 
@@ -85,7 +85,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
             </div>
             <div class="linea">
                 <label for="gastos_estruc_<?=$idtaller?>" class="texto_r ancho">Total gastos de estructura:</label>
-                <input type="text" id="gastos_estruc_<?=$idtaller?>" name="gastos_estruc_<?=$idtaller?>" class="peq orig" value="<?=$alquileres+$suministros+$renting+$serv_prof+$cuotas+$amortizaciones+$otros?>" style="width:70px; text-align:right; background-color:#FFD2D2" disabled>
+                <input type="text" id="gastos_estruc_<?=$idtaller?>" name="gastos_estruc_<?=$idtaller?>" class="peq orig" value="<?=$alquileres+$suministros+$renting+$serv_prof+$cuotas+$amortizaciones+$otros?>" style="width:70px; text-align:right; background-color:#ffd7b4" disabled>
                 <span class="fs_14" style="float:left; margin:7px;">&euro;</span>
             </div>
 

@@ -65,14 +65,16 @@ foreach($talleres as $taller){
         $costepr=$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros;
         $margenpr=$ventapr-$dato_mensual[0]->da_pagadoprovrec;
         $obj_ventas=$dato_mensual[0]->da_objventas;
-        $porcentpr=margen_sobre_coste($dato_mensual[0]->da_pagadoprovrec,$ventapr);
+        //$porcentpr=margen_sobre_coste($dato_mensual[0]->da_pagadoprovrec,$ventapr);
+        $porcentpr=$margenpr/$ventapr*100;
         $obj_ventapr=$dato_mensual[0]->da_objmargenrec;
         $costepers=$dato_mensual[0]->da_costepersonal;
         $costeestr=$dato_mensual[0]->da_costeestructura;
         $total_ingresos=$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
         $total_gastos=$costepr+$costepers+$costeestr;
         $margenbruto=$total_ingresos-$total_gastos;
-        $porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+        //$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
+        $porcmargenbruto=$margenbruto/$total_ingresos*100;
         $informe[$id_taller]['economico']['header']="Informe económico de ".$n_taller." del mes de ".nom_mes($dato_mensual[0]->da_mes)." de ".$dato_mensual[0]->da_ano;
         $informe[$id_taller]['economico']['tot_facturado']=moneda_puntocoma($total_facturado);
         $informe[$id_taller]['economico']['venta_mo']=moneda_puntocoma($ventamo);
@@ -108,8 +110,9 @@ foreach($talleres as $taller){
         $infotaller=dame_info($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
         $totalbbdd=$infotaller[0]->it_totalclientes;
         $fidelizacion=porcentaje_($dato_mensual[0]->da_entradastaller,$totalbbdd);;
-        $tiempo_medio_cliente=$hfacturadas/$dato_mensual[0]->da_entradastaller;//21.6
+
         $horas_productivas=horas_presencia_pot($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])*($obj_prod/100);//Un 10% de tiempo no productivo
+        $tiempo_medio_cliente=$horas_productivas/$dato_mensual[0]->da_entradastaller;//21.6
         $capacidad_teorica=$horas_productivas/$tiempo_medio_cliente;
         $entradas_dia=$dato_mensual[0]->da_entradastaller/$dato_mensual[0]->da_diaslaborables;
 
@@ -122,7 +125,7 @@ foreach($talleres as $taller){
         $informe[$id_taller]['gestion']['capacidad_entradas']=round($capacidad_teorica*$dato_mensual[0]->da_diaslaborables);
         $informe[$id_taller]['gestion']['desviacion']=number_format(($dato_mensual[0]->da_entradastaller-($capacidad_teorica*$dato_mensual[0]->da_diaslaborables)),0,',','.');
         $informe[$id_taller]['gestion']['porcentaje_desviacion']=number_format(margen_sobre_coste(($capacidad_teorica*$dato_mensual[0]->da_diaslaborables),$dato_mensual[0]->da_entradastaller),0,',','.');
-        $informe[$id_taller]['gestion']['tiempo_medio_entrada']=faltan2(($hfacturadas/$dato_mensual[0]->da_entradastaller)*3600);
+        $informe[$id_taller]['gestion']['tiempo_medio_entrada']=faltan2(($horas_productivas/$dato_mensual[0]->da_entradastaller)*3600);
         $informe[$id_taller]['gestion']['importe_medio_or']=moneda_puntocoma($mediaor);
         $informe[$id_taller]['gestion']['importe_mo_or']=moneda_puntocoma($mediamo);
         $informe[$id_taller]['gestion']['porcentaje_mo_or']=moneda_puntocoma(porcentaje_($mediamo,$mediaor));

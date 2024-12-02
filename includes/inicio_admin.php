@@ -55,7 +55,7 @@
         </div>
     </a>
     
-    <a href="<?=_RAIZ_.'facturacion/'?>" class="ini_cuad_datos" style="background-color:#E2001A; margin-left:0px">
+    <a href="<?=_RAIZ_.'facturacion/'?>" class="ini_cuad_datos" style="background-color:#EF7F1F; margin-left:0px">
         <span class="texto_b fs_16 ubuntu">PAGOS<br />VENCIDOS</span>
         <div class="totales">
         	<?php
@@ -66,7 +66,7 @@
         </div>
     </a>
     
-    <a href="<?=_RAIZ_.'facturacion/'?>" class="ini_cuad_datos" style="background-color:#E2001A">
+    <a href="<?=_RAIZ_.'facturacion/'?>" class="ini_cuad_datos" style="background-color:#EF7F1F">
         <span class="texto_b fs_16 ubuntu">PENDIENTE<br />COBRO</span>
         <div class="totales">
         	<?php

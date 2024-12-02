@@ -6,6 +6,9 @@ error_reporting(E_ALL|E_STRICT);
 
 include('core/core.php');
 
+echo secure_md5('Skpi01');exit;
+echo en__id('1693');exit;
+
 //$token_silent=encriptar($correo.'%%'.$pass1);
 open_bd();
 $idparent='1578';

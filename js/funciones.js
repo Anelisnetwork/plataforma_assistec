@@ -693,7 +693,7 @@ function muestra_empleados(iddato){
 	if($('#presenciaxemp').prop('checked')){
 		$('#empleados').show();
 		$('#horaspresencia_'+iddato).prop('readonly', true);
-		$('#horaspresencia_'+iddato).css('background-color', '#FFD2D2');
+		$('#horaspresencia_'+iddato).css('background-color', '#ffd7b4');
 		datos_presencia(iddato);
 	}
 	else{

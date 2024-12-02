@@ -96,6 +96,9 @@
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])?></span>
                 </div>
+                <div class="dato">
+                    <span class="oswald fs_14"><?=moneda_puntocoma(($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])/$datos_acumulados['nmeses'])?></span>
+                </div>
             </div>
             <div class="linea">
                 <label class="ancho">Nº horas por OR:</label>
@@ -103,7 +106,7 @@
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])?></span>
                 </div>
                 <div class="dato">
-                    <span class="oswald fs_14"><?='---'?></span>
+                    <span class="oswald fs_14"><?=moneda_puntocoma(($datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])/$datos_acumulados['nmeses'])?></span>
                 </div>
             </div>
 

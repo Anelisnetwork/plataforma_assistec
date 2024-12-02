@@ -9,7 +9,9 @@ $rendimiento=porcentaje_($hfacturadas,$dato_mensual[0]->da_horasfichadasor);
 
 $ventapr=$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
 $costepr=$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros;
-$porcentpr=margen_sobre_coste($costepr,$ventapr);
+//$porcentpr=margen_sobre_coste($costepr,$ventapr);
+$margenpr=$ventapr-$dato_mensual[0]->da_pagadoprovrec;
+$porcentpr=$margenpr/$ventapr*100;
 
 $total_facturado=$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
 $mediaor=$total_facturado/$dato_mensual[0]->da_entradastaller;
@@ -18,6 +20,8 @@ $ventamo=$dato_mensual[0]->da_facturadomo;
 $mediamo=$ventamo/$dato_mensual[0]->da_entradastaller;
 
 $mediapr=$ventapr/$dato_mensual[0]->da_entradastaller;
+
+$horas_productivas=horas_presencia_pot($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])*($dato_mensual[0]->da_objproductividad/100);//Un 10% de tiempo no productivo
 
 $infotaller=dame_info($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
 $totalbbdd=$infotaller[0]->it_totalclientes;
@@ -62,7 +66,7 @@ $fidelizacion=porcentaje_($dato_mensual[0]->da_entradastaller,$totalbbdd);;
             <div class="linea">
                 <label class="ancho">Tiempo medio por entrada:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=faltan2(($hfacturadas/$dato_mensual[0]->da_entradastaller)*3600/$dato_mensual[0]->da_mes)?></span>
+                    <span class="oswald fs_14"><?=faltan2(($horas_productivas/$dato_mensual[0]->da_entradastaller)*3600/$dato_mensual[0]->da_mes)?></span>
                 </div>
             </div>
             <div class="linea">

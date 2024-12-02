@@ -13,7 +13,9 @@ $obj_rendi=$dato_mensual[0]->da_objrendimiento;
 
 $ventapr=$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
 $costepr=$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros;
-$porcentpr=margen_sobre_coste($costepr,$ventapr);
+//$porcentpr=margen_sobre_coste($costepr,$ventapr);
+$margenpr=$ventapr-$dato_mensual[0]->da_pagadoprovrec;
+$porcentpr=$margenpr/$ventapr*100;
 $obj_ventapr=$dato_mensual[0]->da_objmargenrec;
 
 $total_facturado=$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
@@ -29,10 +31,11 @@ $totalbbdd=$infotaller[0]->it_totalclientes;
 $fidelizacion=porcentaje_($dato_mensual[0]->da_entradastaller,$totalbbdd);;
 
 
-$tiempo_medio_cliente=$hfacturadas/$dato_mensual[0]->da_entradastaller;//21.6
+
 $horas_productivas=horas_presencia_pot($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])*($obj_prod/100);//Un 10% de tiempo no productivo
-$capacidad_teorica=$horas_productivas/$tiempo_medio_cliente;
+$tiempo_medio_cliente=$horas_productivas/$dato_mensual[0]->da_entradastaller;//21.6
 $entradas_dia=$dato_mensual[0]->da_entradastaller/$dato_mensual[0]->da_diaslaborables;
+$capacidad_teorica=$horas_productivas/$tiempo_medio_cliente/$dato_mensual[0]->da_diaslaborables;
 
 //echo 'Horas productivas: '.$horas_productivas;
 
@@ -68,15 +71,15 @@ $entradas_dia=$dato_mensual[0]->da_entradastaller/$dato_mensual[0]->da_diaslabor
                 </div>
             </div>
             <div class="linea">
-                <label class="ancho">N&ordm; entradas:</label>
+                <label class="ancho">N&ordm; entradas/día:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=$dato_mensual[0]->da_entradastaller?></span>
+                    <span class="oswald fs_14"><?=round($entradas_dia)?></span>
                 </div>
             </div>
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
                 <label class="ancho">Capacidad te&oacute;rica entradas:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=round($capacidad_teorica*$dato_mensual[0]->da_diaslaborables)?></span>
+                    <span class="oswald fs_14"><?=round($capacidad_teorica)?></span>
                 </div>
             </div>
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
@@ -94,7 +97,7 @@ $entradas_dia=$dato_mensual[0]->da_entradastaller/$dato_mensual[0]->da_diaslabor
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
                 <label class="ancho">Tiempo medio por entrada:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=faltan2(($hfacturadas/$dato_mensual[0]->da_entradastaller)*3600)?></span>
+                    <span class="oswald fs_14"><?=faltan2(($horas_productivas/$dato_mensual[0]->da_entradastaller)*3600)?></span>
                 </div>
             </div>
             <div class="linea">

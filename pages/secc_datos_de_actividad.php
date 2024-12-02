@@ -57,7 +57,7 @@ $imp_mo=dame_impmo_actual();
         
         <div class="linea">
             <label class="ancho faq">N&ordm; horas presencia:</label>
-            <input type="text" id="horaspresencia_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right<?=$datos_actividad[0]->da_tipopresencia==1?'; background-color:#FFD2D2':''?>" name="horaspresencia_<?=$datos_actividad[0]->da_iddato?>" class="peq orig" value="<?=$datos_actividad[0]->da_horaspresencia?>" onkeyup="comprueba_num(this.id); datos_presencia('<?=$datos_actividad[0]->da_iddato?>'); comprueba_cambios('edita_datosactividad')"<?=$datos_actividad[0]->da_tipopresencia==1?' readonly="readonly"':''?>>
+            <input type="text" id="horaspresencia_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right<?=$datos_actividad[0]->da_tipopresencia==1?'; background-color:#ffd7b4':''?>" name="horaspresencia_<?=$datos_actividad[0]->da_iddato?>" class="peq orig" value="<?=$datos_actividad[0]->da_horaspresencia?>" onkeyup="comprueba_num(this.id); datos_presencia('<?=$datos_actividad[0]->da_iddato?>'); comprueba_cambios('edita_datosactividad')"<?=$datos_actividad[0]->da_tipopresencia==1?' readonly="readonly"':''?>>
             <input type="hidden" id="horaspresencia_<?=$datos_actividad[0]->da_iddato?>_def" name="horaspresencia_<?=$datos_actividad[0]->da_iddato?>_def" value="<?=$datos_actividad[0]->da_horaspresencia?>" />
         </div>
         
@@ -131,7 +131,7 @@ $imp_mo=dame_impmo_actual();
         
         <div class="linea">
             <label class="ancho"><strong>Total importes facturados:</strong></label>
-            <input type="text" id="facturado_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#FFD2D2" name="facturado_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_facturadomo+$datos_actividad[0]->da_facturadorec+$datos_actividad[0]->da_facturadootros,2)?>" disabled="disabled">
+            <input type="text" id="facturado_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#ffd7b4" name="facturado_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_facturadomo+$datos_actividad[0]->da_facturadorec+$datos_actividad[0]->da_facturadootros,2)?>" disabled="disabled">
         </div>
 		<?php if(1==0){?>
         <div class="linea">
@@ -151,7 +151,7 @@ $imp_mo=dame_impmo_actual();
         </div>
         <div class="linea">
             <label class="ancho"><strong>Total importes cobrados:</strong></label>
-            <input type="text" id="cobrado_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#FFD2D2" name="cobrado_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_cobradomo+$datos_actividad[0]->da_cobradorec+$datos_actividad[0]->da_cobradootros,2)?>" disabled="disabled">
+            <input type="text" id="cobrado_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#ffd7b4" name="cobrado_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_cobradomo+$datos_actividad[0]->da_cobradorec+$datos_actividad[0]->da_cobradootros,2)?>" disabled="disabled">
         </div>
         <?php }?>
         <div class="linea">
@@ -191,17 +191,17 @@ $imp_mo=dame_impmo_actual();
         
         <div class="linea">
             <label class="ancho"><strong>N&ordm; horas facturadas:</strong></label>
-            <input type="text" id="horasfac_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#FFD2D2" name="horasfac_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_horasfac,2)?>" readonly="readonly">
+            <input type="text" id="horasfac_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#ffd7b4" name="horasfac_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_horasfac,2)?>" readonly="readonly">
         </div>
         
         <div class="linea">
             <label class="ancho"><strong>Horas perdidas:</strong></label>
-            <input type="text" id="horasimproductivas_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#FFD2D2" name="horasimproductivas_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_horasimproductivas,2)?>" readonly="readonly">
+            <input type="text" id="horasimproductivas_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#ffd7b4" name="horasimproductivas_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_horasimproductivas,2)?>" readonly="readonly">
         </div>
         
         <div class="linea">
             <label class="ancho"><strong>Importe no facturado:</strong></label>
-            <input type="text" id="nofacturado_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#FFD2D2" name="nofacturado_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_nofacturado,2)?>" readonly="readonly">
+            <input type="text" id="nofacturado_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#ffd7b4" name="nofacturado_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_nofacturado,2)?>" readonly="readonly">
         </div>
         
         <div class="linea">

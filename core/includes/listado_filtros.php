@@ -97,8 +97,9 @@ foreach ($talleres as $key => $taller) {
 			$fidelizacion=porcentaje_($dato_mes[0]->da_entradastaller,$totalbbdd);;
 
 
-			$tiempo_medio_cliente=$dato_mes[0]->da_entradastaller==0?0:$hfacturadas/$dato_mes[0]->da_entradastaller;//21.6
+
 			$horas_productivas=horas_presencia_pot($taller->ta_idtaller)*($obj_prod/100);//Un 10% de tiempo no productivo
+            $tiempo_medio_cliente=$dato_mes[0]->da_entradastaller==0?0:$horas_productivas/$dato_mes[0]->da_entradastaller;//21.6
 			$capacidad_teorica=$dato_mes[0]->da_entradastaller==0?'':$horas_productivas/$tiempo_medio_cliente;
 			$entradas_dia=$dato_mes[0]->da_entradastaller/$dato_mes[0]->da_diaslaborables;
 
@@ -154,7 +155,7 @@ foreach ($talleres as $key => $taller) {
 			centrado($col.$cell);
 			ancho_col_auto($col);
 			color_bg($col.$cell,$color_bg);
-			${'res_'.$t_inf}=='v'?color_text($col.$cell,'2DB200'):(${'res_'.$t_inf}=='r'?color_text($col.$cell,'E2001A'):'');
+			${'res_'.$t_inf}=='v'?color_text($col.$cell,'2DB200'):(${'res_'.$t_inf}=='r'?color_text($col.$cell,'EF7F1F'):'');
 		}
 	}
 	borde_fino('A'.$cell.':'.$col.$cell.'','all');
