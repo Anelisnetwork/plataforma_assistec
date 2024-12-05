@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var $datos
+ */
 if(num_rows('select ta_idtaller from talleres where ta_idtaller='.$datos[1].'')!=1||num_rows('select tc_idtipo from tipos_contrato where tc_idtipo='.$datos[2].' and (tc_1t="'.$datos[4].'" OR tc_1s="'.$datos[4].'" OR tc_1a="'.$datos[4].'")')!=1){
 	$hay_errores=1;
 	$mensaje_error='Error en datos.';

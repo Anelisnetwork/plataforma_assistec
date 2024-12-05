@@ -1,5 +1,5 @@
 <?php
-
+isset($anho) ?: $anho = date('Y');
 $_SESSION['datos_'._ID_PAG_]['editar_factura']['hayerrores']=0;
 $_SESSION['datos_'._ID_PAG_]['editar_factura']['mensaje']='Factura guardada';
 

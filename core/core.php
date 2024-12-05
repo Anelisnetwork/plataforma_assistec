@@ -5,7 +5,8 @@
  * Password: jk&y@FF6
  */
 
-$entorno=$_SERVER['SERVER_NAME'] == 'localhost' ? 'local':'produccion';
+$entorno = $_SERVER['SERVER_NAME'] == 'localhost' || str_contains($_SERVER['SERVER_NAME'], 'siguetuproyecto') ? 'local':'produccion';
+
 define('_ENTORNO_',$entorno);
 if(_ENTORNO_=='local'){
     define( '_DEBUG_', true);
@@ -62,14 +63,14 @@ define( '_IVA_', '1.21');
 define('DS',DIRECTORY_SEPARATOR);
 
 if(_TEST_){
-	define( '_PATH_', 'C:'.DS.'Users'.DS.'gerar'.DS.'Documents'.DS.'Proyectos'.DS.'plataforma_assistec'.DS);
-	define( '_RAIZ_', '/proyectos/plataforma_assistec/');
-    define( '_WEB_', '/proyectos/Assistec/');
-	define( '_ZEND_', 'C:'.DS.'Users'.DS.'gerar'.DS.'Documents'.DS.'Proyectos'.DS.'plataforma_assistec'.DS.'core'.DS);
+    define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.siguetuproyecto.com'.DS);
+    define( '_RAIZ_', 'https://assistec.siguetuproyecto.com/');
+    define( '_WEB_', 'https://assistec.siguetuproyecto.com/');
+    define( '_ZEND_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.siguetuproyecto.com'.DS.'core'.DS);
 
-	define( '_BD_NAME_', 'bbdd_assistec');
-	define( '_BD_USER_', 'root');
-	define( '_BD_PASS_', '');
+	define( '_BD_NAME_', 'assistec_stp');
+	define( '_BD_USER_', 'assistec_usr');
+	define( '_BD_PASS_', 'fP1y449w_$1wF8l46w');
 }
 else{
 	define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS);

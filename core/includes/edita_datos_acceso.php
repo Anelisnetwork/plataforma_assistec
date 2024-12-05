@@ -1,5 +1,4 @@
 <?php
-
 $_SESSION['datos_'._ID_PAG_]['datos_acceso']['hayerrores']=0;
 
 $url_dest=clean_post('url_dest');
@@ -24,9 +23,9 @@ if($idusu!=1&&$idusu!=720){//No es usuario de pruebas
 	}
 	
 	$alias=$_SESSION['datos_'._ID_PAG_]['datos_acceso']['alias_'.$idusu]=clean_post('alias_'.$idusu);
-	$aliasrepe=num_rows('select us_nick from usuarios where us_nick="'.$alias.'" and us_idusuario!='.$idusuario.'');
+	$aliasrepe=num_rows('select us_nick from usuarios where us_nick="'.$alias.'" and us_idusuario!='.$idusu.'');
 	$acccorreo=$_SESSION['datos_'._ID_PAG_]['datos_acceso']['acccorreo_'.$idusu]=clean_post('acccorreo_'.$idusu);
-	$correorepe=num_rows('select us_correo from usuarios where us_correo="'.$acccorreo.'" and us_idusuario!='.$idusuario.'');
+	$correorepe=num_rows('select us_correo from usuarios where us_correo="'.$acccorreo.'" and us_idusuario!='.$idusu.'');
 	
 	if($aliasrepe>0||$correorepe>0){
 		$_SESSION['datos_'._ID_PAG_]['datos_acceso']['hayerrores']=1;

@@ -197,11 +197,6 @@ function funciones_personal($idempleado){
 	return list_object('select * from personal_funciones where pf_idpersonal='.$idempleado.'');
 }
 
-function comprueba_correo($correo){
-	$usr=num_rows('select idcli from clientes where correo="'.$correo.'" and potencial=0 and idpag='._PAG_.'');
-	return $usr!=0?false:true;
-}
-
 function dato_rango($idrango, $campo){
 	return fetch_array('select '.$campo.' from rangos_usuario where ru_idrango='.$idrango.'',$campo);
 }
@@ -418,7 +413,9 @@ function VerificarDireccionCorreo($direccion){
 }
 
 function enviar_email($mail_destino, $nombre_destino, $mail_cco='', $nombre_cco='', $asunto, $cuerpo, $origen_nombre, $origen_email, $respuesta_nombre='', $respuesta_email='', $urlalt='', $adjuntos='', $nadjuntos='', $imagen='', $n_imagen='', $altbody=''){
-	require_once(_ZEND_.'clases/class.phpmailer.php');//directorio de la clase phpmailer
+    require_once _PATH_.'core/Helpers/PHPMailer/PHPMailer.php';
+    require_once _PATH_.'core/Helpers/PHPMailer/SMTP.php';
+    require_once _PATH_.'core/Helpers/PHPMailer/Exception.php';
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
 	$mail->IsHTML(true);// se envía como HTML

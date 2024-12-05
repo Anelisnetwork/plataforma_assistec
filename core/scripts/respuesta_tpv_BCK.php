@@ -1,7 +1,7 @@
-<?
+<?php
 $result = $_POST['Ds_Response'];//00=realizada, cualquier otro valor=error
 $orderid = $_POST['Ds_Order'];//idfactura-nfactura
-$authcode = $_POST['Ds_AuthorisationCode'];//Código de autorización
+$authcode = $_POST['Ds_AuthorisationCode'];//Cï¿½digo de autorizaciï¿½n
 $realexsha1 = $_POST['Ds_Signature'];//Firma
 
 $merchantid = "031022312";
@@ -30,18 +30,18 @@ else{
 		$nfactura=$datos_fac['nfactura'];
 		$idfactura=$datos_fac['idfactura'];
 		$idtaller=$datos_fac['idcli'];
-		if ($result<100) {//Transacción realizada
+		if ($result<100) {//Transacciï¿½n realizada
 			query('update facturas set estado=1, fecha_pago="'.date('Y-m-d H:i:s').'", cod_aut="'.$authcode.'" where idfactura='.$idfactura.'');
 			$vencimiento=fetch_array('select fecha_vencimiento from facturas where idfactura='.$idfactura.'','fecha_vencimiento');
 			$tipo_taller=fetch_array('select ta_idtipo from talleres where ta_idtaller='.$idtaller.'','ta_idtipo');
 			query('update talleres set ta_vencimiento="'.$vencimiento.'" where ta_idtaller='.$idtaller.'');
 			$tipo_taller==2?query('update talleres set ta_vencimiento="'.$vencimiento.'" where ta_idparent='.$idtaller.''):'';
-		}//Transacción realizada
-		else{//Transacción fallida
+		}//Transacciï¿½n realizada
+		else{//Transacciï¿½n fallida
 			$hay_errores=1;
 			$mensaje_error='Error al realizar la transacci&oacute;n.<br>C&oacute;d. error: '.$result.'.';
 			query('update facturas set tpv_msg="'.$result.'" where idfactura='.$idfactura.'');
-		}//Transacción fallida
+		}//Transacciï¿½n fallida
 	}
 }
 ?>

@@ -1,4 +1,11 @@
 <?php
+/**
+ * @var $hfacturadas
+ * @var $hpresencia
+ * @var $idtaller
+ * @var $idmes
+ * @var $idano
+ */
 $fact=number_format($hfacturadas,0,'.','');
 $pres=number_format($hpresencia,0,'.','');
 $dif=number_format($pres-$fact,0,'.','');
