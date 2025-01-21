@@ -435,7 +435,7 @@ tr {
         <tr>
             <td width="300">
                 <div style="width:300px;">
-                    <img src="<?=_PATH_?>archivos/tmp/margenventa_<?=$idtaller?>_<?=$idmes?>_<?=$idano?>.png">
+                    <!--<img src="<?php /*=_PATH_*/?>archivos/tmp/margenventa_<?php /*=$idtaller*/?>_<?php /*=$idmes*/?>_<?php /*=$idano*/?>.png">-->
                 </div>
             </td>
             <td width="300">

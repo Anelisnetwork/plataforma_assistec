@@ -40,7 +40,7 @@ function query($sql){
 /* Devuelve array con datos encontrados, o bien el dato en concreto, si lo conocemos */
 function fetch_array($sql,$query=''){
 	$r = mysqli_fetch_array( query($sql) );
-	if ( $query != '' ){
+	if ( $r && $query != '' ){
 		return $r[$query];
 	}
 	else{
