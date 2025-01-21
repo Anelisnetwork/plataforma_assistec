@@ -1,6 +1,9 @@
 <?php 
 $dato_mensual=ultimo_dato();
 $iddato=isset($dato_mensual[0]->da_iddato)?$dato_mensual[0]->da_iddato:'';
+$datos_guardados = [];
+$anhos = [];
+$datos_acumulados=dame_acumulado(date('Y'));
 
 if($iddato==''||$iddato==NULL){?>
 
@@ -31,7 +34,7 @@ else{
 	
 }
 
-if(count($secciones)>0){
+if(count($secciones)>0 && isset($masget)){
 	foreach($secciones as $secc){?>
 <a href="<?=_RAIZ_.$m.'/'.$secc->sc_url.$masget.'/'?>" title="<?=nom_seccion($secc->sc_url)?>" class="fs_16 nav_seccion<?=$secc->sc_url==$seccion?' activo':''?>"><?=nom_seccion($secc->sc_url)?></a>
 <?php }
