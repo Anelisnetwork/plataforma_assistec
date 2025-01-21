@@ -32,6 +32,7 @@ $dirr=$_SESSION['datos_'._ID_PAG_]['edita_taller']['dirr_'.$idtaller]=clean_post
 $cp=$_SESSION['datos_'._ID_PAG_]['edita_taller']['cp_'.$idtaller]=clean_post('cp_'.$idtaller);
 $loc=$_SESSION['datos_'._ID_PAG_]['edita_taller']['loc_'.$idtaller]=clean_post('loc_'.$idtaller);
 $prov=$_SESSION['datos_'._ID_PAG_]['edita_taller']['prov_'.$idtaller]=clean_post('prov_'.$idtaller);
+$avisodatos=$_SESSION['datos_'._ID_PAG_]['edita_taller']['avisodatos_'.$idtaller]=clean_post('avisodatos_'.$idtaller);
 //DATOS DEL TALLER
 
 //DATOS DE FACTURACIÓN
@@ -88,7 +89,7 @@ if($nomcom==''||$razsoc==''||$cif==''||$telefono==''||$correo==''||!VerificarDir
 
 
 if($_SESSION['datos_'._ID_PAG_]['edita_taller']['hayerrores']==0){
-    if(!query('update talleres set ta_idtipo='.$tipo.', ta_idparent='.$red.', ta_nombre="'.u8_($nomcom).'", ta_contacto="'.u8_($contacto).'", ta_socio="'.u8_($socio).'", ta_telefono1="'.$telefono.'", ta_telefono2="'.$movil.'", ta_email="'.$correo.'", ta_direccion="'.u8_($dirr).'", ta_cp="'.$cp.'", ta_localidad="'.u8_($loc).'", ta_provincia="'.u8_($prov).'", ta_contrato='.$contrato.', ta_abono='.$pago.', ta_objventas='.$objventas.', ta_objmargenrec='.$objmargenrec.', ta_objeficacia='.$objeficacia.', ta_objproductividad='.$objproductividad.', ta_objrendimiento='.$objrendimiento.', ta_nofacturar='.$nofacturar.' where ta_idtaller='.$idtaller.'')){
+    if(!query('update talleres set ta_idtipo='.$tipo.', ta_idparent='.$red.', ta_nombre="'.u8_($nomcom).'", ta_contacto="'.u8_($contacto).'", ta_socio="'.u8_($socio).'", ta_telefono1="'.$telefono.'", ta_telefono2="'.$movil.'", ta_email="'.$correo.'", ta_direccion="'.u8_($dirr).'", ta_cp="'.$cp.'", ta_localidad="'.u8_($loc).'", ta_provincia="'.u8_($prov).'", ta_contrato='.$contrato.', ta_abono='.$pago.', ta_objventas='.$objventas.', ta_objmargenrec='.$objmargenrec.', ta_objeficacia='.$objeficacia.', ta_objproductividad='.$objproductividad.', ta_objrendimiento='.$objrendimiento.', ta_nofacturar='.$nofacturar.', ta_avisodatos='.$avisodatos.' where ta_idtaller='.$idtaller.'')){
         $_SESSION['datos_'._ID_PAG_]['edita_taller']['hayerrores']=1;
     }
     else{

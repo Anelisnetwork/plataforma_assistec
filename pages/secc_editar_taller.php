@@ -166,6 +166,14 @@ else{?>
                     <input type="text" id="prov_<?=$d_tall[0]->ta_idtaller?>" name="prov_<?=$d_tall[0]->ta_idtaller?>" value="<?=u8d_($d_tall[0]->ta_provincia)?>" required="required" class="orig" onkeyup="comprueba_cambios('edita_taller')">
                     <input type="hidden" id="prov_<?=$d_tall[0]->ta_idtaller?>_def" name="prov_<?=$d_tall[0]->ta_idtaller?>_def" value="<?=u8d_($d_tall[0]->ta_provincia)?>" />
                 </div>
+                <div class="linea">
+                    <label for="avisodatos_<?=$d_tall[0]->ta_idtaller?>">Enviar recordatorio de introducción de datos:</label>
+                    <select id="avisodatos_<?=$d_tall[0]->ta_idtaller?>" name="avisodatos_<?=$d_tall[0]->ta_idtaller?>" class="orig" onchange="comprueba_cambios('edita_taller')" >
+                        <option title="Enviar avisos" value="0"<?=$d_tall[0]->ta_avisodatos==0?' selected="selected"':''?>>Sí</option>
+                        <option title="No enviar avisos" value="1"<?=$d_tall[0]->ta_avisodatos==1?' selected="selected"':''?>>No</option>
+                    </select>
+                    <input type="hidden" id="avisodatos_<?=$d_tall[0]->ta_idtaller?>_def" name="avisodatos_<?=$d_tall[0]->ta_idtaller?>_def" value="<?=$d_tall[0]->ta_avisodatos?>" />
+                </div>
             </div>
         </div>
 
