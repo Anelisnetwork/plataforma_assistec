@@ -8,7 +8,9 @@ require_once('../core/core.php');
 $contenido=clean_get('contenido');
 $contenido_de=explode('%%',(de__($contenido)));
 
-require_once('../core/clases/genpdf/html2pdf.class.php');
+//require_once('../core/clases/genpdf/html2pdf.class.php');
+require _PATH_.'vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
 
 $nombre_archivo='archivo_assistec';
 
@@ -28,7 +30,7 @@ close_bd();
 
 
 try{
-	$html2pdf = new HTML2PDF('P', 'A4', 'es', true, 'UTF-8', array(0, 0, 0, 5));//mL, mT, mR, mB
+	$html2pdf = new Html2Pdf('P', 'A4', 'es', true, 'UTF-8', array(0, 0, 0, 5));//mL, mT, mR, mB
 	//$html2pdf->pdf->IncludeJS(_RAIZ_.'includes/recursos.php');
 	//isset($script1)?$html2pdf->pdf->IncludeJS($script1):'';
 	$html2pdf->pdf->SetDisplayMode('fullpage');

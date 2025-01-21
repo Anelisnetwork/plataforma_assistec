@@ -36,7 +36,7 @@ function grafica($chart, $nombre)
             'method' => 'POST',
             'content' => http_build_query($chart))));
     ob_start();
-    fpassthru(fopen($url, 'r', false, $context));
+    //fpassthru(fopen($url, 'r', false, $context));
     $content = ob_get_clean();
 //ob_end_clean();
     $file = fopen(_PATH_."archivos/tmp/" . $nombre . ".png", "w");
