@@ -95,6 +95,7 @@ else{//Iniciamos proceso de pago
 	}
 	
 	if($datos[0]=='alta_nueva'){//NUEVO REGISTRO
+        enviar_email('web@assistec.es', 'Assitec', '', '', u8d_('Alta nueva'), 'Nuevo alta de cliente', 'Formulario de registro Assistec', 'web@assistec.es', '', '', '', '', '', u8d_('Nuevo alta de cliente'));
 		unset($_SESSION['proceso_pago']);
 		include('core/includes/alta_nueva.php');
 	}//NUEVO REGISTRO
