@@ -3,9 +3,11 @@ if(!isset($_GET['token'])||$_GET['token']!=md5('laconcongrelos')){
     exit('Hola, ke ase?');
 }
 
-require_once('/var/www/vhosts/assistec.es/httpdocs/plataforma/core/core.php');
+require_once('../core/core.php');
 
-require_once(_PATH_.'core/clases/genpdf/html2pdf.class.php');
+//require_once(_PATH_.'core/clases/genpdf/html2pdf.class.php');
+require _PATH_.'vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
 
 open_bd();
 

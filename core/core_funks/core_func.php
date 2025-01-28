@@ -250,12 +250,12 @@ function clean_get($var){
 
 /* Encode UTF-8 */
 function u8_($var){
-	return utf8_encode($var);
+	return $var;
 }
 
 /* Decode UTF-8 */
 function u8d_($var){
-	return utf8_decode($var);
+	return $var;
 }
 
 function html_($var){
