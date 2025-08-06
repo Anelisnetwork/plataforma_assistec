@@ -1,4 +1,4 @@
-<?
+<?php
 /*vd__($_POST['acceso']);
 vd__(json_decode($_POST['datos']));*/
 //vd__($_POST);exit;

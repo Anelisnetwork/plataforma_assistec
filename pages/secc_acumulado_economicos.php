@@ -6,10 +6,12 @@
 		$coste_hora_real=$coste_hora_teorico*round($datos_acumulados['eficacia'])/100;*/
 		//echo round($datos_acumulados['eficacia']);
 		?>
-        <div id="informemes" class="div_mostrarocultar colizq" style="float:left;">	
+        <div id="informemes" class="div_mostrarocultar colizq" style="float:left;">
+            <?php if(isset($anho_acumulado)){?>
 			<div class="linea">
             	<span class="oswald fs_16">Informe econ&oacute;mico acumulado del a&ntilde;o <?=$anho_acumulado?></span>
             </div>
+            <?php }?>
             
             <div class="linea">
                 <label class="ancho fs_16">Total facturado:</label>
@@ -70,7 +72,7 @@
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
                 <label class="ancho">Precio medio hora:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$datos_acumulados['hfacturadas'])?> &euro;</span>
+                    <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas'] == 0 ? 0 : $datos_acumulados['ventamo']/$datos_acumulados['hfacturadas'])?> &euro;</span>
                 </div>
             </div>
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
@@ -82,13 +84,13 @@
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
                 <label class="ancho">Margen:</label>
                 <div class="dato">
-                    <span class="oswald fs_14 texto_<?=($datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']-$coste_hora_real)<0?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']-$coste_hora_real)?> &euro;</span>
+                    <span class="oswald fs_14 texto_<?=$datos_acumulados['hfacturadas'] == 0 || ($datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']-$coste_hora_real)<0?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['hfacturadas'] == 0 ? 0 :$datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']-$coste_hora_real)?> &euro;</span>
                 </div>
             </div>
             <div class="linea" style="background-color:#f5f5f5; margin:0px">
                 <label class="ancho">% beneficio:</label>
                 <div class="dato">
-                    <span class="oswald fs_14 texto_<?=($datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']-$coste_hora_real)<0?'r':'v'?>"><?=moneda_puntocoma(margen_sobre_coste($coste_hora_real,$datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']))?>%</span>
+                    <span class="oswald fs_14 texto_<?=$datos_acumulados['hfacturadas'] == 0 || ($datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']-$coste_hora_real)<0?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['hfacturadas'] == 0 ? 0 :margen_sobre_coste($coste_hora_real,$datos_acumulados['ventamo']/$datos_acumulados['hfacturadas']))?>%</span>
                 </div>
             </div>
             
@@ -122,6 +124,7 @@
             </div>
             
 		</div>
+        <?php   if(isset($anho_acumulado)){?>
         <div class="colder_graf">
 			<div id="stats_acum_econ_1" class="stat_ratio">
 			<script>
@@ -138,3 +141,4 @@
             </script>
             </div>
 		</div>
+        <?php   }?>

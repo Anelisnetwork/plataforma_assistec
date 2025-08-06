@@ -11,7 +11,7 @@
     </div>
     <div class="listado_cont_filtros div_icon" id="tipoinf" style="display:block">
         <div class="line">
-            <?
+            <?php
             /*
             0=Productividad
             1=Eficacia

@@ -4,9 +4,11 @@ if(!isset($_GET['token'])||$_GET['token']!=md5('laconcongrelos')){
 }
 
 //require_once('../core.php');
-require_once('/var/www/vhosts/assistec.es/httpdocs/plataforma/core/core.php');
+require_once('../core/core.php');
 //require_once('../clases/genpdf/html2pdf.class.php');
-require_once('/var/www/vhosts/assistec.es/httpdocs/plataforma/core/clases/genpdf/html2pdf.class.php');
+//require_once('/var/www/vhosts/assistec.es/httpdocs/plataforma/core/clases/genpdf/html2pdf.class.php');
+require _PATH_.'vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
 
 ini_set("display_errors", 1);	
 

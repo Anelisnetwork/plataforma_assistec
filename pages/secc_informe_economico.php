@@ -1,24 +1,25 @@
 <?php
-$total_facturado=$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
-$ventamo=$dato_mensual[0]->da_facturadomo;
-$ventapr=$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
-$costepr=$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros;
-$margenpr=$ventapr-$dato_mensual[0]->da_pagadoprovrec;
-$obj_ventas=$dato_mensual[0]->da_objventas;
-//$porcentpr=margen_sobre_coste($dato_mensual[0]->da_pagadoprovrec,$ventapr);
-$porcentpr=$margenpr/$ventapr*100;
-$obj_ventapr=$dato_mensual[0]->da_objmargenrec;
-$costepers=$dato_mensual[0]->da_costepersonal;
-$costeestr=$dato_mensual[0]->da_costeestructura;
-$total_ingresos=$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
-$total_gastos=$costepr+$costepers+$costeestr;
-$margenbruto=$total_ingresos-$total_gastos;
-//$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
-$porcmargenbruto=$margenbruto/$total_ingresos*100;
+$total_facturado=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros:0;
+$ventamo=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadomo:0;
+$ventapr=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros:0;
+$costepr=isset($dato_mensual[0])?$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros:0;
+$margenpr=isset($dato_mensual[0])?$ventapr-$dato_mensual[0]->da_pagadoprovrec:0;
+$obj_ventas=isset($dato_mensual[0])?$dato_mensual[0]->da_objventas:0;
+//$porcentprisset($dato_mensual[0])?=margen_sobre_coste($dato_mensual[0]->da_pagadoprovrec,$ventapr):0;
+$porcentpr=isset($dato_mensual[0])?$margenpr/$ventapr*100:0;
+$obj_ventapr=isset($dato_mensual[0])?$dato_mensual[0]->da_objmargenrec:0;
+$costepers=isset($dato_mensual[0])?$dato_mensual[0]->da_costepersonal:0;
+$costeestr=isset($dato_mensual[0])?$dato_mensual[0]->da_costeestructura:0;
+$total_ingresos=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros:0;
+$total_gastos=isset($dato_mensual[0])?$costepr+$costepers+$costeestr:0;
+$margenbruto=isset($dato_mensual[0])?$total_ingresos-$total_gastos:0;
+$porcmargenbruto=isset($dato_mensual[0])?$margenbruto/$total_ingresos*100:0;
+$pagadoprovrec=isset($dato_mensual[0])?$dato_mensual[0]->da_pagadoprovrec:0;
+$pagadoprovotros=isset($dato_mensual[0])?$dato_mensual[0]->da_pagadoprovotros:0;
 ?>
 		<div id="informemes" class="div_mostrarocultar colizq" style="float:left;">	
 			<div class="linea">
-            	<span class="oswald fs_16">Informe econ&oacute;mico del mes de <?=nom_mes($dato_mensual[0]->da_mes)?> de <?=$dato_mensual[0]->da_ano?></span>
+            	<span class="oswald fs_16"><?=isset($dato_mensual[0])?"Informe econ&oacute;mico del mes de ".nom_mes($dato_mensual[0]->da_mes)." de ".$dato_mensual[0]->da_ano : "No hay informe"?></span>
             </div>
             
             <div class="linea">
@@ -42,7 +43,7 @@ $porcmargenbruto=$margenbruto/$total_ingresos*100;
             <div class="linea">
                 <label class="ancho">Coste venta PR:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=moneda_puntocoma($dato_mensual[0]->da_pagadoprovrec)?> &euro;</span>
+                    <span class="oswald fs_14"><?=moneda_puntocoma($pagadoprovrec)?> &euro;</span>
                 </div>
             </div>
             <div class="linea">
@@ -60,7 +61,7 @@ $porcmargenbruto=$margenbruto/$total_ingresos*100;
             <div class="linea">
                 <label class="ancho">Coste otras compras:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=moneda_puntocoma($dato_mensual[0]->da_pagadoprovotros)?> &euro;</span>
+                    <span class="oswald fs_14"><?=moneda_puntocoma($pagadoprovotros)?> &euro;</span>
                 </div>
             </div>
             <div class="linea">
@@ -106,7 +107,9 @@ $porcmargenbruto=$margenbruto/$total_ingresos*100;
             </div>
             
             <div class="linea" style="margin-top:25px;">
+                <?php if(isset($dato_mensual[0])){?>
                 <span class="oswald fs_16" style="float:right;">Descargar informe<a href="<?=_RAIZ_.'genera_informe/'.en__('pdf_infome_mensual%%imprimir%%'.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'].'%%'.$dato_mensual[0]->da_mes.'%%'.$dato_mensual[0]->da_ano.'').'/'?>" target="_blank" style="float:right; margin:3px 15px"><img src="<?=_RAIZ_?>imagenes/pdf.png" /></a></span>
+                <?php }?>
             </div>
             
 		</div>

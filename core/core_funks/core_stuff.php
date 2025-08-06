@@ -3,7 +3,9 @@
 /* Abre conexion */
 
 function open_bd(){
-	$_SESSION['datos_'._ID_PAG_]['bd_connection'] = c_();	
+	$_SESSION['datos_'._ID_PAG_]['bd_connection'] = c_();
+    mysqli_set_charset($_SESSION['datos_'._ID_PAG_]['bd_connection'], 'utf8');
+    mysqli_report(MYSQLI_REPORT_OFF);
 }
 
 /* Cierra conexion */
@@ -24,15 +26,21 @@ function insertado(){
 /* Ejecuta una consulta */
 
 function query($sql){
-	$link = $_SESSION['datos_'._ID_PAG_]['bd_connection'];
-	$q = mysqli_query($link,$sql);
-	return $q;
+    $link = $_SESSION['datos_'._ID_PAG_]['bd_connection'];
+    $res = false;
+    try {
+        $res = mysqli_query($link,$sql);
+    } catch (Exception $e) {
+        $message = date('Y-m-d H:i:s').' - Query: '.$sql.' - '.$e->getMessage();
+        __log_error($message, 99);
+    }
+	return $res;
 }
 
 /* Devuelve array con datos encontrados, o bien el dato en concreto, si lo conocemos */
 function fetch_array($sql,$query=''){
 	$r = mysqli_fetch_array( query($sql) );
-	if ( $query != '' ){
+	if ( $r && $query != '' ){
 		return $r[$query];
 	}
 	else{
@@ -209,4 +217,35 @@ function importar_talleres($archivo){
         $fila++;
     }
     return true;
+}
+
+/**
+ * @param string|array|object $message
+ * @param int $type
+ * @param string $fichero
+ * @return bool
+ */
+function __log_error($message = 'Error inesperado', int $type = 3, string $fichero = ''): bool
+{
+    $tipo = $type;
+    $name = $fichero=='' ? 'errores_varios' : "debug_".$fichero;
+    $destino = '';
+    switch ($type){
+        case 1:
+            $destino = 'g.barrasa@anelis.com';
+            break;
+        case 0:// Error con fichero personalizado para crear un log aparte para debug
+            $tipo = 3;
+            break;
+        case 99:// Error de query, lo añadimos a otro fichero diferente
+            $tipo = 3;
+            $name = "errores_query";
+            break;
+        default:// Error general
+            $tipo = 3;
+    }
+    is_string($message) ?: $message=json_encode($message);
+    $destiny = $destino == '' ? RUTA_LOGS."/{$name}_".date('Ymd').".log" : $destino;
+    $description = date('Y-m-d H:i:s')." - ".$message."\r\n";
+    return error_log($description, $tipo, $destiny);
 }
