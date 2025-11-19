@@ -1,5 +1,6 @@
 {
     "require": {
-        "spipu/html2pdf": "^5.3"
+        "spipu/html2pdf": "^5.3",
+        "twbs/bootstrap": "5.3.8"
     }
 }
