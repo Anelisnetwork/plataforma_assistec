@@ -80,11 +80,13 @@ else{
 
     define( '_BD_NAME_', 'bbdd_assistec');
     define( '_BD_USER_', 'usr_assistec');
-    define( '_BD_PASS_', 'Us3r&@sS1sT3c');
+    define( '_BD_PASS_', 't1j42$2qJzl58$l46X');
 }
 const RUTA_LOGS = _PATH_ . "tmp";
 if (!file_exists(RUTA_LOGS)) {
-    mkdir(RUTA_LOGS);
+    if (!mkdir($concurrentDirectory = RUTA_LOGS) && !is_dir($concurrentDirectory)) {
+        throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+    }
 }
 
 ini_set("log_errors", 1);
@@ -130,5 +132,3 @@ $_m = count($_core_mods_);
 for ( $i=0; $i<$_m; $i++ ){
     require _ZEND_.module_folder.DS.module_prev.$_core_mods_[$i].'.php';
 }
-
-?>
