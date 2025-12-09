@@ -15,9 +15,10 @@
 </head>
 
 <body id="loging">
-	<div class="centrado">
-    	<div class="linea" id="titulo">
-        	<span class="fs_28 texto_r"><strong>Acceso a Plataforma Assistec online</strong></span>
+	<div class="d-flex flex-column align-items-center justify-content-center pt-5">
+    	<div class="row" id="">
+        	<span class="fs_28 texto_r d-none d-md-flex"><strong>Acceso a Plataforma Assistec online</strong></span>
+        	<span class="fs_28 texto_r d-flex d-md-none"><strong>Acceso a Plataforma<br>Assistec online</strong></span>
         </div>
         <?php 
 		!isset($_SESSION['datos_'._ID_PAG_]['n_errores'])?$_SESSION['datos_'._ID_PAG_]['n_errores']=0:'';
@@ -73,21 +74,32 @@
 		<?php
 		}
 		?>
-        <div class="linea">
-            <div class="redondo borde_gris redondo" id="cont_logo">
-                <div id="cont_form">
-                	<form action="<?=_RAIZ_?>procesando.php" method="post" name="cuenta" id="cuenta" class="form_lg">
-                        <span class="fs_12">E-mail:</span>
-                        <input type="text" class="indent redondo borde_gris<?=isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('astc_email',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])?' error':'';?>" id="astc_email" name="astc_email" />
-                        <span class="fs_12">Contrase&ntilde;a:</span>
-                        <input type="password" class="indent redondo borde_gris<?=isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('astc_pass',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])?' error':'';?>" id="astc_pass" name="astc_pass" />
+        <div class="row">
+            <div class="redondo borde_gris d-flex flex-column flex-md-row align-items-center p-0" id="">
+                <div class="d-flex align-items-center justify-content-between p-4">
+                    <img src="<?=_RAIZ_?>imagenes/assistec.png" alt="Assistec Online" title="Assistec Online" />
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-between p-4 bg-light">
+                	<form action="<?=_RAIZ_?>procesando.php" method="post" name="cuenta" id="cuenta" class="form_lg d-flex flex-column align-items-center justify-content-center">
+                        <div class="form-group d-flex flex-column mb-3">
+                            <span class="fs_12">E-mail:</span>
+                            <input type="text" class="indent redondo borde_gris<?=isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('astc_email',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])?' error':'';?>" id="astc_email" name="astc_email" />
+                        </div>
+                        <div class="form-group d-flex flex-column mb-3">
+                            <span class="fs_12">Contrase&ntilde;a:</span>
+                            <input type="password" class="indent redondo borde_gris<?=isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('astc_pass',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])?' error':'';?>" id="astc_pass" name="astc_pass" />
+                        </div>
                         <?php if($_SESSION['datos_'._ID_PAG_]['n_errores']>=3){?>
-                        <span class="fs_12">Pregunta de seguridad:</span><br clear="all" />
-                        <span class="fs_14 suma_captcha"><?=$_SESSION['datos_'._ID_PAG_]['captcha1']?> + <?=$_SESSION['datos_'._ID_PAG_]['captcha2']?> =</span>
-                        <input type="text" name="res_captcha" id="res_captcha" value="" class="indent redondo borde_gris<?=isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('res_captcha',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])?' error':'';?>" style="width:20px" autocomplete="off" />
+                        <div class="form-group d-flex flex-column mb-3">
+                            <span class="fs_12">Pregunta de seguridad:</span><br clear="all" />
+                            <span class="fs_14 suma_captcha"><?=$_SESSION['datos_'._ID_PAG_]['captcha1']?> + <?=$_SESSION['datos_'._ID_PAG_]['captcha2']?> =</span>
+                            <input type="text" name="res_captcha" id="res_captcha" value="" class="indent redondo borde_gris<?=isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('res_captcha',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])?' error':'';?>" style="width:20px" autocomplete="off" />
+                        </div>
                         <?php }?>
-                        <input type="submit" class="indent redondo link" id="astc_submit" name="astc_submit" value="ENTRAR" />
-                        <input type="hidden" id="idproceso" name="idproceso" value="acceso" />
+                        <div class="form-group mb-3 w-100">
+                            <input type="submit" class="indent redondo link btn btn-secondary w-100 fs_14" id="astc_submit" name="astc_submit" value="Acceder" />
+                            <input type="hidden" id="idproceso" name="idproceso" value="acceso" />
+                        </div>
                     </form>
                     <div class="texto_centrado" style="width:200px; float:left">
                     <form action="<?=_RAIZ_?>procesando.php" method="post" onsubmit="return nuevapass();" name="cuenta" id="cuenta" class="form_lg">
@@ -99,11 +111,11 @@
                 </div>
             </div>
         </div>
-        <div class="linea texto_centrado">
+        <div class="row texto_centrado">
         	<a href="<?=_WEB_?>registro.php" class="texto_r no_registrado">No estoy registrado</a>
         </div>
         <?php if(isset($_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])&&in_array('noscript',$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores'])){?>
-        	<div class="linea texto_centrado">
+        	<div class="row texto_centrado">
                 <span class="texto_r"><strong>Debe habilitar Javascript en su navegador para utilizar nuestro panel</strong></span>
             </div>
         <?php }?>

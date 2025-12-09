@@ -142,6 +142,41 @@ function nom_modulo($modulo){
 function nom_seccion($seccion){
 	return u8_(fetch_array('select sc_nombre from secciones where sc_url="'.$seccion.'"','sc_nombre'));
 }
+function modulo_ico($modulo){
+    switch($modulo) {
+        case 'inicio':
+            $ico = 'fa fa-home';
+            break;
+        case 'informes_del_mes':
+            $ico = 'fa-solid fa-file-contract';
+            break;
+        case 'ratios_acumulados':
+            $ico = 'fa-solid fa-chart-line';
+            break;
+        case 'datos_del_mes':
+            $ico = 'fa-solid fa-table-list';
+            break;
+        case 'km0':
+            $ico = 'fa-solid fa-gauge';
+            break;
+        case 'analisis_de_datos':
+            $ico = 'fa-solid fa-magnifying-glass-chart';
+            break;
+        case 'datos_del_taller':
+            $ico = 'fa-solid fa-screwdriver-wrench';
+            break;
+        case 'facturacion':
+            $ico = 'fa-solid fa-file-invoice-dollar';
+            break;
+        case 'contactar_con_assistec':
+            $ico = 'fa-solid fa-address-book';
+            break;
+        default:
+            $ico = '';
+            break;
+    }
+    return $ico;
+}
 
 function dame_secciones($modulo){
 	if($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']!=1&&$modulo=='facturacion'){

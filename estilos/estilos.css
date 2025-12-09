@@ -9,7 +9,7 @@ body{
 
 a{
 	color:#555;
-	text-decoration:none;
+	text-decoration:none !important;
 }
 a:hover{
 	text-decoration:none;
@@ -149,7 +149,6 @@ input[type="submit"]{
 	background-color:#EEE;
 	width:100%;
 	height:100%;
-	margin-top:10px;
 }
 
 .centrado{
@@ -236,11 +235,6 @@ input[type="submit"]{
 }
 
 #panel .menu{
-	float:left;
-	width:230px;
-	padding:10px;
-	height:100%;
-	background-color:#222;
 }
 #panel .eliminar{
 	float:left;
@@ -273,25 +267,25 @@ input[type="submit"]{
 #panel .menu .nav{
 	float:left;
 	width:190px;
-	height:19px;
-	padding:8px 20px;
+	padding:8px 10px 8px 20px;
 	background-repeat:no-repeat;
-	background-position:20px bottom;
-	text-indent:50px;
+	background-position:5px bottom;
+	text-indent:20px;
 	background-color:#3C3C3D;
 	color:#777;
 	margin-bottom:1px;
+    font-size: .8em;
 }
 #panel .menu .nav:hover{
-	background-position:20px top;
+	background-position:5px top;
 	color:#FFF;
 }
 #panel .menu .nav.activo{
-	background-position:20px top;
+	background-position:5px top;
 	background-color:#78797A;
 	color:#FFF;
 }
-#panel .menu #menunav_inicio{
+/*#panel .menu #menunav_inicio{
 	background-image:url(../imagenes/nav/inicio.png);
 }
 #panel .menu #menunav_clientes{
@@ -332,8 +326,9 @@ input[type="submit"]{
 }
 #panel .menu #menunav_contactarconassistec{
 	background-image:url(../imagenes/nav/contactarconassistec.png);
-}
+}*/
 
+/*
 #panel .cabecera{
 	float:left;
 	width:920px;
@@ -361,16 +356,6 @@ input[type="submit"]{
 	float:right;
 	cursor:pointer;
 }
-#panel .menu select{
-	float:left;
-	width:200px;
-	padding:3px 5px;
-	margin:0px 15px;
-	border:0px;
-	outline:none;
-	background-color:#d6d7d7;
-	max-height:100px;
-}
 #panel .contenido{
 	float:left;
 	margin-left:10px;
@@ -381,7 +366,7 @@ input[type="submit"]{
 
 #panel .nav_seccion{
 	float:left;
-	/*width:145px;*/
+	!*width:145px;*!
 	height:19px;
 	padding:8px 20px;
 	background-color:#D6D7D7;
@@ -427,6 +412,7 @@ input[type="submit"]{
 #panel .colizq .linea{
 	width:500px;
 }
+*/
 .colder_p{
 	float:left;
 	width:160px;

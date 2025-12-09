@@ -1,0 +1,57 @@
+:root {
+    --colorPrimary: #212529;
+    --colorPrimaryHover: #34383c;
+    --colorSecondary: #EF7F1F;
+    --colorSecondaryHover: #c15c06;
+    --colorSecondaryAlt: #e1c863;
+    --colorSecondaryAltHover: #ab8c16;
+    --colorDark: #333333;
+    --colorDarkHover: #171717;
+    --colorWhite: #f8f9fa;
+    --colorLight: #F8F9FAFF;
+    --colorLightHover: #d3d5d6;
+    --colorGrey: #656667;
+    --colorGreylight: #838387;
+}
+.bg-primary {
+    background-color: var(--colorPrimary) !important;
+}
+.text-primary {
+    color: var(--colorPrimary) !important;
+}
+.bg-dark, btn.bg-dark, a.bg-dark {
+    background-color: var(--colorDark) !important;
+    color: var(--colorWhite) !important;
+}
+.bg-dark.inactive, btn.bg-dark.inactive, a.bg-dark.inactive {
+    color: var(--colorGreylight) !important;
+}
+a.bg-dark:hover, a.bg-dark:focus, btn.bg-dark:hover, btn.bg-dark:focus {
+    background-color: var(--colorDarkHover) !important;
+    color: var(--colorSecondaryAlt) !important;
+}
+.bg-light, btn.bg-light, a.bg-light {
+    background-color: var(--colorLight) !important;
+    color: var(--colorPrimary) !important;
+}
+a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
+    background-color: var(--colorLightHover) !important;
+    color: var(--colorSecondaryHover) !important;
+}
+.text-dark {
+    color: var(--colorDark) !important;
+}
+.btn-secondary {
+    --bs-btn-bg: var(--colorSecondary);
+    --bs-btn-border-color: var(--colorSecondary);
+    --bs-btn-hover-bg: var(--colorSecondaryHover);
+    --bs-btn-hover-border-color: var(--colorSecondaryHover);
+    --bs-btn-active-bg: var(--colorSecondaryHover);
+    --bs-btn-active-border-color: var(--colorSecondaryHover);
+}
+.text-secondary, .text-secondary a {
+    color: var(--colorSecondary) !important;
+}
+.text-secondary a:hover {
+    color: var(--colorSecondaryHover) !important;
+}

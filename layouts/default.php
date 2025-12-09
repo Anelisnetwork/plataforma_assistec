@@ -21,87 +21,105 @@
 	</script>
 </head>
 <?php
-$img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']!='' && file_exists(_PATH_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo'])?_RAIZ_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']:'';
+$img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']!='' && file_exists(_PATH_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo'])?_RAIZ_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']:_RAIZ_.'imagenes/assistec.png';
+//var_dump($_SESSION['datos_'._ID_PAG_]['datos_user']);exit();
 ?>
 <body id="panel">
-	<div class="centrado">
-    	<div class="cent_cont">
-            <div class="menu">
-                <a href="<?=_RAIZ_.'inicio/'?>" class="logo"<?=$img_logo!=''?' style="background-image: url(\''.$img_logo.'\'); background-size:cover"':''?>></a>
-                <div id="dat_user">
-                    <span class="texto_b ubuntu"><?=dame_dato_usuario('us_nick')?></span>
-                    <a href="<?=_RAIZ_?>salir.php"><img src="<?=_RAIZ_?>imagenes/salir.png" title="Salir" alt="Salir" id="salir" /></a>
+<div class="d-flex flex-row min-vh-100">
+            <div class="col col-12 col-md-3 d-none d-md-flex flex-md-column align-items-center justify-content-start bg-black m-0 p-0" style="width: 320px !important; border-right: 1px solid black;">
+                <div class="bg-white w-100 d-flex justify-content-center align-items-center p-3">
+                    <a href="<?=_RAIZ_.'inicio/'?>" class="d-flex justify-content-center align-items-center w-100">
+                        <?php if($img_logo!=''){?>
+                            <img src="<?=$img_logo?>" alt="Logo Taller" title="Logo Taller" style="width: 90%; max-width: 200px;" />
+                        <?php } else {?>
+                            <span class="fs_24 texto_b oswald">ASSISTEC ONLINE</span>
+                        <?php }?>
+                    </a>
                 </div>
-                
-                
-                <div class="sep_menu"></div>
-                
-                <?php if($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==2){
-				$red_talleres=dame_red_talleres();?>
-				<select name="admin_taller" id="admin_taller" onchange="cambia_taller(this.value)">
-				<?php foreach ($red_talleres as $red_taller){?>
-                    <option value="<?=$red_taller->ta_idtaller?>"<?=$red_taller->ta_idtaller==$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?' selected="selected"':''?>><?=u8d_($red_taller->ta_nombre)?></option>
-				<?php }?>
-				</select>
-                <div class="sep_menu"></div>
-                <?php }?>
-                
-                <?php foreach($lista_pages as $npage){
-					if(in_array($npage->mo_url, $inactivos)){
-				?>
-                    <span style="cursor:not-allowed" title="<strong>No disponible en este módulo</strong>" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class="fs_16 nav<?=$npage->mo_url==$m?' activo':''?> "><?=nom_modulo($npage->mo_url)?></span>
-                <?php }
-				else{?>
-                	<a href="<?=_RAIZ_.$npage->mo_url.'/'?>" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class="fs_16 nav<?=$npage->mo_url==$m?' activo':''?> "><?=nom_modulo($npage->mo_url)?></a>
-                <?php }
-				}?>
-                
-                <?php if($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']!=''){?>
-                <div class="sep_menu"></div>
-                <div class="lin_menu">
-                    <span class="texto_b ubuntu">M&oacute;dulo: <span class="texto_r oswald<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']==1?' faq':''?>" style="float:right"<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']==1?' title="Aproveche al máximo las funcionalidades de nuestra herramienta actualizando su módulo a una modalidad superior"':''?>><?=strtoupper(dame_nombre_contrato($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']))?></span></span>
-                </div>
-                <div class="sep_menu"></div>
-                <div class="lin_menu">
-                    <a href="<?=_RAIZ_?>documentos/GUIA_MODULO_BASICO.pdf" target="_blank" class="texto_b ubuntu" title="Gu&iacute;a del M&oacute;dulo B&aacute;sico">Gu&iacute;a del M&oacute;dulo B&aacute;sico<img src="<?=_RAIZ_?>imagenes/pdf.png" style="float:right" /></a>
-                    <br clear="all" /><br clear="all" />
-                    <a href="<?=_RAIZ_?>documentos/GUIA_CUMPLIMENTACION_DATOS_MES_E_INFORME_DE_MES.pdf" target="_blank" class="texto_b ubuntu" title="Gu&iacute;a de cumplimentaci&oacute;n de datos">Gu&iacute;a de cumplimentaci&oacute;n...<img src="<?=_RAIZ_?>imagenes/pdf.png" style="float:right" /></a>
-                </div>
+                <div class="p-3 d-flex flex-column justify-content-center align-items-center w-100">
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <span class="texto_b ubuntu"><?=dame_dato_usuario('us_nick')?></span>
+                        <a href="<?=_RAIZ_?>salir.php">
+                            <i class="fa-solid fa-arrow-right-from-bracket text-secondary fs_22"></i>
+                        </a>
+                    </div>
 
 
-                <?php }
-                if($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==2){?>
+                    <hr class="w-100 bg-white border-1 border-white my-3">
 
-                <form action="<?=_RAIZ_?>descarga_excel/" method="post" name="excel_taller_ID" id="excel_taller_ID"></form>
-                <input type="hidden" form="excel_taller_ID" name="tipo_archivo" id="tipo_archivo" value="listado_excel_talleres_ids" />
-                <div class="sep_menu"></div>
-                <div class="lin_menu" style="text-align: center;">
-                    <span class="texto_n ubuntu_b" style="cursor: pointer; padding: 3px 10px; background-color: #f3f3f3;" onclick="$('#excel_taller_ID').submit()">Descargar listado de IDs</span>
+                    <?php if($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==2){
+                        $red_talleres=dame_red_talleres();?>
+                        <select name="admin_taller" id="admin_taller" class="w-100 form-control-sm" onchange="cambia_taller(this.value)">
+                            <?php foreach ($red_talleres as $red_taller){?>
+                                <option value="<?=$red_taller->ta_idtaller?>"<?=$red_taller->ta_idtaller==$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?' selected="selected"':''?>><?=u8d_($red_taller->ta_nombre)?></option>
+                            <?php }?>
+                        </select>
+                        <hr class="w-100 bg-white border-1 border-white my-3">
+                    <?php }?>
+
+                    <?php foreach($lista_pages as $npage){
+                        if(in_array($npage->mo_url, $inactivos)){
+                            ?>
+                            <span style="cursor:not-allowed" title="No disponible en este módulo" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class="text-grey bg-dark inactive fs_16 d-flex flex-row align-items-center justify-content-start w-100 mb-1 p-1<?=$npage->mo_url==$m?' activo':''?> ">
+                                <i class="<?=modulo_ico($npage->mo_url)?> me-2"></i>
+                                <?=nom_modulo($npage->mo_url)?>
+                            </span>
+                        <?php }
+                        else{?>
+                            <a href="<?=_RAIZ_.$npage->mo_url.'/'?>" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class="text-white bg-light fs_16 d-flex flex-row align-items-center justify-content-start w-100 mb-1 p-1">
+                                <i class="<?=modulo_ico($npage->mo_url)?> me-2"></i>
+                                <?=nom_modulo($npage->mo_url)?>
+                            </a>
+                        <?php }
+                    }?>
+
+                    <?php if($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']!=''){?>
+                        <hr class="w-100 bg-white border-1 border-white my-3">
+                        <div class="d-flex flex-row align-items-center justify-content-around w-100 ubuntu text-white">
+                            M&oacute;dulo: <span class="texto_r ms-3 oswald<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']==1?' faq':''?>" style="float:right"<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']==1?' title="Aproveche al máximo las funcionalidades de nuestra herramienta actualizando su módulo a una modalidad superior"':''?>><?=strtoupper(dame_nombre_contrato($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']))?></span>
+                        </div>
+                        <hr class="w-100 bg-white border-1 border-white my-3">
+                        <div class="d-flex flex-column align-items-center justify-content-around w-100 ubuntu text-white">
+                            <a href="<?=_RAIZ_?>documentos/GUIA_MODULO_BASICO.pdf" target="_blank" class="text-white mb-2" title="Gu&iacute;a del M&oacute;dulo B&aacute;sico">Gu&iacute;a del M&oacute;dulo B&aacute;sico<i class=" fa-solid fa-download ms-2"></i></a>
+                            <a href="<?=_RAIZ_?>documentos/GUIA_CUMPLIMENTACION_DATOS_MES_E_INFORME_DE_MES.pdf" target="_blank" class="text-white mb-2" title="Gu&iacute;a de cumplimentaci&oacute;n de datos">Gu&iacute;a de cumplimentaci&oacute;n de datos<i class=" fa-solid fa-download ms-2"></i></a>
+                        </div>
+
+
+                    <?php }
+                    if($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==2){?>
+
+                        <form action="<?=_RAIZ_?>descarga_excel/" method="post" name="excel_taller_ID" id="excel_taller_ID"></form>
+                        <input type="hidden" form="excel_taller_ID" name="tipo_archivo" id="tipo_archivo" value="listado_excel_talleres_ids" />
+                        <hr class="w-100 bg-white border-1 border-white my-3">
+                        <div class="d-flex flex-row align-items-center justify-content-center w-100 ubuntu btn btn-light" onclick="$('#excel_taller_ID').submit()">
+                            Descargar listado de IDs
+                        </div>
+                    <?php }?>
                 </div>
-                <div class="sep_menu"></div>
-                <?php }?>
+
                 
             </div>
-            <div class="bloque_der">
-                <div class="contenido">
+            <div class="col col-12 col-md-9 d-flex bg-white">
+                <div class="">
                     <?php include('pages/'.$m.'.php');?>
                 </div>
             </div>
-        </div>
-        <div class="pie">
-        	<span class="fs_12">Copyright &copy; Assitec 2015 - Todos los derechos reservados.</span>
-            <span style="float:right" class="fs_12"><?=nom_dia(date('w'))?> <?=date('d')?> de <?=nom_mes(date('n'))?> de <?=date('Y')?> &nbsp;&nbsp;&nbsp;&nbsp; <span id="imp_hora"><?=date('H')?>:<?=date('i')?>:<?=date('s')?></span></span>
-        </div>
-    </div>
-    <?php 
+</div>
+<div class="row">
+            <div class="pie">
+                <span class="fs_12">Copyright &copy; Assitec 2015 - Todos los derechos reservados.</span>
+                <span style="float:right" class="fs_12"><?=nom_dia(date('w'))?> <?=date('d')?> de <?=nom_mes(date('n'))?> de <?=date('Y')?> &nbsp;&nbsp;&nbsp;&nbsp; <span id="imp_hora"><?=date('H')?>:<?=date('i')?>:<?=date('s')?></span></span>
+            </div>
+</div>
+    <?php
 	$vencimiento=dato_taller('ta_vencimiento', ($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==3?$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']:$_SESSION['datos_'._ID_PAG_]['datos_user']['idred']));
 	//echo $_SESSION['datos_'._ID_PAG_]['idusuario'];
 	if($_SESSION['datos_'._ID_PAG_]['datos_user']['idred']!=6&&date('j')>5&&$vencimiento<date('Y-m-d H:i:s')&&$_SESSION['datos_'._ID_PAG_]['idusuario']!=5){?>
-    <div id="warning">
-    	<div class="centrado">
-        	<img src="<?=_RAIZ_?>imagenes/warning.png" style="float:left; margin-top:-7px; margin-left:150px" />
-        	<span class="fs_16 texto_b" style="float:left; margin-left:25px">&iexcl;ATENCI&Oacute;N! Su suscripci&oacute;n se encuentra vencida, por favor, <?=$_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==3&&$_SESSION['datos_'._ID_PAG_]['datos_user']['idred']!=0?'contacte con el gestor de su cuenta para m&aacute;s detalles':'revise si tiene alguna factura pendiente de abono'?>.</span>
-            <img src="<?=_RAIZ_?>imagenes/close.png" style="float:right; margin-top:-7px; cursor:pointer" title="Cerrar" onclick="$('#warning').slideUp('slow');" />
+    <div class="warning-badge bg-warning text-dark w-100 d-flex justify-content-center align-items-center p-2 mb-3" style="position:fixed; bottom:0; left:0; margin-bottom: 25px; z-index:1000; opacity: .8">
+    	<div class="d-flex justify-content-center align-items-center w-100">
+        	<img src="<?=_RAIZ_?>imagenes/warning.png" />
+        	<span class="fs_16">&iexcl;ATENCI&Oacute;N! Su suscripci&oacute;n se encuentra vencida, por favor, <?=$_SESSION['datos_'._ID_PAG_]['datos_user']['rango']==3&&$_SESSION['datos_'._ID_PAG_]['datos_user']['idred']!=0?'contacte con el gestor de su cuenta para m&aacute;s detalles':'revise si tiene alguna factura pendiente de abono'?>.</span>
+            <img src="<?=_RAIZ_?>imagenes/close.png" style="margin-top:-7px; cursor:pointer" title="Cerrar" onclick="$('.warning-badge').removeClass('d-flex').addClass('d-none');" />
         </div>
     </div>
     <?php }?>
