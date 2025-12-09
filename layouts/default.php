@@ -26,7 +26,7 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
 ?>
 <body id="panel">
 <div class="d-flex flex-row min-vh-100">
-            <div class="col col-12 col-md-3 d-none d-md-flex flex-md-column align-items-center justify-content-start bg-black m-0 p-0" style="width: 320px !important; border-right: 1px solid black;">
+            <div class="menu-izq col col-12 col-sm-3 d-none d-sm-flex flex-column align-items-center justify-content-start bg-black m-0 p-0" style="width: 320px !important; border-right: 1px solid black;">
                 <div class="bg-white w-100 d-flex justify-content-center align-items-center p-3">
                     <a href="<?=_RAIZ_.'inicio/'?>" class="d-flex justify-content-center align-items-center w-100">
                         <?php if($img_logo!=''){?>
@@ -99,7 +99,7 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
 
                 
             </div>
-            <div class="col col-12 col-md-9 d-flex bg-white">
+            <div class="col col-12 col-sm-9 d-flex bg-white">
                 <div class="">
                     <?php include('pages/'.$m.'.php');?>
                 </div>
