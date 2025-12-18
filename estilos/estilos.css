@@ -947,3 +947,83 @@ input[type="submit"]{
 .listado_cont_filtros .line .subline .label{
 	width: 90px;
 }
+
+@media (max-width:575.98px) {
+    .menu-izq{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 320px;
+        max-width: 85%;
+        height: 100vh;
+        transform: translateX(-110%);
+        transition: transform .25s ease;
+        z-index: 1050;
+        overflow-y: auto;
+        /* conservar fondo negro del original */
+        background-color: #000 !important;
+    }
+    .menu-izq.open{ transform: translateX(0); }
+    /* botón que se coloca dentro del menú a la derecha */
+    .menu-izq .close-in-menu{
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        z-index: 1110;
+        display: none; /* se muestra solo cuando .menu-izq tiene .open */
+        width: 40px;
+        height: 40px;
+        padding: 4px;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background .15s ease;
+    }
+    .menu-izq .close-in-menu:hover{
+        background: rgba(255,255,255,0.06);
+    }
+
+    /* mostrar el icono dentro del menú cuando el menú está abierto */
+    .menu-izq.open .close-in-menu{
+        display: flex;
+    }
+
+    /* Si tu menú-izq tiene fondo oscuro, puede que quieras invertir el color del icono */
+    .menu-izq.open .close-in-menu svg{ fill: currentColor; }
+
+    /* Backdrop cuando el menú está abierto */
+    #menuBackdrop{
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.45);
+        z-index: 1040;
+        display: none;
+    }
+    #menuBackdrop.visible{ display: block; }
+
+    /* Botón hamburguesa en la esquina superior izquierda */
+    .menu-hamburger{
+        position: fixed;
+        top: 0; /* pegado al borde superior */
+        left: .6rem;
+        z-index: 1100;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000; /* ajusta color según tema */
+        color: #fff;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        border-radius: 0 0 10px 10px; /* sólo esquinas inferiores redondeadas */
+        overflow: hidden;
+    }
+}

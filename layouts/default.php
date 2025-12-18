@@ -25,8 +25,13 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
 //var_dump($_SESSION['datos_'._ID_PAG_]['datos_user']);exit();
 ?>
 <body id="panel">
+<button id="menuToggle" class="btn btn-dark menu-hamburger d-sm-none" type="button" aria-expanded="false" aria-controls="menu-izq" title="Abrir menú">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<div id="menuBackdrop"></div>
 <div class="d-flex flex-row min-vh-100">
-            <div class="menu-izq col col-12 col-sm-3 d-none d-sm-flex flex-column align-items-center justify-content-start bg-black m-0 p-0" style="width: 320px !important; border-right: 1px solid black;">
+            <div class="menu-izq col col-12 col-sm-3 d-sm-flex flex-column align-items-center justify-content-start bg-black m-0 p-0" style="width: 320px !important; border-right: 1px solid black;">
                 <div class="bg-white w-100 d-flex justify-content-center align-items-center p-3">
                     <a href="<?=_RAIZ_.'inicio/'?>" class="d-flex justify-content-center align-items-center w-100">
                         <?php if($img_logo!=''){?>

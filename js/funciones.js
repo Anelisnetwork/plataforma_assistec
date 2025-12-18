@@ -260,6 +260,41 @@ $(document).ready(function() {
 		maxScrollbarLength: 40,
 		wheelPropagation: false
 	});
+
+    // Menú hamburguesa
+    var toggle = document.getElementById('menuToggle');
+    var menu = document.querySelector('.menu-izq');
+    var backdrop = document.getElementById('menuBackdrop');
+    var menuIcon = document.getElementById('menuIcon');
+
+    if(toggle && menu){
+        function setBodyScroll(disable){
+            document.body.style.overflow = disable ? 'hidden' : '';
+        }
+
+        function toggleMenu(){
+            var isOpen = menu.classList.toggle('open');
+            backdrop.classList.toggle('visible', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            setBodyScroll(isOpen);
+
+            if(menuIcon){
+                if(isOpen){
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                } else {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
+        }
+
+        toggle.addEventListener('click', toggleMenu);
+        if(backdrop) backdrop.addEventListener('click', toggleMenu);
+        document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape' && menu.classList.contains('open')) toggleMenu();
+        });
+    }
 });
 
 function actualiza_busqueda_pormes(){
