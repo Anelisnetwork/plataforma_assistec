@@ -1156,3 +1156,335 @@ function carga_datos(valor){
 		$("#tall_anho").show();
 	}
 }
+
+function drawChart_columnas_upd(contenido, dato, titulo, contenedor){
+    // Requiere Chart.js cargado en la página
+    $.ajax({
+        type: "POST",
+        url: "base_ajax/",
+        data: {contenido: contenido, dato: dato},
+        dataType: "json"
+    }).done(function(jsonData) {
+        try {
+            // Comprobaciones básicas del formato DataTable (cols / rows)
+            if(!jsonData || !Array.isArray(jsonData.cols) || !Array.isArray(jsonData.rows) || jsonData.cols.length < 2){
+                throw new Error('Formato de datos no válido');
+            }
+
+            // Convertir DataTable a etiquetas y datasets
+            var labels = jsonData.rows.map(function(r){ return r.c && r.c[0] ? r.c[0].v : null; });
+            var datasets = [];
+            var palette = [
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(255, 205, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(201, 203, 207, 0.8)'
+            ];
+
+            for(var col = 1; col < jsonData.cols.length; col++){
+                (function(colIndex){
+                    var data = jsonData.rows.map(function(r){
+                        var cell = r.c && r.c[colIndex] ? r.c[colIndex].v : 0;
+                        return (cell === null || cell === undefined) ? 0 : cell;
+                    });
+                    var color = palette[(colIndex-1) % palette.length];
+                    datasets.push({
+                        label: jsonData.cols[colIndex].label || ('Serie ' + colIndex),
+                        data: data,
+                        backgroundColor: color,
+                        borderColor: color.replace(/0\.8\)$/, '1)'),
+                        borderWidth: 1
+                    });
+                })(col);
+            }
+
+            var containerEl = document.getElementById(contenedor);
+            if(!containerEl){
+                console.error('Contenedor no encontrado:', contenedor);
+                return;
+            }
+
+            // Si el contenedor no es canvas, crear/reemplazar por uno para Chart.js
+            var canvas;
+            if(containerEl.tagName.toLowerCase() === 'canvas'){
+                canvas = containerEl;
+            } else {
+                // conservar contenido para fallback
+                containerEl.innerHTML = '';
+                canvas = document.createElement('canvas');
+                canvas.style.width = '100%';
+                containerEl.appendChild(canvas);
+            }
+
+            // Reutilizar instancia de chart si existe
+            if(canvas._chartInstance){
+                canvas._chartInstance.data.labels = labels;
+                canvas._chartInstance.data.datasets = datasets;
+                canvas._chartInstance.options.plugins.title.text = titulo || '';
+                canvas._chartInstance.update();
+            } else {
+                // Crear nueva instancia Chart.js (compatible con Chart.js v3+)
+                var ctx = canvas.getContext('2d');
+                canvas._chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: !!titulo,
+                                text: titulo || ''
+                            },
+                            legend: {
+                                display: false // igual que el original: sin leyenda
+                            }
+                        },
+                        scales: {
+                            x: {
+                                stacked: false
+                            },
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        } catch(e) {
+            // Mostrar mensaje amigable en el contenedor
+            $("#"+contenedor).html('<div style="text-align:center; padding:60px">No hay datos o formato no válido</div>');
+            console.error(e);
+        }
+    }).fail(function() {
+        $("#"+contenedor).html('<div style="text-align:center; padding:60px">No hay datos</div>');
+    });
+}
+function drawChart_columnas_legend_upd(contenido, dato, titulo, contenedor){
+    // Requiere Chart.js cargado en la página
+    $.ajax({
+        type: "POST",
+        url: "base_ajax/",
+        data: {contenido: contenido, dato: dato},
+        dataType: "json"
+    }).done(function(jsonData) {
+        try {
+            if(!jsonData || !Array.isArray(jsonData.cols) || !Array.isArray(jsonData.rows) || jsonData.cols.length < 2){
+                throw new Error('Formato de datos no válido');
+            }
+
+            var labels = jsonData.rows.map(function(r){ return r.c && r.c[0] ? r.c[0].v : null; });
+            var datasets = [];
+            var palette = [
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(255, 205, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(201, 203, 207, 0.8)'
+            ];
+
+            for(var col = 1; col < jsonData.cols.length; col++){
+                (function(colIndex){
+                    var data = jsonData.rows.map(function(r){
+                        var cell = r.c && r.c[colIndex] ? r.c[colIndex].v : 0;
+                        return (cell === null || cell === undefined) ? 0 : cell;
+                    });
+                    var color = palette[(colIndex-1) % palette.length];
+                    datasets.push({
+                        label: jsonData.cols[colIndex].label || ('Serie ' + colIndex),
+                        data: data,
+                        backgroundColor: color,
+                        borderColor: color.replace(/0\.8\)$/, '1)'),
+                        borderWidth: 1
+                    });
+                })(col);
+            }
+
+            var containerEl = document.getElementById(contenedor);
+            if(!containerEl){
+                console.error('Contenedor no encontrado:', contenedor);
+                return;
+            }
+
+            var canvas;
+            if(containerEl.tagName.toLowerCase() === 'canvas'){
+                canvas = containerEl;
+            } else {
+                containerEl.innerHTML = '';
+                canvas = document.createElement('canvas');
+                canvas.style.width = '100%';
+                // asegurar un contenedor con altura para que Chart.js responsivo funcione
+                if(!containerEl.style.minHeight) containerEl.style.minHeight = '240px';
+                containerEl.appendChild(canvas);
+            }
+
+            if(canvas._chartInstance){
+                canvas._chartInstance.data.labels = labels;
+                canvas._chartInstance.data.datasets = datasets;
+                // actualizar título y leyenda
+                if(!canvas._chartInstance.options.plugins) canvas._chartInstance.options.plugins = {};
+                canvas._chartInstance.options.plugins.title = canvas._chartInstance.options.plugins.title || {};
+                canvas._chartInstance.options.plugins.title.display = !!titulo;
+                canvas._chartInstance.options.plugins.title.text = titulo || '';
+                canvas._chartInstance.options.plugins.legend = canvas._chartInstance.options.plugins.legend || {};
+                canvas._chartInstance.options.plugins.legend.display = true;
+                canvas._chartInstance.options.plugins.legend.position = 'bottom';
+                canvas._chartInstance.update();
+            } else {
+                var ctx = canvas.getContext('2d');
+                canvas._chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: !!titulo,
+                                text: titulo || ''
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom'
+                            }
+                        },
+                        scales: {
+                            x: { stacked: false },
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        } catch(e) {
+            $("#"+contenedor).html('<div style="text-align:center; padding:60px">No hay datos o formato no válido</div>');
+            console.error(e);
+        }
+    }).fail(function() {
+        $("#"+contenedor).html('<div style="text-align:center; padding:60px">No hay datos</div>');
+    });
+}
+function drawChart_linear_upd(contenido, dato, titulo, contenedor){
+    // Requiere Chart.js cargado en la página
+    $.ajax({
+        type: "POST",
+        url: "base_ajax/",
+        data: {contenido: contenido, dato: dato},
+        dataType: "json"
+    }).done(function(jsonData) {
+        try {
+            if(!jsonData || !Array.isArray(jsonData.cols) || !Array.isArray(jsonData.rows) || jsonData.cols.length < 2){
+                throw new Error('Formato de datos no válido');
+            }
+
+            // Labels desde la primera columna
+            var labels = jsonData.rows.map(function(r){ return r.c && r.c[0] ? r.c[0].v : null; });
+
+            // Construir datasets desde la segunda columna en adelante
+            var datasets = [];
+            var palette = [
+                'rgba(54, 162, 235, 0.9)',
+                'rgba(255, 99, 132, 0.9)',
+                'rgba(255, 205, 86, 0.9)',
+                'rgba(75, 192, 192, 0.9)',
+                'rgba(153, 102, 255, 0.9)',
+                'rgba(201, 203, 207, 0.9)'
+            ];
+
+            for(var col = 1; col < jsonData.cols.length; col++){
+                (function(colIndex){
+                    var data = jsonData.rows.map(function(r){
+                        var cell = r.c && r.c[colIndex] ? r.c[colIndex].v : 0;
+                        var num = (cell === null || cell === undefined || cell === '') ? 0 : Number(cell);
+                        return isNaN(num) ? 0 : num;
+                    });
+                    var color = palette[(colIndex-1) % palette.length];
+                    datasets.push({
+                        label: jsonData.cols[colIndex].label || ('Serie ' + colIndex),
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: color.replace(/0\.9\)$/, '0.4)'),
+                        fill: false,
+                        tension: 0.2,
+                        pointRadius: 3,
+                        borderWidth: 2
+                    });
+                })(col);
+            }
+
+            var containerEl = document.getElementById(contenedor);
+            if(!containerEl){
+                console.error('Contenedor no encontrado:', contenedor);
+                return;
+            }
+
+            // Crear o reutilizar canvas
+            var canvas;
+            if(containerEl.tagName.toLowerCase() === 'canvas'){
+                canvas = containerEl;
+            } else {
+                containerEl.innerHTML = '';
+                canvas = document.createElement('canvas');
+                canvas.style.width = '100%';
+                if(!containerEl.style.minHeight) containerEl.style.minHeight = '240px';
+                containerEl.appendChild(canvas);
+            }
+
+            // Reutilizar instancia si existe
+            if(canvas._chartInstance){
+                canvas._chartInstance.data.labels = labels;
+                canvas._chartInstance.data.datasets = datasets;
+                if(canvas._chartInstance.options && canvas._chartInstance.options.plugins && canvas._chartInstance.options.plugins.title){
+                    canvas._chartInstance.options.plugins.title.display = !!titulo;
+                    canvas._chartInstance.options.plugins.title.text = titulo || '';
+                }
+                canvas._chartInstance.update();
+            } else {
+                var ctx = canvas.getContext('2d');
+                canvas._chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: !!titulo,
+                                text: titulo || ''
+                            },
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: true,
+                                ticks: { autoSkip: true }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                display: true
+                            }
+                        }
+                    }
+                });
+            }
+        } catch(e) {
+            $("#"+contenedor).html('<div style="text-align:center; padding:60px">No hay datos o formato no válido</div>');
+            console.error(e);
+        }
+    }).fail(function() {
+        $("#"+contenedor).html('<div style="text-align:center; padding:60px">No hay datos</div>');
+    });
+}

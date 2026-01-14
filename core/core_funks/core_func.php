@@ -979,4 +979,47 @@ function floatvalue($val){
     $val = preg_replace('/\.(?=.*\.)/', '', $val);
     return floatval($val);
 }
+
+function get_client_ip(): string {
+    foreach (['HTTP_CLIENT_IP','HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED','HTTP_X_CLUSTER_CLIENT_IP','HTTP_FORWARDED_FOR','HTTP_FORWARDED','REMOTE_ADDR'] as $key) {
+        if (!empty($_SERVER[$key])) {
+            $ip = $_SERVER[$key];
+            if (strpos($ip, ',') !== false) $ip = explode(',', $ip)[0];
+            return trim($ip);
+        }
+    }
+    return '0.0.0.0';
+}
+
+function cidr_match(string $ip, string $cidr): bool {
+    if (!str_contains($cidr, '/')) return $ip === $cidr;
+    [$subnet, $mask] = explode('/', $cidr);
+    $ip_long = ip2long($ip);
+    $subnet_long = ip2long($subnet);
+    if ($ip_long === false || $subnet_long === false) return false;
+    $mask_long = -1 << (32 - (int)$mask);
+    $subnet_long &= $mask_long;
+    return ($ip_long & $mask_long) === $subnet_long;
+}
+
+function include_javascript(){
+    $allowed_ips = [
+        '89.131.66.1',// Jose
+        '91.242.149.68'//Gerardo
+    ];
+    $client_ip = get_client_ip();
+    $allowed = false;
+    foreach ($allowed_ips as $allowed_ip) {
+        if (str_contains($allowed_ip, '/')) {
+            if (cidr_match($client_ip, $allowed_ip)) { $allowed = true; break; }
+        } else {
+            if ($client_ip === $allowed_ip) { $allowed = true; break; }
+        }
+    }
+
+    if ($allowed) {
+        // Ruta al JS a cargar
+        echo '<script src="' . _RAIZ_ . 'js/chat.js"></script>';
+    }
+}
 ?>

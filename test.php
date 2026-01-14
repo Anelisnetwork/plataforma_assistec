@@ -6,6 +6,13 @@ error_reporting(E_ALL|E_STRICT);
 
 include('core/core.php');
 
+// Ejemplo de uso:
+$prev = mes_anho_anterior();
+echo "Mes anterior: {$prev['mes']}, Año anterior: {$prev['anho']}";
+
+
+exit;
+
 //$token_silent=encriptar($correo.'%%'.$pass1);
 open_bd();
 $idparent='1578';

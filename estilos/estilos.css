@@ -948,7 +948,7 @@ input[type="submit"]{
 	width: 90px;
 }
 
-@media (max-width:575.98px) {
+@media (max-width:992px) {
     .menu-izq{
         position: fixed;
         top: 0;
@@ -1026,4 +1026,18 @@ input[type="submit"]{
         border-radius: 0 0 10px 10px; /* sólo esquinas inferiores redondeadas */
         overflow: hidden;
     }
+}
+
+
+/**
+Nuevos estilos
+ */
+
+#panel .cont_seccion{
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    padding:50px;
 }

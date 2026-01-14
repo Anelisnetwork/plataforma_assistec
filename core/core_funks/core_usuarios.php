@@ -1,6 +1,7 @@
 <?php
 	
 function datos_usuario($iduser){
+    $idtaller = '';
 	$_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']='';
 	//$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']='';
 	$_SESSION['datos_'._ID_PAG_]['datos_user']['idred']=0;
@@ -15,12 +16,18 @@ function datos_usuario($iduser){
 	}
 	else if($rango==2){//Administrador
 		$idred=$_SESSION['datos_'._ID_PAG_]['datos_user']['idred']=fetch_array('SELECT us_idtaller from usuarios where us_idusuario='.$iduser.'','us_idtaller');
-		$idtaller=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])&&$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']!=''?$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']:fetch_array('SELECT ta_idtaller from talleres where ta_idparent='.$idred.' order by ta_nombre asc limit 0,1','ta_idtaller');
+		$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])&&$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']!=''?$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']:fetch_array('SELECT ta_idtaller from talleres where ta_idparent='.$idred.' order by ta_nombre asc limit 0,1','ta_idtaller');
 		$_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']=fetch_array('SELECT ta_contrato from talleres where ta_idtaller='.$idred.'','ta_contrato');
 		query('update talleres set ta_ultacceso="'.date('Y-m-d H:i:s').'" where ta_idtaller='.$idred.'');
+        $idtaller=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'];
         $f_logo=" AND ta_idtaller='{$idred}'";
         $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']=fetch_array("SELECT ta_logotipo from talleres where 1{$f_logo}",'ta_logotipo');
 	}
+    if($idtaller !== ''){
+        $_SESSION['datos_'._ID_PAG_]['datos_user']['hayKm0'] = hayKm0($idtaller);
+        $_SESSION['datos_'._ID_PAG_]['datos_user']['mesPasado'] = mesPasado($idtaller);
+    }
+    $_SESSION['datos_'._ID_PAG_]['datos_user']['nick'] = dame_dato_usuario('us_nick', $iduser);
 }
 
 function en__id($id){
@@ -167,6 +174,22 @@ function datos_actividad_taller($idtaller, $idtipo=0, $mes='', $ano=''){//Por de
 	}
 	else{}
 	return $dato;
+}
+
+function mes_anho_anterior(): array {
+    $dt = new DateTime('first day of this month');
+    $dt->modify('-1 month');
+    return ['mes' => $dt->format('m'), 'anho' => $dt->format('Y')];
+}
+
+function hayKm0($idtaller){
+    $datosKm0 = datos_actividad_taller($idtaller);
+    return is_countable($datosKm0) && count($datosKm0) > 0;
+}
+function mesPasado($idtaller){
+    $prev = mes_anho_anterior();
+    $datosMesPasado = datos_actividad_taller($idtaller, 1, $prev['mes'], $prev['anho']);
+    return is_countable($datosMesPasado) && count($datosMesPasado) > 0;
 }
 
 function datos_guardados(){
@@ -430,8 +453,8 @@ function dame_acumulado($anho,$idtaller=''){
 	$costehora=$horaspotenciales==0?0:(($costepers+$costeestr)/$nmeses*12)/$horaspotenciales;
 	$impmo_media=$nmeses==0?0:$impmo/$nmeses;
 	$coste_medio_mo=$nmeses==0?0:($ventamo/$hfacturadas)/$nmeses;
-    $coste_hora_teorico=$porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*80/100);
-    $coste_hora_real=$porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100);
+    $coste_hora_teorico=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*80/100));
+    $coste_hora_real=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100));
 	
 	return array('hpresencia'=>$hpresencia, 'total_facturado'=>$total_facturado, 'ventamo'=>$ventamo, 'ventapr'=>$ventapr, 'costepr'=>$costepr, 'costeprov'=>$costeprov, 'costeotro'=>$costeotro, 'margenpr'=>$margenpr, 'porcentpr'=>$porcentpr, 'costepers'=>$costepers, 'costeestr'=>$costeestr, 'total_ingresos'=>$total_ingresos, 'total_gastos'=>$total_gastos, 'margenbruto'=>$margenbruto, 'porcmargenbruto'=>$porcmargenbruto, 'productividad'=>$productividad, 'eficacia'=>$eficacia, 'rendimiento'=>$rendimiento, 'entradastaller'=>$entradastaller, 'mediaor'=>$mediaor, 'mediamo'=>$mediamo, 'mediapr'=>$mediapr, 'fidelizacion'=>$fidelizacion, 'objeficacia'=>$objeficacia, 'objproductividad'=>$objproductividad, 'objrendimiento'=>$objrendimiento, 'objventas'=>$objventas, 'objmargenrec'=>$objmargenrec, 'hfacturadas'=>$hfacturadas, 'horaspotenciales'=>$horaspotenciales, 'costehora'=>$costehora, 'impmo_media'=>$impmo_media, 'diaslaborables'=>$diaslaborables, 'sum_hprod'=>$sum_hprod, 'coste_medio_mo'=>$coste_medio_mo, 'nmeses'=>$nmeses, 'personal_directo'=>$porcentajes[4], 'coste_hora_real'=>$coste_hora_real, 'coste_hora_teorico'=>$coste_hora_teorico);
 }
@@ -597,8 +620,9 @@ function dame_impmo_actual(){
 	return fetch_array('select it_impmo from info_taller where it_idtaller='.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'].'','it_impmo');
 }
 
-function ultimo_dato(){
-	return list_object('select * from datos_actividad where da_idtaller='.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'].' and da_idtipo=1 order by da_ano desc, da_mes desc limit 0,1');
+function ultimo_dato($idtaller = ''){
+    $idtaller !== '' ?: $idtaller = $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'];
+	return list_object('select * from datos_actividad where da_idtaller='.$idtaller.' and da_idtipo=1 order by da_ano desc, da_mes desc limit 0,1');
 }
 
 function dame_abonados($idparent, $estado, $idcontrato='', $datmes='', $datanho=''){//$estado=activo/inactivo

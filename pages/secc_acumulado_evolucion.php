@@ -114,7 +114,7 @@
                 <div id="stats_acum_evol_4" class="stat_ratio">
                     <script>
                         $(document).ready(function() {
-                            drawChart_columnas('datos_stats', 'acum_evol_4%%0%%<?=$anho_acumulado?>', 'Horas facturadas por operario', 'stats_acum_evol_4');
+                            drawChart_columnas_upd('datos_stats', 'acum_evol_4%%0%%<?=$anho_acumulado?>', 'Horas facturadas por operario', 'stats_acum_evol_4');
                         })
                     </script>
                 </div>
@@ -133,21 +133,21 @@
             <div id="stats_acum_evol_1" class="stat_ratio">
                 <script>
                     $(document).ready(function() {
-                        drawChart_linear('datos_stats', 'acum_evol_1%%0%%<?=$anho_acumulado?>', 'Importe medio por OR', 'stats_acum_evol_1');
+                        drawChart_linear_upd('datos_stats', 'acum_evol_1%%0%%<?=$anho_acumulado?>', 'Importe medio por OR', 'stats_acum_evol_1');
                     })
                 </script>
             </div>
             <div id="stats_acum_evol_2" class="stat_ratio" style="margin-top: 30px">
                 <script>
                     $(document).ready(function() {
-                        drawChart_columnas('datos_stats', 'acum_evol_2%%0%%<?=$anho_acumulado?>', '€ facturados por operario', 'stats_acum_evol_2');
+                        drawChart_columnas_upd('datos_stats', 'acum_evol_2%%0%%<?=$anho_acumulado?>', '€ facturados por operario', 'stats_acum_evol_2');
                     })
                 </script>
             </div>
             <div id="stats_acum_evol_3" class="stat_ratio" style="margin-top: 30px">
                 <script>
                     $(document).ready(function() {
-                        drawChart_linear('datos_stats', 'acum_evol_3%%0%%<?=$anho_acumulado?>', 'Horas facturadas por OR', 'stats_acum_evol_3');
+                        drawChart_linear_upd('datos_stats', 'acum_evol_3%%0%%<?=$anho_acumulado?>', 'Horas facturadas por OR', 'stats_acum_evol_3');
                     })
                 </script>
             </div>

@@ -70,7 +70,7 @@
                 <div id="stats_acum_gest_3" class="stat_ratio">
                     <script>
                         $(document).ready(function() {
-                            drawChart_columnas('datos_stats', 'acum_gest_3%%0%%<?=$anho_acumulado?>', 'Entradas al taller', 'stats_acum_gest_3');
+                            drawChart_columnas_upd('datos_stats', 'acum_gest_3%%0%%<?=$anho_acumulado?>', 'Entradas al taller', 'stats_acum_gest_3');
                         })
                     </script>
                 </div>
@@ -89,7 +89,7 @@
 			<div id="stats_acum_gest_1" class="stat_ratio">
 			<script>
                 $(document).ready(function() {
-                    drawChart_columnas_legend('datos_stats', 'acum_gest_1%%0%%<?=$anho_acumulado?>', 'Productividad / Eficacia / Rendimiento (%)', 'stats_acum_gest_1');
+                    drawChart_columnas_legend_upd('datos_stats', 'acum_gest_1%%0%%<?=$anho_acumulado?>', 'Productividad / Eficacia / Rendimiento (%)', 'stats_acum_gest_1');
                 })
             </script>
             </div>
@@ -97,7 +97,7 @@
             <div id="stats_acum_gest_2" class="stat_ratio" style="margin-top: 130px">
 			<script>
                 $(document).ready(function() {
-                    drawChart_linear('datos_stats', 'acum_gest_2%%0%%<?=$anho_acumulado?>', 'Margen venta PR (%)', 'stats_acum_gest_2');
+                    drawChart_linear_upd('datos_stats', 'acum_gest_2%%0%%<?=$anho_acumulado?>', 'Margen venta PR (%)', 'stats_acum_gest_2');
                 })
             </script>
             </div>
