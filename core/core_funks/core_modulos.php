@@ -47,9 +47,6 @@ if($m!='login') {
 
     $seccion = $seccion == '' && count($secciones) != 0 ? $secciones[0]->sc_url : $seccion;
 }
-else if($m==='login'){
-    fuera_de_aqui('https://assistec.es/login/');
-}
 //echo '<br>';var_dump ($secciones);
 
 close_bd();
