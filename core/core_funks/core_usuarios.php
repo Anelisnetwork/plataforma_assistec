@@ -656,4 +656,23 @@ function dame_coste_personal($idtaller){
     }
     return $datos;
 }
+
+function updateUserWpToken($idUsuario)
+{
+    // Generamos un token y comprobamos que no exista ya, si no existe actualizamos la tabla
+    $token = generate_token();
+    $existe = fetch_array("SELECT COUNT(*) AS TOTAL FROM usuarios WHERE wp_token = '$token'", 'TOTAL');
+    if ($existe === 0) {
+        // Actualizamos el token en la tabla usuarios_wordpress
+        $update = query("UPDATE usuarios SET wp_token = '$token' WHERE us_idusuario = '$idUsuario'");
+        if ($update) {
+            return $token;
+        } else {
+            return false;
+        }
+    }
+    else{
+        return updateUserWpToken($idUsuario);
+    }
+}
 ?>

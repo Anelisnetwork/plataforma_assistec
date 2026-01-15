@@ -116,7 +116,11 @@ else if($idproceso=='edita_promocion'){//EDITA PROMOCION
 	
 }//EDITA PROMOCION
 else{
-	fuera_de_aqui();
+    // Comprobamos si el archivo existe
+    if(!file_exists(_ZEND_.'includes/'.$idproceso.'.php')){
+        fuera_de_aqui('');
+    }
+    include(_ZEND_.'includes/'.$idproceso.'.php');
 }
 
 close_bd();

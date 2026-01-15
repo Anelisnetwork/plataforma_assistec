@@ -1,77 +1,24 @@
 <?php
+$hayErrores = true;
+$url_dest='https://assistec.es/login/';
 
-$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=0;
-$lista_errores=array();
+$token=clean_get('token');
 
-$datos=clean_get('login');
+if(!empty($token) && verify_token($token)){
+    $dato_cli=list_object("select us_idusuario, us_pass, us_estado from usuarios where wp_token='$token'");
+    vd__($dato_cli);
 
-if($datos==''){
-    $_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-    $lista_errores[]='sin_datos';
-    goto end;
+    // Si solo hay un cliente y está activo, cargamos sus datos
+    if(count($dato_cli) === 1 && $dato_cli[0]->us_estado === '1'){
+        datos_usuario($dato_cli[0]->us_idusuario);
+        // Si no es súper admin y no hay idtaller definido, salimos
+        if($dato_cli[0]->us_idusuario === '5' || ($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'] > 0 && $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'] !== '')){
+            vd__($_SESSION['datos_'._ID_PAG_]['datos_user']);
+            $_SESSION['datos_'._ID_PAG_]['idusuario'] = $dato_cli[0]->us_idusuario;
+            $url_dest = '';
+            $hayErrores = false;
+        }
+    }
 }
 
-//$datos=encriptar('pruebas_red%%123456');
-//echo $datos;exit;
-$datos=explode('%%',desencriptar($datos));
-
-$url_dest='';
-
-if(count($datos)!=2){
-    $_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-    $lista_errores[]='datos_erroneos';
-    goto end;
-}
-
-$email=$_SESSION['datos_'._ID_PAG_]['acceder']['astc_email']=$datos[0];
-$password=$_SESSION['datos_'._ID_PAG_]['acceder']['astc_pass']=$datos[1];
-
-if($_SESSION['datos_'._ID_PAG_]['acceder']['astc_email']==''){
-	$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-	$lista_errores[]='no_email';
-}
-if($_SESSION['datos_'._ID_PAG_]['acceder']['astc_pass']==''){
-	$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-	$lista_errores[]='no_pass';
-}
-
-$dato_cli=list_object("select us_idusuario, us_pass, us_estado from usuarios where (us_correo='{$email}' OR us_nick='{$email}')");
-
-if(count($dato_cli)>1){//Hay más de 1 usuario con estos datos
-	$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-	$lista_errores[]='astc_email2';
-}
-else if(count($dato_cli)==0){//No hay usuarios con estos datos
-	$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-	$lista_errores[]='astc_email';
-}
-else{//Hay un cliente con ese correo
-	if($dato_cli[0]->us_pass!=$password){//La contraseña no coincide
-		$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-		$lista_errores[]='astc_pass';
-	}
-	else if($dato_cli[0]->us_estado==0){//El cliente no está activo
-		$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-		$lista_errores[]='activo';
-	}
-}
-
-$_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores']=$lista_errores;
-
-$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']==1?fuera_de_aqui($url_dest):'';
-
-$_SESSION['datos_'._ID_PAG_]['idusuario']=$dato_cli[0]->us_idusuario;
-
-datos_usuario($dato_cli[0]->us_idusuario);
-
-if($dato_cli[0]->us_idusuario!=5&&$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']==0){
-	$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
-	unset($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
-	unset($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']);
-	unset($_SESSION['datos_'._ID_PAG_]['datos_user']['idred']);
-	unset($_SESSION['datos_'._ID_PAG_]['datos_user']['rango']);
-	$lista_errores[]='activo';
-}
-
-end:
 fuera_de_aqui($url_dest);

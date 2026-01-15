@@ -34,33 +34,35 @@ ini_set("session.gc_maxlifetime","86400");
 
 session_start();
 
-define( '_ID_PAG_','ASSISTEC' );
+const _ID_PAG_ = 'ASSISTEC';
 
-define( '_TIPO_ACCESO_','USERS' );//USERS=acceso a usuarios ALL=acceso libre
+const _TIPO_ACCESO_ = 'USERS';//USERS=acceso a usuarios ALL=acceso libre
 
-define( '_RECEPTOR_','web@assistec.es' );
-define( '_RECEPTOR_N_','Web Assistec' );
+const _RECEPTOR_ = 'web@assistec.es';
+const _RECEPTOR_N_ = 'Web Assistec';
 
-define( '_SMTP_SERVER_','mail.assistec.es' );
+const _SMTP_SERVER_ = 'mail.assistec.es';
 
-define( '_SMTP_USER_','formulario@assistec.es' );
+const _SMTP_USER_ = 'formulario@assistec.es';
 
-define( '_SMTP_PASSWORD_','Ass1sT3c&F0rM' );
+const _SMTP_PASSWORD_ = 'Ass1sT3c&F0rM';
 
-define('_CLAVE_CIFRADO_','fuEA7&kkl23ua4$do');
+const _CLAVE_CIFRADO_ = 'fuEA7&kkl23ua4$do';
 
-if(_ENTORNO_=='local'){
+const _WP_TOKEN_ = 'Lq-ZVyRMNP2DITTHpvsD1Pr-drIcNDrFSRRQastyh80.36nNj2e3ID3tKWZDeEs17T65jpJaHYmJYiApOA7i2pY';
+
+if(_ENTORNO_==='local'){
     define( '_SMTP_PORT_','25' );
 }
 else{
     define( '_SMTP_PORT_','587' );
 }
 
-define( '_BD_HOST_', 'localhost');
+const _BD_HOST_ = 'localhost';
 
-define( '_IVA_', '1.21');
+const _IVA_ = '1.21';
 
-define('DS',DIRECTORY_SEPARATOR);
+const DS = DIRECTORY_SEPARATOR;
 
 if(_TEST_){
     define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'siguetuproyecto.com'.DS.'assistec.siguetuproyecto.com'.DS);

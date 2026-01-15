@@ -28,7 +28,7 @@ RewriteEngine On
 
 RewriteRule ^sl_access_assistec/$ /silent_log.php
 RewriteRule ^silent_login/(.*)/$ /procesando.php?idproceso=silent_login&login=$1
-RewriteRule ^wpsl/(.*)/$ /procesando.php?idproceso=wp_silent_login&login=$1
+RewriteRule ^wpsl/(.*)/$ /procesando.php?idproceso=wp_silent_login&token=$1
 
 RewriteRule ^api/(.*)/$ /api.php?metodo=$1
 

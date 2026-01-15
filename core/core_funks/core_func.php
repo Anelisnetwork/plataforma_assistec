@@ -1022,4 +1022,37 @@ function include_javascript(){
         echo '<script src="' . _RAIZ_ . 'js/chat.js"></script>';
     }
 }
+
+// Genera un token seguro y firmado (payload.signature)
+function generate_token(int $bytes = 32, ?string $secret = null): string {
+    if ($secret === null && defined('_CLAVE_CIFRADO_')) {
+        $secret = _CLAVE_CIFRADO_;
+    }
+
+    $random = random_bytes($bytes);
+    $payload = rtrim(strtr(base64_encode($random), '+/', '-_'), '=');
+
+    $sig = hash_hmac('sha256', $payload, $secret ?? '', true);
+    $sig_b64 = rtrim(strtr(base64_encode($sig), '+/', '-_'), '=');
+
+    return $payload . '.' . $sig_b64;
+}
+
+// Verifica el token generado por generate_token
+function verify_token(string $token, ?string $secret = null): bool {
+    if ($secret === null && defined('_CLAVE_CIFRADO_')) {
+        $secret = _CLAVE_CIFRADO_;
+    }
+
+    $parts = explode('.', $token);
+    if (count($parts) !== 2) {
+        return false;
+    }
+
+    [$payload, $sig] = $parts;
+
+    $expected_sig = rtrim(strtr(base64_encode(hash_hmac('sha256', $payload, $secret ?? '', true)), '+/', '-_'), '=');
+
+    return hash_equals($expected_sig, $sig);
+}
 ?>
