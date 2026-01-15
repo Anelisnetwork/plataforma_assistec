@@ -21,6 +21,7 @@
 	</script>
 </head>
 <?php
+$jsSession = json_encode($_SESSION['datos_'._ID_PAG_]['datos_user']);
 $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']!='' && file_exists(_PATH_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo'])?_RAIZ_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']:_RAIZ_.'imagenes/assistec.png';
 //var_dump($_SESSION['datos_'._ID_PAG_]['datos_user']);exit();
 ?>
@@ -127,6 +128,14 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
         </div>
     </div>
     <?php }?>
+<script>
+    (function(){
+        // JSON seguro generado por PHP
+        const sessionData = <?= $jsSession ?>;
+        // Guardar en sessionStorage como string
+        sessionStorage.setItem('appSession', JSON.stringify(sessionData));
+    })();
+</script>
 <?php include_javascript();?>
 </body>
 <?php //unset($_SESSION['datos_'._ID_PAG_]['idusuario']);?>
