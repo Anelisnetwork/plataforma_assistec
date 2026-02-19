@@ -50,6 +50,22 @@ a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
     --bs-btn-active-bg: var(--colorSecondaryHover);
     --bs-btn-active-border-color: var(--colorSecondaryHover);
 }
+.btn-outline-secondary {
+    --bs-btn-color: var(--colorSecondary);
+    --bs-btn-border-color: var(--colorSecondary);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--colorSecondary);
+    --bs-btn-hover-border-color: var(--colorSecondary);
+    --bs-btn-focus-shadow-rgb: 108, 117, 125;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--colorSecondary);
+    --bs-btn-active-border-color: var(--colorSecondary);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--colorSecondary);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--colorSecondary);
+    --bs-gradient: none;
+}
 .text-secondary, .text-secondary a {
     color: var(--colorSecondary) !important;
 }
