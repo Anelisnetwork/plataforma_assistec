@@ -725,17 +725,28 @@ function datos_presencia(idsdatos){
 }
 
 function muestra_empleados(iddato){
-	if($('#presenciaxemp').prop('checked')){
-		$('#empleados').show();
-		$('#horaspresencia_'+iddato).prop('readonly', true);
-		$('#horaspresencia_'+iddato).css('background-color', '#ffd7b4');
-		datos_presencia(iddato);
-	}
-	else{
-		$('#empleados').hide();
-		$('#horaspresencia_'+iddato).prop('readonly', false);
-		$('#horaspresencia_'+iddato).css('background-color', 'transparent');
-	}
+    // Si el contenedor #empleados está visible, lo ocultamos y quitamos la clase active
+    if ($('#empleados').is(':visible')){
+        $('#empleados').hide();
+        $('#showempleados').removeClass('active');
+        // restaurar campo de horas a editable y estilo original
+        $('#horaspresencia_'+iddato).prop('readonly', false);
+        $('#horaspresencia_'+iddato).css('background-color', 'transparent');
+        // accesibilidad
+        $('#showempleados').attr('aria-expanded', 'false');
+    }
+    else{
+        // si no está visible, lo mostramos y añadimos clase active
+        $('#empleados').show();
+        $('#showempleados').addClass('active');
+        // marcar campo como readonly y estilo visual
+        $('#horaspresencia_'+iddato).prop('readonly', true);
+        $('#horaspresencia_'+iddato).css('background-color', '#ffd7b4');
+        // Llamada a la función de datos solo si existe
+        if (typeof datos_presencia === 'function') datos_presencia(iddato);
+        // accesibilidad
+        $('#showempleados').attr('aria-expanded', 'true');
+    }
 }
 
 function comprueba_pass(idempleado){
