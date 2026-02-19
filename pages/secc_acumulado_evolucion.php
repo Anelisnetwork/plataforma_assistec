@@ -1,15 +1,15 @@
 		<?php
 		//echo $tiempo_medio_cliente.'<br>'.$horas_productivas.'<br>'.$capacidad_teorica.'<br>'.$entradas_dia.'<br>'.$datos_acumulados['diaslaborables'].'<br>';
 		?>
-        <div id="informemes" class="div_mostrarocultar colizq" style="float:left;">
-			<div class="linea">
+        <div id="informemes" class="div_mostrarocultar  col col-12 col-md-6 d-flex flex-column align-items-start justify-content-start p-3">
+			<div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
             	<span class="oswald fs_18">Informe de evoluci&oacute;n acumulado del a&ntilde;o <?=$anho_acumulado?></span>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
             	<span class="fs_14">Horas acumuladas <?=moneda_puntocoma($datos_acumulados['hfacturadas'])?></span>
             </div>
 
-            <div class="linea" style="margin-top: 25px">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1" style="margin-top: 25px">
                 <label class="ancho texto_r"><strong>CONCEPTO</strong></label>
                 <div class="dato">
                     <span class="oswald fs_14 texto_r">Acumulado</span>
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Importe medio por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['mediaor'])?> &euro;</span>
@@ -28,7 +28,7 @@
                     <span class="oswald fs_14"><?='---'?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Importe MO por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['mediamo'])?> &euro;</span>
@@ -37,7 +37,7 @@
                     <span class="oswald fs_14"><?='---'?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">% MO por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma(porcentaje_($datos_acumulados['mediamo'],$datos_acumulados['mediaor']))?>%</span>
@@ -46,7 +46,7 @@
                     <span class="oswald fs_14"><?='---'?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Importe PR por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['mediapr'])?> &euro;</span>
@@ -55,7 +55,7 @@
                     <span class="oswald fs_14"><?='---'?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">% PR por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma(porcentaje_($datos_acumulados['mediapr'],$datos_acumulados['mediaor']))?>%</span>
@@ -64,7 +64,7 @@
                     <span class="oswald fs_14"><?='---'?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Horas facturadas x operario:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$porcentajes[4])?></span>
@@ -73,7 +73,7 @@
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$datos_acumulados['nmeses']/$porcentajes[4])?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">€ MO x operario:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4])?></span>
@@ -82,7 +82,7 @@
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4]/$datos_acumulados['nmeses'])?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">€ PR x operario:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventapr']/$porcentajes[4])?></span>
@@ -91,7 +91,7 @@
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventapr']/$porcentajes[4]/$datos_acumulados['nmeses'])?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Total facturado x operario:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])?></span>
@@ -100,7 +100,7 @@
                     <span class="oswald fs_14"><?=moneda_puntocoma(($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])/$datos_acumulados['nmeses'])?></span>
                 </div>
             </div>
-            <div class="linea">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Nº horas por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])?></span>
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <div class="linea" style="background-color:#f5f5f5; margin:0px; margin-top: 18px">
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1" style="background-color:#f5f5f5; margin:0px; margin-top: 18px">
                 <div id="stats_acum_evol_4" class="stat_ratio">
                     <script>
                         $(document).ready(function() {
@@ -120,7 +120,7 @@
                 </div>
             </div>
             
-            <!--<div class="linea">
+            <!--<div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
                 <label class="ancho">Fidelizaci&oacute;n de clientes:</label>
                 <div class="dato">
                     <span class="oswald"><?/*=moneda_puntocoma($datos_acumulados['fidelizacion'])*/?> %</span>
@@ -129,7 +129,7 @@
             
 		</div>
 
-        <div class="colder_graf" style="border-left: 1px solid #333; box-sizing: border-box">
+        <div class="colder_graf col col-12 col-md-6 d-flex flex-column align-items-center align-items-md-end justify-content-start p-3">
             <div id="stats_acum_evol_1" class="stat_ratio">
                 <script>
                     $(document).ready(function() {

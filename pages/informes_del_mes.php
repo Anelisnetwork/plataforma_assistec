@@ -66,9 +66,7 @@ $iddato = $dato_mensual[0]->da_iddato;
     <div class="col col-12 d-flex flex-column align-items-center align-items-sm-center" id="secc-<?= $seccion ?>">
         <?php include('pages/secc_' . $seccion . '.php'); ?>
     </div>
-    <?php
-
-
-    } ?>
 </div>
+    <?php } ?>
+
 
