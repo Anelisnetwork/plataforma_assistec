@@ -64,19 +64,26 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
             <?php }?>
 
             <?php foreach($lista_pages as $npage){
-                if(in_array($npage->mo_url, $inactivos)){
-                    ?>
+            $seccpage = dame_secciones($npage->mo_url);
+                if(in_array($npage->mo_url, $inactivos)){?>
                     <span style="cursor:not-allowed" title="No disponible en este módulo" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class="text-grey bg-dark inactive fs_16 d-flex flex-row align-items-center justify-content-start w-100 mb-1 p-1<?=$npage->mo_url==$m?' activo':''?> ">
                         <i class="<?=modulo_ico($npage->mo_url)?> me-2"></i>
                         <?=nom_modulo($npage->mo_url)?>
                     </span>
                 <?php }
                 else{?>
-                    <a href="<?=_RAIZ_.$npage->mo_url.'/'?>" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class="text-white bg-light fs_16 d-flex flex-row align-items-center justify-content-start w-100 mb-1 p-1">
+                    <a href="<?=_RAIZ_.$npage->mo_url.'/'?>" id="menunav_<?=str_replace('_','',$npage->mo_url)?>" class=" fs_16 d-flex flex-row align-items-center justify-content-start w-100 mb-1 p-1 <?=$npage->mo_url==$m?' bg-white text-secondary':' bg-light'?> ">
                         <i class="<?=modulo_ico($npage->mo_url)?> me-2"></i>
                         <?=nom_modulo($npage->mo_url)?>
                     </a>
-                <?php }
+                    <?php
+                    foreach($secciones as $seccp){?>
+                        <a href="<?=_RAIZ_.$npage->mo_url.'/'.$seccp->sc_url.'/'?>" id="menunav_<?=str_replace('_','',$npage->mo_url).'_'.str_replace('_','',$seccp->sc_url)?>" class=" <?=$seccp->sc_url==$seccion?' active':''?> bg-dark fs_14 d-flex flex-row align-items-center justify-content-start w-75 mb-1 p-1 ms-4 <?=$npage->mo_url!=$m?' d-none':''?> ">
+                            <i class="fa-solid fa-caret-right me-2"></i>
+                            <?=nom_seccion($seccp->sc_url)?>
+                        </a>
+                    <?php }
+                        }
             }?>
 
             <?php if($_SESSION['datos_'._ID_PAG_]['datos_user']['contrato']!=''){?>

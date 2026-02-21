@@ -24,6 +24,9 @@
     background-color: var(--colorDark) !important;
     color: var(--colorWhite) !important;
 }
+.bg-dark.active, btn.bg-dark.active, a.bg-dark.active {
+    color: var(--colorSecondaryAlt) !important;
+}
 .bg-dark.inactive, btn.bg-dark.inactive, a.bg-dark.inactive {
     color: var(--colorGreylight) !important;
 }
@@ -71,6 +74,12 @@ a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
 }
 .text-secondary a:hover {
     color: var(--colorSecondaryHover) !important;
+}
+.text-secondaryalt, .text-secondaryalt a {
+    color: var(--colorSecondaryAlt) !important;
+}
+.text-secondaryalt a:hover {
+    color: var(--colorSecondaryAltHover) !important;
 }
 .bg-grisl{
     background-color: var(--colorGreylightAlt) !important;
