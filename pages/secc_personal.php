@@ -20,26 +20,12 @@ $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user'][
 ?>
 <div class="col col-12 col-lg-8 d-flex flex-column align-items-center justify-content-start">
     <div class="d-flex flex-column align-items-start justify-content-between w-100 mb-3">
-        <span class="oswald fs_16">TOTAL EMPLEADOS: <span id="empleados_total"><?= $porcentajes[0] ?></span></span>
-
-        <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between mb-3">
-            <span style="float:left; margin-top: 0px;" class="ubuntu fs_16">Empleados directos:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="empleados_directos"><?= $porcentajes[4] ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span id="empleados_dir_porc"><?= $porcentajes[2] ?></span>%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="fs_12 texto_r">Recomendado 70%</span>
-        </div>
-
-        <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between mb-3">
-            <span style="float:left; margin-top: 5px;" class="ubuntu fs_16">Empleados indirectos:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="empleados_indirectos"><?= $porcentajes[5] ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span id="empleados_indir_porc"><?= $porcentajes[3] ?></span>%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="fs_12 texto_r">Recomendado 30%</span>
-        </div>
-    </div>
-    <div class="d-flex flex-column align-items-start justify-content-between w-100 mb-3">
         <span class="oswald fs_16 mostrarocultar btn btn-sm btn-outline-secondary col-12 col-sm-auto" id="mostrarocultar_nuevoempleado">A&Ntilde;ADIR EMPLEADO</span>
     </div>
 
-    <div id="nuevoempleado" class="div_mostrarocultar" style="display:none">
+    <div id="nuevoempleado" class="div_mostrarocultar w-100" style="display:none">
         <div class=" flex-column align-items-start justify-content-between w-100 mb-3">
-            <span class="oswald fs_16 mostrarocultar btn btn-sm btn-dark" id="cultar_nuevoempleado">CERRAR</span>
-            <div class="linea empleado_NEW d-flex flex-column align-items-start justify-content-between w-100 p-2 p-sm-4 rounded-2 mb-3">
+            <div class="linea empleado_NEW d-flex flex-column align-items-start justify-content-between w-100 p-2 p-sm-4 rounded-2 mb-3 border border-warning">
                 <form action="<?= _RAIZ_ ?>procesando.php" method="post" class="w-100" name="nuevo_empleado" id="nuevo_empleado">
                     <input type="hidden" id="idproceso" name="idproceso" value="edita_empleado"/>
                     <input type="hidden" id="url_dest" name="url_dest" value="<?= _RAIZ_ ?>datos_del_taller/personal"/>
@@ -55,7 +41,7 @@ $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user'][
                                 <label for="jornada_NEW">Jornada (horas):</label>
                             </div>
                             <div class="col col-4">
-                            <input type="text" id="jornada_NEW" name="jornada_NEW" class="form-control form-control-sm" value="8.00">
+                                <input type="text" id="jornada_NEW" name="jornada_NEW" class="form-control form-control-sm" value="8.00">
                             </div>
                         </div>
                     </div>
@@ -97,7 +83,21 @@ $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user'][
             </div>
         </div>
     </div>
-    <div id="contempleados" class="div_mostrarocultar w-100">
+    <div class="d-flex flex-column align-items-start justify-content-between w-100 mb-3">
+        <span class="oswald fs_16">TOTAL EMPLEADOS: <span id="empleados_total"><?= $porcentajes[0] ?></span></span>
+
+        <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between mb-3">
+            <span style="float:left; margin-top: 0px;" class="ubuntu fs_16">Empleados directos:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="empleados_directos"><?= $porcentajes[4] ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span id="empleados_dir_porc"><?= $porcentajes[2] ?></span>%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="fs_12 texto_r">Recomendado 70%</span>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between mb-3">
+            <span style="float:left; margin-top: 5px;" class="ubuntu fs_16">Empleados indirectos:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="empleados_indirectos"><?= $porcentajes[5] ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span id="empleados_indir_porc"><?= $porcentajes[3] ?></span>%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="fs_12 texto_r">Recomendado 30%</span>
+        </div>
+    </div>
+
+    <div id="contempleados" class="w-100">
         <div class="d-flex flex-column align-items-start justify-content-between w-100 mb-3">
         <?php if (count($empleados) > 0) {
             foreach ($empleados as $k=>$empleado) {
