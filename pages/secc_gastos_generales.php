@@ -35,59 +35,122 @@ $otros=$haydatos?$infotaller[0]->otros:0;
 $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
 
 ?>
-    <div id="infotaller" class="div_mostrarocultar" style="float:left;">
+<div class="col col-12 col-md-8 d-flex flex-column align-items-center justify-content-start">
+    <div id="infotaller" class="div_mostrarocultar w-100">
         <form action="<?=_RAIZ_?>procesando.php" method="post" name="edita_gastos" id="edita_gastos">
             <input type="hidden" id="idproceso" name="idproceso" value="edita_gastos" />
             <input type="hidden" id="url_dest" name="url_dest" value="<?=_RAIZ_?>datos_del_taller/gastos_generales" />
             <input type="hidden" id="idtaller" name="idtaller" value="<?=$idtaller?>" />
-            <div class="linea">
-                <label for="nominas_<?=$idtaller?>" class="ancho">Coste personal:</label><input type="text" id="nominas_<?=$idtaller?>" name="nominas_<?=$idtaller?>" class="peq orig" value="<?=$nominas?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="nominas_<?=$idtaller?>_def" name="nominas_<?=$idtaller?>_def" value="<?=$nominas?>" />
-                <input type="submit" style="display:none" id="edita_gastos_<?=$idtaller?>" name="edita_gastos_<?=$idtaller?>" value="Guardar" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="nominas_<?=$idtaller?>">Coste personal:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="nominas_<?=$idtaller?>" name="nominas_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$nominas?>" onkeyup="comprueba_cambios('edita_gastos')" style="width: auto; text-align: right">
+                    <span class="fs_14">&euro;</span>
+                    <input type="hidden" id="nominas_<?=$idtaller?>_def" name="nominas_<?=$idtaller?>_def" value="<?=$nominas?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="seg_social_<?=$idtaller?>" class="ancho">Coste Seg. social trab.:</label><input type="text" id="seg_social_<?=$idtaller?>" name="seg_social_<?=$idtaller?>" class="peq orig" value="<?=$seg_social?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="seg_social_<?=$idtaller?>_def" name="seg_social_<?=$idtaller?>_def" value="<?=$seg_social?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="seg_social_<?=$idtaller?>" class="ancho">Coste Seg. social trab.:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="seg_social_<?=$idtaller?>" name="seg_social_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$seg_social?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')">
+                    <span class="fs_14">&euro;</span>
+                    <input type="hidden" id="seg_social_<?=$idtaller?>_def" name="seg_social_<?=$idtaller?>_def" value="<?=$seg_social?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="gastos_pers_<?=$idtaller?>" class="texto_r ancho">Total gastos de personal:</label>
-                <input type="text" id="gastos_pers_<?=$idtaller?>" name="gastos_pers_<?=$idtaller?>" class="peq orig" value="<?=$nominas+$seg_social?>" style="width:70px; text-align:right; background-color:#ffd7b4" disabled>
-                <span class="fs_14" style="float:left; margin:7px;">&euro;</span>
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="gastos_pers_<?=$idtaller?>" class="texto_r ancho">Total gastos de personal:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="gastos_pers_<?=$idtaller?>" name="gastos_pers_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$nominas+$seg_social?>" style="width:auto; text-align:right; background-color:#ffd7b4" readonly>
+                    <span class="fs_14"">&euro;</span>
+                </div>
             </div>
 
-            <div class="linea">
-                <label for="alquileres_<?=$idtaller?>" class="ancho">Alquileres:</label><input type="text" id="alquileres_<?=$idtaller?>" name="alquileres_<?=$idtaller?>" class="peq orig" value="<?=$alquileres?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="alquileres_<?=$idtaller?>_def" name="alquileres_<?=$idtaller?>_def" value="<?=$alquileres?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="alquileres_<?=$idtaller?>" class="ancho">Alquileres:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="alquileres_<?=$idtaller?>" name="alquileres_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$alquileres?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')">
+                    <span class="fs_14">&euro;</span>
+                    <input type="hidden" id="alquileres_<?=$idtaller?>_def" name="alquileres_<?=$idtaller?>_def" value="<?=$alquileres?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="suministros_<?=$idtaller?>" class="ancho">Suministros:</label><input type="text" id="suministros_<?=$idtaller?>" name="suministros_<?=$idtaller?>" class="peq orig" value="<?=$suministros?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="suministros_<?=$idtaller?>_def" name="suministros_<?=$idtaller?>_def" value="<?=$suministros?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="suministros_<?=$idtaller?>" class="ancho">Suministros:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="suministros_<?=$idtaller?>" name="suministros_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$suministros?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')">
+                    <span class="fs_14">&euro;</span>
+                    <input type="hidden" id="suministros_<?=$idtaller?>_def" name="suministros_<?=$idtaller?>_def" value="<?=$suministros?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="renting_<?=$idtaller?>" class="ancho">Renting de equipos:</label><input type="text" id="renting_<?=$idtaller?>" name="renting_<?=$idtaller?>" class="peq orig" value="<?=$renting?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="renting_<?=$idtaller?>_def" name="renting_<?=$idtaller?>_def" value="<?=$renting?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="renting_<?=$idtaller?>" class="ancho">Renting de equipos:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="renting_<?=$idtaller?>" name="renting_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$renting?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14">&euro;</span>
+                    <input type="hidden" id="renting_<?=$idtaller?>_def" name="renting_<?=$idtaller?>_def" value="<?=$renting?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="serv_prof_<?=$idtaller?>" class="ancho">Servicios profesionales:</label><input type="text" id="serv_prof_<?=$idtaller?>" name="serv_prof_<?=$idtaller?>" class="peq orig" value="<?=$serv_prof?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="serv_prof_<?=$idtaller?>_def" name="serv_prof_<?=$idtaller?>_def" value="<?=$serv_prof?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="serv_prof_<?=$idtaller?>" class="ancho">Servicios profesionales:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="serv_prof_<?=$idtaller?>" name="serv_prof_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$serv_prof?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')">
+                    <span class="fs_14"">&euro;</span>
+                    <input type="hidden" id="serv_prof_<?=$idtaller?>_def" name="serv_prof_<?=$idtaller?>_def" value="<?=$serv_prof?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="cuotas_<?=$idtaller?>" class="ancho">Cuotas:</label><input type="text" id="cuotas_<?=$idtaller?>" name="cuotas_<?=$idtaller?>" class="peq orig" value="<?=$cuotas?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="cuotas_<?=$idtaller?>_def" name="cuotas_<?=$idtaller?>_def" value="<?=$cuotas?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="cuotas_<?=$idtaller?>" class="ancho">Cuotas:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="cuotas_<?=$idtaller?>" name="cuotas_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$cuotas?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14">&euro;</span>
+                    <input type="hidden" id="cuotas_<?=$idtaller?>_def" name="cuotas_<?=$idtaller?>_def" value="<?=$cuotas?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="amortizaciones_<?=$idtaller?>" class="ancho">Amortizaciones:</label><input type="text" id="amortizaciones_<?=$idtaller?>" name="amortizaciones_<?=$idtaller?>" class="peq orig" value="<?=$amortizaciones?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="amortizaciones_<?=$idtaller?>_def" name="amortizaciones_<?=$idtaller?>_def" value="<?=$amortizaciones?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="amortizaciones_<?=$idtaller?>" class="ancho">Amortizaciones:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="amortizaciones_<?=$idtaller?>" name="amortizaciones_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$amortizaciones?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')">
+                    <span class="fs_14">&euro;</span>
+                    <input type="hidden" id="amortizaciones_<?=$idtaller?>_def" name="amortizaciones_<?=$idtaller?>_def" value="<?=$amortizaciones?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="otros_<?=$idtaller?>" class="ancho">Otros gastos:</label><input type="text" id="otros_<?=$idtaller?>" name="otros_<?=$idtaller?>" class="peq orig" value="<?=$otros?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14" style="float:left; margin:7px;">&euro;</span>
-                <input type="hidden" id="otros_<?=$idtaller?>_def" name="otros_<?=$idtaller?>_def" value="<?=$otros?>" />
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="otros_<?=$idtaller?>" class="ancho">Otros gastos:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="otros_<?=$idtaller?>" name="otros_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$otros?>" style="width:auto; text-align:right" onkeyup="comprueba_cambios('edita_gastos')"><span class="fs_14">&euro;</span>
+                    <input type="hidden" id="otros_<?=$idtaller?>_def" name="otros_<?=$idtaller?>_def" value="<?=$otros?>" />
+                </div>
             </div>
-            <div class="linea">
-                <label for="gastos_estruc_<?=$idtaller?>" class="texto_r ancho">Total gastos de estructura:</label>
-                <input type="text" id="gastos_estruc_<?=$idtaller?>" name="gastos_estruc_<?=$idtaller?>" class="peq orig" value="<?=$alquileres+$suministros+$renting+$serv_prof+$cuotas+$amortizaciones+$otros?>" style="width:70px; text-align:right; background-color:#ffd7b4" disabled>
-                <span class="fs_14" style="float:left; margin:7px;">&euro;</span>
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                    <label for="gastos_estruc_<?=$idtaller?>" class="texto_r ancho">Total gastos de estructura:</label>
+                </div>
+                <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
+                    <input type="text" id="gastos_estruc_<?=$idtaller?>" name="gastos_estruc_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$alquileres+$suministros+$renting+$serv_prof+$cuotas+$amortizaciones+$otros?>" style="width:auto; text-align:right; background-color:#ffd7b4" disabled>
+                    <span class="fs_14">&euro;</span>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start w-100 mb-2">
+                <input type="submit" style="display:none" id="edita_gastos_<?=$idtaller?>" name="edita_gastos_<?=$idtaller?>" value="Guardar" class="btn btn-secondary"/>
             </div>
 
     </div>
+</div>
 <?php unset($_SESSION['datos_'._ID_PAG_]['edita_gastos']);?>
