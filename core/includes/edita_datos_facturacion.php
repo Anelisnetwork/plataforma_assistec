@@ -5,6 +5,7 @@ $_SESSION['datos_'._ID_PAG_]['datos_facturacion']['hayerrores']=0;
 $url_dest=clean_post('url_dest');
 
 $id_dir=clean_post('iddir');
+$idtaller=clean_post('idtaller');
 
 $nomcomf=$_SESSION['datos_'._ID_PAG_]['datos_facturacion']['nomcomf_'.$id_dir]=clean_post('nomcomf_'.$id_dir);
 $razsoc=$_SESSION['datos_'._ID_PAG_]['datos_facturacion']['razsoc_'.$id_dir]=clean_post('razsoc_'.$id_dir);
@@ -21,8 +22,15 @@ $observaciones=$_SESSION['datos_'._ID_PAG_]['datos_facturacion']['observaciones_
 
 $razsoc==''||$nifcif==''||$direccionf==''||$cpf==''||$localidadf==''||$provinciaf==''||$telefonof==''||$movilf==''||$correof==''||$contactof==''||!VerificarDireccionCorreo($correof)?$_SESSION['datos_'._ID_PAG_]['datos_facturacion']['hayerrores']=1:'';
 
+
+
 if($_SESSION['datos_'._ID_PAG_]['datos_facturacion']['hayerrores']==0){
-	query('update usuarios_facturacion set uf_denomsoc="'.u8_($razsoc).'", uf_cifnif="'.$nifcif.'", uf_nomcom="'.u8_($nomcomf).'", uf_contacto="'.u8_($contactof).'", uf_telefono1="'.$telefonof.'", uf_telefono2="'.$movilf.'", uf_email="'.$correof.'", uf_direccion="'.u8_($direccionf).'", uf_cp="'.$cpf.'", uf_localidad="'.u8_($localidadf).'", uf_provincia="'.u8_($provinciaf).'", uf_observaciones="'.u8_($observaciones).'" where uf_iddir='.$id_dir.'');
+    if($id_dir === 'NEW'){
+        $id_dir=query('insert into usuarios_facturacion (uf_idtaller, uf_denomsoc, uf_cifnif, uf_nomcom, uf_contacto, uf_telefono1, uf_telefono2, uf_email, uf_direccion, uf_cp, uf_localidad, uf_provincia, uf_observaciones) values ('.$idtaller.', "'.u8_($razsoc).'", "'.$nifcif.'", "'.u8_($nomcomf).'", "'.u8_($contactof).'", "'.$telefonof.'", "'.$movilf.'", "'.$correof.'", "'.u8_($direccionf).'", "'.$cpf.'", "'.u8_($localidadf).'", "'.u8_($provinciaf).'", "'.u8_($observaciones).'")');
+    }
+    else{
+        query('update usuarios_facturacion set uf_denomsoc="'.u8_($razsoc).'", uf_cifnif="'.$nifcif.'", uf_nomcom="'.u8_($nomcomf).'", uf_contacto="'.u8_($contactof).'", uf_telefono1="'.$telefonof.'", uf_telefono2="'.$movilf.'", uf_email="'.$correof.'", uf_direccion="'.u8_($direccionf).'", uf_cp="'.$cpf.'", uf_localidad="'.u8_($localidadf).'", uf_provincia="'.u8_($provinciaf).'", uf_observaciones="'.u8_($observaciones).'" where uf_iddir='.$id_dir.'');
+    }
 }
 
 fuera_de_aqui($url_dest);

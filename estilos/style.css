@@ -71,6 +71,9 @@ a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
     --bs-btn-disabled-border-color: var(--colorSecondary);
     --bs-gradient: none;
 }
+.bg-secondary {
+    background-color: var(--colorSecondary) !important;
+}
 .text-secondary, .text-secondary a {
     color: var(--colorSecondary) !important;
 }

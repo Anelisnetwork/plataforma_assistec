@@ -1,4 +1,5 @@
-<?php 
+<?php
+exit();
 if(isset($_SESSION['datos_'._ID_PAG_]['edita_datosactividad']['hayerrores'])){
 	if($_SESSION['datos_'._ID_PAG_]['edita_datosactividad']['hayerrores']==1){?>
     <script>
