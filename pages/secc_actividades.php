@@ -50,7 +50,7 @@ $actividades=tipos_actividad();
         </div>
         <?php }?>
         <div class="col col-12 d-flex flex-row align-items-center justify-content-end">
-            <input type="submit" class="btn btn-secondary mt-4" id="edita_actividad_<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?>" name="edita_actividad_<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?>" value="Guardar" />
+            <input type="submit" class="btn btn-secondary mt-4" style="display: none" id="edita_actividad_<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?>" name="edita_actividad_<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?>" value="Guardar" />
         </div>
 </div>
 <?php unset($_SESSION['datos_'._ID_PAG_]['edita_actividad']);?>
