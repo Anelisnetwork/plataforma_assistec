@@ -5,6 +5,8 @@
     --colorSecondaryHover: #c15c06;
     --colorSecondaryAlt: #e1c863;
     --colorSecondaryAltHover: #ab8c16;
+    --colorSecondaryL: #f8f0e9;
+    --colorSecondaryLHover: #edd4be;
     --colorDark: #333333;
     --colorDarkHover: #171717;
     --colorWhite: #f8f9fa;
@@ -83,4 +85,7 @@ a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
 }
 .bg-grisl{
     background-color: var(--colorGreylightAlt) !important;
+}
+.bg-secondaryl{
+    background-color: var(--colorSecondaryL) !important;
 }
