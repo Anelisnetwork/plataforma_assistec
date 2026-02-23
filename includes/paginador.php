@@ -16,7 +16,7 @@
         <?php } else {?>
         <a href="<?=$url?>pagina/<?=$paganterior?>/" style="float:left; margin-right:15px" title="Ir a la página anterior"><img src="<?=_RAIZ_?>imagenes/anterior.png" style="border:0px" /></a>
         <?php }?>
-        <select name="sel_pag" id="sel_pag" style="float:left; margin-right:15px; font-size:12px" title="Ir a la página" onchange="window.location = '<?=$url?>pagina/'+this.value+'/'">
+        <select name="sel_pag" id="sel_pag" style="width:auto; font-size:12px; float:left; margin-right:15px" class="form-select form-select-sm" title="Ir a la página" onchange="window.location = '<?=$url?>pagina/'+this.value+'/'">
         	<?php for($p=1;$p<=$npaginas;$p++){?>
             <option value="<?=$p?>"<?php if($p==$pagina){?> selected="selected"<?php }?> title="Ir a la página <?=$p?>"><?=$p?></option>
             <?php }?>
