@@ -1005,7 +1005,7 @@ function cidr_match(string $ip, string $cidr): bool {
 function include_javascript(){
     $allowed_ips = [
         '89.131.66.1',// Jose
-        '89.131.66.1',// Jose
+        '91.242.149.68',//Gerardo
         '91.243.132.83',// Sergi
         '185.73.171.223'//Sergi
     ];
