@@ -55,7 +55,7 @@ if ($iddato == '' || $iddato == NULL) {
                 <?php } else {
                     ?>
                     <span class="oswald" style="float: left; margin-right: 10px">Seleccione período</span>
-                    <select class="form-control w-auto form-control-sm d-inline-block"
+                    <select class="form-select w-auto form-select-sm d-inline-block"
                             onchange="window.location.href ='<?= _RAIZ_ ?>ratios_acumulados/<?= $seccion ?>/'+this.value+'/'">
                         <?php foreach ($anhos as $anho) { ?>
                             <option value="<?= $anho->da_ano ?>"<?= $anho->da_ano == $anho_acumulado ? ' selected' : '' ?>>

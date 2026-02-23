@@ -51,7 +51,7 @@ $iddato = $dato_mensual[0]->da_iddato;
             <?php } else {
                 ?>
                 <span class="oswald">Seleccione mes</span>
-                <select class="form-control form-control-sm w-auto d-inline-block"
+                <select class="form-select form-select-sm w-auto d-inline-block"
                         onchange="window.location.href ='<?= _RAIZ_ ?>informes_del_mes/<?= $seccion ?>/'+this.value+'/'">
                     <?php foreach ($datos_guardados as $dato_guardado) { ?>
                         <option value="<?= $dato_guardado->da_mes . '/' . $dato_guardado->da_ano ?>"<?= (nom_mes($dato_mensual[0]->da_mes) . ' ' . $dato_mensual[0]->da_ano) == (nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano) ? ' selected' : '' ?>><?= nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano ?></option>

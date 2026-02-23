@@ -101,13 +101,13 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <?php if ($iddato == 'NEW') { ?>
                         <label class="ancho doslineas">&iquest;A qu&eacute; mes corresponden los datos?:</label>
                         <div class="d-flex flex-row align-items-center justify-content-start">
-                            <select name="mesdato_<?= $iddato ?>" id="mesdato_<?= $iddato ?>" style="width:auto">
+                            <select name="mesdato_<?= $iddato ?>" id="mesdato_<?= $iddato ?>" class="form-select form-select-sm" style="width:auto">
                                 <?php for ($m = 1; $m <= 12; $m++) { ?>
                                     <option<?= $proximo_mes == $m ? ' selected="selected"' : '' ?>
                                             value="<?= $m ?>"><?= nom_mes($m) ?></option>
                                 <?php } ?>
                             </select>
-                            <select name="anodato_<?= $iddato ?>" id="anodato_<?= $iddato ?>" style="width:auto; margin-left:15px">
+                            <select name="anodato_<?= $iddato ?>" id="anodato_<?= $iddato ?>" class="form-select form-select-sm" style="width:auto; margin-left:15px">
                                 <?php for ($a = date('Y') - 2; $a <= $proximo_ano + 1; $a++) { ?>
                                     <option<?= $proximo_ano == $a ? ' selected="selected"' : '' ?>
                                             value="<?= $a ?>"><?= $a ?></option>
@@ -126,8 +126,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 </div>
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho">N&ordm; de d&iacute;as laborables:</label>
-                    <input type="text" id="diaslab_<?= $iddato ?>" style="text-align:right"
-                           name="diaslab_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="diaslab_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="diaslab_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= $iddato == 'NEW' ? (isset($diaslab) ? $diaslab : 0) : $dato_mensual[0]->da_diaslaborables ?>"
                            onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="diaslab_<?= $iddato ?>_def" name="diaslab_<?= $iddato ?>_def"
@@ -137,8 +137,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho faq">N&ordm; horas presencia:</label>
                     <input type="text" id="horaspresencia_<?= $iddato ?>"
-                           style="text-align:right<?= $iddato == 'NEW' ? (isset($tipopresencia) ? ($tipopresencia == 1 ? '; background-color:#ffd7b4' : '') : '') : ($dato_mensual[0]->da_tipopresencia == 1 ? '; background-color:#ffd7b4' : '') ?>"
-                           name="horaspresencia_<?= $iddato ?>" class="peq orig"
+                           style="text-align:right;width: auto<?= $iddato == 'NEW' ? (isset($tipopresencia) ? ($tipopresencia == 1 ? '; background-color:#ffd7b4' : '') : '') : ($dato_mensual[0]->da_tipopresencia == 1 ? '; background-color:#ffd7b4' : '') ?>"
+                           name="horaspresencia_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($horaspresencia) ? $horaspresencia : 0) : $dato_mensual[0]->da_horaspresencia, 2) ?>"
                            onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')"<?= $iddato == 'NEW' ? (isset($tipopresencia) ? ($tipopresencia == 1 ? ' readonly="readonly"' : '') : '') : ($dato_mensual[0]->da_tipopresencia == 1 ? ' readonly="readonly"' : '') ?>>
                     <input type="hidden" id="horaspresencia_<?= $iddato ?>_def" name="horaspresencia_<?= $iddato ?>_def"
@@ -146,7 +146,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 </div>
 
                 <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
-                    <div class="tit_mes oswald_l btn btn-sm btn-outline-secondary<?=$muestra_empleados?' active':''?>" id="showempleados" onclick="muestra_empleados('<?= $iddato ?>')">Indicar presencia por empleado</div>
+                    <div class="tit_mes oswald_l <?=$muestra_empleados?' active':''?>" id="showempleados">Indicar presencia por empleado</div>
                     <input type="checkbox" name="presenciaxemp" id="presenciaxemp" style="float:left; margin-top:9px" value="1"<?= $iddato == 'NEW' ? (isset($tipopresencia) ? ($tipopresencia == 1 ? ' checked="checked"' : '') : '') : ($dato_mensual[0]->da_tipopresencia == 1 ? ' checked="checked"' : '') ?> onclick="muestra_empleados('<?= $iddato ?>')"/>
                 </div>
 
@@ -179,9 +179,9 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <label class="ancho">Horas extras pagadas:</label>
                                 <input type="text"
                                        id="extraspagadas_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       style="text-align:right"
+                                       style="text-align:right;width: auto"
                                        name="extraspagadas_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       class="peq orig"
+                                       class="peq orig form-control form-control-sm"
                                        value="<?= moneda_punto($iddato == 'NEW' ? 0 : ($presencia_empleado == '' ? '0' : $presencia_empleado['pp_extraspagadas']), 2) ?>"
                                        onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                                 <input type="hidden"
@@ -194,9 +194,9 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <label class="ancho">D&iacute;as de vacaciones:</label>
                                 <input type="text"
                                        id="diasvacaciones_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       style="text-align:right"
+                                       style="text-align:right;width: auto"
                                        name="diasvacaciones_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       class="peq orig"
+                                       class="peq orig form-control form-control-sm"
                                        value="<?= moneda_punto($iddato == 'NEW' ? 0 : ($presencia_empleado == '' ? '0' : $presencia_empleado['pp_diasvacaciones']), 2) ?>"
                                        onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                                 <input type="hidden"
@@ -208,9 +208,9 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                             <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                                 <label class="ancho">D&iacute;as de baja:</label>
                                 <input type="text" id="diasbaja_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       style="text-align:right"
+                                       style="text-align:right;width: auto"
                                        name="diasbaja_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       class="peq orig"
+                                       class="peq orig form-control form-control-sm"
                                        value="<?= moneda_punto($iddato == 'NEW' ? 0 : ($presencia_empleado == '' ? '0' : $presencia_empleado['pp_diasbaja']), 2) ?>"
                                        onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                                 <input type="hidden"
@@ -223,9 +223,9 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <label class="ancho">Horas de permiso:</label>
                                 <input type="text"
                                        id="diaspermiso_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       style="text-align:right"
+                                       style="text-align:right;width: auto"
                                        name="diaspermiso_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       class="peq orig"
+                                       class="peq orig form-control form-control-sm"
                                        value="<?= moneda_punto($iddato == 'NEW' ? 0 : ($presencia_empleado == '' ? '0' : $presencia_empleado['pp_diaspermiso']), 2) ?>"
                                        onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                                 <input type="hidden"
@@ -238,9 +238,9 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <label class="ancho">D&iacute;as de formaci&oacute;n:</label>
                                 <input type="text"
                                        id="diasformacion_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       style="text-align:right"
+                                       style="text-align:right;width: auto"
                                        name="diasformacion_<?= $empleado_directo->pt_idpersonal ?>_<?= $iddato ?>"
-                                       class="peq orig"
+                                       class="peq orig form-control form-control-sm"
                                        value="<?= moneda_punto($iddato == 'NEW' ? 0 : ($presencia_empleado == '' ? '0' : $presencia_empleado['pp_diasformacion']), 2) ?>"
                                        onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                                 <input type="hidden"
@@ -259,8 +259,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho faq" title="Introducir el importe de facturación de la mano de obra">Importe
                         facturado de MO:</label>
-                    <input type="text" id="facturadomo_<?= $iddato ?>" style="text-align:right"
-                           name="facturadomo_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="facturadomo_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="facturadomo_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($facturadomo) ? $facturadomo : 0) : $dato_mensual[0]->da_facturadomo, 2) ?>"
                            onkeyup="comprueba_num(this.id); datos_presencia('<?= $iddato ?>'); sumacol_datosactmes('facturado_','<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="facturadomo_<?= $iddato ?>_def" name="facturadomo_<?= $iddato ?>_def"
@@ -270,8 +270,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq"
                            title="Introducir el importe de facturación del recambio (piezas y pintura)">Importe
                         facturado de REC:</label>
-                    <input type="text" id="facturadorec_<?= $iddato ?>" style="text-align:right"
-                           name="facturadorec_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="facturadorec_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="facturadorec_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($facturadorec) ? $facturadorec : 0) : $dato_mensual[0]->da_facturadorec, 2) ?>"
                            onkeyup="comprueba_num(this.id); sumacol_datosactmes('facturado_','<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="facturadorec_<?= $iddato ?>_def" name="facturadorec_<?= $iddato ?>_def"
@@ -280,8 +280,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho faq" title="Importe facturados como material limpieza o gestión residuos">Importe
                         varios facturado:</label>
-                    <input type="text" id="facturadootros_<?= $iddato ?>" style="text-align:right"
-                           name="facturadootros_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="facturadootros_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="facturadootros_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($facturadootros) ? $facturadootros : 0) : $dato_mensual[0]->da_facturadootros, 2) ?>"
                            onkeyup="comprueba_num(this.id); sumacol_datosactmes('facturado_','<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="facturadootros_<?= $iddato ?>_def" name="facturadootros_<?= $iddato ?>_def"
@@ -289,16 +289,16 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 </div>
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho">Total importes facturados:</label>
-                    <input type="text" id="facturado_<?= $iddato ?>" style="text-align:right; background-color:#ffd7b4"
-                           name="facturado_<?= $iddato ?>" class="peq"
+                    <input type="text" id="facturado_<?= $iddato ?>" style="text-align:right; background-color:#ffd7b4; width: auto"
+                           name="facturado_<?= $iddato ?>" class="peq form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? 0 : $dato_mensual[0]->da_facturadomo + $dato_mensual[0]->da_facturadorec + $dato_mensual[0]->da_facturadootros, 2) ?>"
                            disabled="disabled">
                 </div>
                 <?php if (1 == 0) { ?>
                     <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                         <label class="ancho">Importe cobrado de MO:</label>
-                        <input type="text" id="cobradomo_<?= $iddato ?>" style="text-align:right"
-                               name="cobradomo_<?= $iddato ?>" class="peq orig"
+                        <input type="text" id="cobradomo_<?= $iddato ?>" style="text-align:right;width: auto"
+                               name="cobradomo_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                value="<?= moneda_punto($iddato == 'NEW' ? (isset($cobradomo) ? $cobradomo : 0) : $dato_mensual[0]->da_cobradomo, 2) ?>"
                                onkeyup="comprueba_num(this.id); sumacol_datosactmes('cobrado_','<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                         <input type="hidden" id="cobradomo_<?= $iddato ?>_def" name="cobradomo_<?= $iddato ?>_def"
@@ -306,8 +306,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     </div>
                     <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                         <label class="ancho">Importe cobrado de REC:</label>
-                        <input type="text" id="cobradorec_<?= $iddato ?>" style="text-align:right"
-                               name="cobradorec_<?= $iddato ?>" class="peq orig"
+                        <input type="text" id="cobradorec_<?= $iddato ?>" style="text-align:right;width: auto"
+                               name="cobradorec_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                value="<?= moneda_punto($iddato == 'NEW' ? (isset($cobradorec) ? $cobradorec : 0) : $dato_mensual[0]->da_cobradorec, 2) ?>"
                                onkeyup="comprueba_num(this.id); sumacol_datosactmes('cobrado_','<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                         <input type="hidden" id="cobradorec_<?= $iddato ?>_def" name="cobradorec_<?= $iddato ?>_def"
@@ -315,8 +315,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     </div>
                     <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                         <label class="ancho">Importe varios cobrado:</label>
-                        <input type="text" id="cobradootros_<?= $iddato ?>" style="text-align:right"
-                               name="cobradootros_<?= $iddato ?>" class="peq orig"
+                        <input type="text" id="cobradootros_<?= $iddato ?>" style="text-align:right;width: auto"
+                               name="cobradootros_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                value="<?= moneda_punto($iddato == 'NEW' ? (isset($cobradootros) ? $cobradootros : 0) : $dato_mensual[0]->da_cobradootros, 2) ?>"
                                onkeyup="comprueba_num(this.id); sumacol_datosactmes('cobrado_','<?= $iddato ?>'); comprueba_cambios('edita_datomensual')">
                         <input type="hidden" id="cobradootros_<?= $iddato ?>_def" name="cobradootros_<?= $iddato ?>_def"
@@ -325,8 +325,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                         <label class="ancho">Total importes cobrado:</label>
                         <input type="text" id="cobrado_<?= $iddato ?>"
-                               style="text-align:right; background-color:#ffd7b4" name="cobrado_<?= $iddato ?>"
-                               class="peq"
+                               style="text-align:right;width: auto; background-color:#ffd7b4" name="cobrado_<?= $iddato ?>"
+                               class="peq form-control form-control-sm"
                                value="<?= moneda_punto($iddato == 'NEW' ? 0 : $dato_mensual[0]->da_cobradomo + $dato_mensual[0]->da_cobradorec + $dato_mensual[0]->da_cobradootros, 2) ?>"
                                disabled="disabled">
                     </div>
@@ -335,8 +335,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq doslineas"
                            title="Anotar el importe de los albaranes o facturas de proveedores de piezas de recambios / pintura del mes">Importe
                         pagado proveedores REC:</label>
-                    <input type="text" id="pagadoprovrec_<?= $iddato ?>" style="text-align:right"
-                           name="pagadoprovrec_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="pagadoprovrec_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="pagadoprovrec_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($pagadoprovrec) ? $pagadoprovrec : 0) : $dato_mensual[0]->da_pagadoprovrec, 2) ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="pagadoprovrec_<?= $iddato ?>_def" name="pagadoprovrec_<?= $iddato ?>_def"
@@ -346,8 +346,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq doslineas"
                            title="Indicar cifra de importes pagados a proveedores de taller (protecciones, pequeño material, consumibles…)">Importe
                         pagado otros proveedores:</label>
-                    <input type="text" id="pagadoprovotros_<?= $iddato ?>" style="text-align:right"
-                           name="pagadoprovotros_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="pagadoprovotros_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="pagadoprovotros_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($pagadoprovotros) ? $pagadoprovotros : 0) : $dato_mensual[0]->da_pagadoprovotros, 2) ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="pagadoprovotros_<?= $iddato ?>_def"
@@ -358,8 +358,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq"
                            title="Nóminas + Seguridad Social<br><br>Puedes establecer este valor por defecto en 'Datos del taller -> Gastos generales'">Coste
                         de personal:</label>
-                    <input type="text" id="costepersonal_<?= $iddato ?>" style="text-align:right"
-                           name="costepersonal_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="costepersonal_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="costepersonal_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($costepersonal) ? $costepersonal : $gastos_taller['PERSONAL']) / 12 : $dato_mensual[0]->da_costepersonal, 2) ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="costepersonal_<?= $iddato ?>_def" name="costepersonal_<?= $iddato ?>_def"
@@ -369,8 +369,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq"
                            title="Anotar gastos de alquiler, seguros, acreedores de servicio, suministros, etc…<br><br>Puedes establecer este valor por defecto en 'Datos del taller -> Gastos generales'">Coste
                         estructura:</label>
-                    <input type="text" id="costeestructura_<?= $iddato ?>" style="text-align:right"
-                           name="costeestructura_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="costeestructura_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="costeestructura_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($costeestructura) ? $costeestructura : $gastos_taller['ESTRUCTURA']) / 12 : $dato_mensual[0]->da_costeestructura, 2) ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="costeestructura_<?= $iddato ?>_def"
@@ -383,8 +383,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho faq" title="Horas fichadas en OR de vehículos">N&ordm; horas fichadas en
                         OR:</label>
-                    <input type="text" id="horasfichadasor_<?= $iddato ?>" style="text-align:right"
-                           name="horasfichadasor_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="horasfichadasor_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="horasfichadasor_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($horasfichadasor) ? $horasfichadasor : 0) : $dato_mensual[0]->da_horasfichadasor, 2) ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="horasfichadasor_<?= $iddato ?>_def"
@@ -395,8 +395,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq"
                            title="Horas asignadas en las OR (Los tiempos que se asignan según los temparios del fabricante para las reparaciones)<br>En caso de no disponer de este dato, indicar el número de horas fichadas en OR.">N&ordm;
                         horas asignadas:</label>
-                    <input type="text" id="horasasignadas_<?= $iddato ?>" style="text-align:right"
-                           name="horasasignadas_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="horasasignadas_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="horasasignadas_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($horasasignadas) ? $horasasignadas : 0) : $dato_mensual[0]->da_horasasignadas, 2) ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="horasasignadas_<?= $iddato ?>_def" name="horasasignadas_<?= $iddato ?>_def"
@@ -404,8 +404,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 </div>
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho">N&ordm; horas facturadas:</label>
-                    <input type="text" id="horasfac_<?= $iddato ?>" style="text-align:right; background-color:#ffd7b4"
-                           name="horasfac_<?= $iddato ?>" class="peq"
+                    <input type="text" id="horasfac_<?= $iddato ?>" style="text-align:right;width: auto; background-color:#ffd7b4"
+                           name="horasfac_<?= $iddato ?>" class="peq form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($horasfac) ? $horasfac : 0) : $dato_mensual[0]->da_horasfac, 2) ?>"
                            readonly="readonly">
                 </div>
@@ -414,8 +414,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                            title="Horas que se podían haber facturado en base al objetivo de eficacia">Horas
                         perdidas:</label>
                     <input type="text" id="horasimproductivas_<?= $iddato ?>"
-                           style="text-align:right; background-color:#ffd7b4" name="horasimproductivas_<?= $iddato ?>"
-                           class="peq"
+                           style="text-align:right;width: auto; background-color:#ffd7b4" name="horasimproductivas_<?= $iddato ?>"
+                           class="peq form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($horasimproductivas) ? $horasimproductivas : 0) : $dato_mensual[0]->da_horasimproductivas, 2) ?>"
                            readonly="readonly">
                 </div>
@@ -423,16 +423,16 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                     <label class="ancho faq" title="Cálculo del importe no facturado en base al objetivo de eficacia">Importe
                         no facturado:</label>
                     <input type="text" id="nofacturado_<?= $iddato ?>"
-                           style="text-align:right; background-color:#ffd7b4" name="nofacturado_<?= $iddato ?>"
-                           class="peq"
+                           style="text-align:right;width: auto; background-color:#ffd7b4" name="nofacturado_<?= $iddato ?>"
+                           class="peq form-control form-control-sm"
                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($nofacturado) ? $nofacturado : 0) : $dato_mensual[0]->da_nofacturado, 2) ?>"
                            readonly="readonly">
                 </div>
                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                     <label class="ancho faq" title="Número de órdenes de repación abiertas en el mes">Entradas al
                         taller:</label>
-                    <input type="text" id="entradastaller_<?= $iddato ?>" style="text-align:right"
-                           name="entradastaller_<?= $iddato ?>" class="peq orig"
+                    <input type="text" id="entradastaller_<?= $iddato ?>" style="text-align:right;width: auto"
+                           name="entradastaller_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                            value="<?= $iddato == 'NEW' ? (isset($entradastaller) ? $entradastaller : 0) : $dato_mensual[0]->da_entradastaller ?>"
                            onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
                     <input type="hidden" id="entradastaller_<?= $iddato ?>_def" name="entradastaller_<?= $iddato ?>_def"
@@ -450,7 +450,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                 <span class="dato_hist">NO HAY MÁS DATOS</span>
             <?php } else {
                 ?>
-                <select class="form-control form-control-sm w-auto d-inline-block" onchange="window.location.href ='<?= _RAIZ_ ?>datos_del_mes/'+this.value+'/'">
+                <select class="form-select form-select-sm w-auto d-inline-block" onchange="window.location.href ='<?= _RAIZ_ ?>datos_del_mes/'+this.value+'/'">
                     <?php foreach ($datos_guardados as $dato_guardado) { ?>
                         <option value="<?= $dato_guardado->da_mes . '/' . $dato_guardado->da_ano ?>"<?= (nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano) == (nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano) ? ' selected' : '' ?>><?= nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano ?></option>
                     <?php } ?>
