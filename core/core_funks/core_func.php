@@ -171,6 +171,18 @@ function modulo_ico($modulo){
         case 'contactar_con_assistec':
             $ico = 'fa-solid fa-address-book';
             break;
+        case 'usuarios':
+            $ico = 'fa-solid fa-users';
+            break;
+        case 'talleres':
+            $ico = 'fa-solid fa-screwdriver-wrench';
+            break;
+        case 'promociones':
+            $ico = 'fa-solid fa-bullhorn';
+            break;
+        case 'listados':
+            $ico = 'fa-solid fa-list';
+            break;
         default:
             $ico = '';
             break;
