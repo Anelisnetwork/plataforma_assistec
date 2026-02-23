@@ -77,7 +77,8 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
                         <?=nom_modulo($npage->mo_url)?>
                     </a>
                     <?php
-                    foreach($secciones as $seccp){?>
+                    foreach($secciones as $seccp){
+                        if(in_array($seccp->sc_url, $seccNoMenu)){continue;}?>
                         <a href="<?=_RAIZ_.$npage->mo_url.'/'.$seccp->sc_url.'/'?>" id="menunav_<?=str_replace('_','',$npage->mo_url).'_'.str_replace('_','',$seccp->sc_url)?>" class=" <?=$seccp->sc_url==$seccion?' active':''?> bg-dark fs_14 d-flex flex-row align-items-center justify-content-start w-75 mb-1 p-1 ms-4 <?=$npage->mo_url!=$m?' d-none':''?> ">
                             <i class="fa-solid fa-caret-right me-2"></i>
                             <?=nom_seccion($seccp->sc_url)?>
