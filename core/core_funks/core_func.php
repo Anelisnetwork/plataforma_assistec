@@ -1033,7 +1033,7 @@ function include_javascript(){
 
     if ($allowed) {
         // Ruta al JS a cargar
-        echo '<script src="' . _RAIZ_ . 'js/chat.js"></script>';
+        echo '<script src="' . _RAIZ_ . 'chatbot/chat.js?v='.time().'"></script>';
     }
 }
 

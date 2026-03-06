@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="<?= _RAIZ_ ?>vendor/twbs/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <link href="<?=_RAIZ_?>estilos/style.css?v=30032023" rel="stylesheet" type="text/css" />
-<link href="<?=_RAIZ_?>estilos/chat.css?v=30032023" rel="stylesheet" type="text/css" />
+<link href="<?=_RAIZ_?>chatbot/chat.css?v=<?=time()?>" rel="stylesheet" type="text/css" />
 
 <!-- Scripts -->
 <script src="<?=_RAIZ_?>js/jquery-1.11.2.js" type="text/javascript"></script>
