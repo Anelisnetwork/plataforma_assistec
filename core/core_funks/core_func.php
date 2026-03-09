@@ -1039,8 +1039,8 @@ function include_javascript(){
 
 // Genera un token seguro y firmado (payload.signature)
 function generate_token(int $bytes = 32, ?string $secret = null): string {
-    if ($secret === null && defined('_CLAVE_CIFRADO_')) {
-        $secret = _CLAVE_CIFRADO_;
+    if ($secret === null && defined('_SHARED_SECRET_')) {
+        $secret = _SHARED_SECRET_;
     }
 
     $random = random_bytes($bytes);
@@ -1054,8 +1054,8 @@ function generate_token(int $bytes = 32, ?string $secret = null): string {
 
 // Verifica el token generado por generate_token
 function verify_token(string $token, ?string $secret = null): bool {
-    if ($secret === null && defined('_CLAVE_CIFRADO_')) {
-        $secret = _CLAVE_CIFRADO_;
+    if ($secret === null && defined('_SHARED_SECRET_')) {
+        $secret = _SHARED_SECRET_;
     }
 
     $parts = explode('.', $token);

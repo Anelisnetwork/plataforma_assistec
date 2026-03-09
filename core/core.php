@@ -114,6 +114,8 @@ define('module_prev','core_');
 
 define( '_DEFAULT_MODULE_','inicio' );
 
+include_once _PATH_.'env/config.php';
+
 $_core_mods_ = array(
 
     /*
