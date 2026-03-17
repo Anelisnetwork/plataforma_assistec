@@ -15,7 +15,7 @@ if(!empty($token) && verify_token($token)){
         if($dato_cli[0]->us_idusuario === '5' || ($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'] > 0 && $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'] !== '')){
             vd__($_SESSION['datos_'._ID_PAG_]['datos_user']);
             $_SESSION['datos_'._ID_PAG_]['idusuario'] = $dato_cli[0]->us_idusuario;
-            $url_dest = '';
+            $url_dest = _RAIZ_ . 'inicio/';
             $hayErrores = false;
         }
     }

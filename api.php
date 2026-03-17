@@ -1,4 +1,5 @@
 <?php
+$api = true;
 include('core/core.php');
 
 open_bd();

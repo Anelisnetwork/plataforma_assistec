@@ -47,6 +47,10 @@ if($m!='login') {
 
     $seccion = $seccion == '' && count($secciones) != 0 ? $secciones[0]->sc_url : $seccion;
 }
+else if((!isset($procesando) || !$procesando) && (!isset($api) || !$api)){
+    // Redirigimos al login de la web
+    fuera_de_aqui('https://assistec.es/login/');
+}
 
 $seccNoMenu=array('emitir_factura','editar_factura');
 //echo '<br>';var_dump ($secciones);

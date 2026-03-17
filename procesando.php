@@ -1,4 +1,5 @@
 <?php
+$procesando = true;
 require_once('core/core.php');
 
 open_bd();

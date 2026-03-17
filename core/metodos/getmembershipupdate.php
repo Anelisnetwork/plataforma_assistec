@@ -51,9 +51,10 @@ $id_woo       = filter_var( $datos['user_id'], FILTER_SANITIZE_NUMBER_INT );
 $email        = filter_var( trim( $datos['email'] ), FILTER_SANITIZE_EMAIL );
 
 // Para los textos, quitamos espacios, eliminamos etiquetas HTML y convertimos caracteres especiales
-$nombre       = htmlspecialchars( strip_tags( trim( $datos['first_name'] ) ), ENT_QUOTES, 'UTF-8' );
-$estado       = htmlspecialchars( strip_tags( trim( $datos['status'] ) ), ENT_QUOTES, 'UTF-8' );
-$nombre_plan  = htmlspecialchars( strip_tags( trim( $datos['plan_name'] ) ), ENT_QUOTES, 'UTF-8' );
+$nombre         = htmlspecialchars( strip_tags( trim( $datos['first_name'] . ' ' . $datos['last_name'] ) ), ENT_QUOTES, 'UTF-8' );
+$estado         = htmlspecialchars( strip_tags( trim( $datos['status'] ) ), ENT_QUOTES, 'UTF-8' );
+$nombre_plan    = htmlspecialchars( strip_tags( trim( $datos['plan_name'] ) ), ENT_QUOTES, 'UTF-8' );
+$plan_id        = filter_var( $datos['plan_id'], FILTER_SANITIZE_NUMBER_INT );
 
 // 5. LÓGICA DE NEGOCIO DE LA APLICACIÓN EXTERNA
 // Aquí conectarías con la base de datos de Assistec
@@ -62,7 +63,7 @@ $nombre_plan  = htmlspecialchars( strip_tags( trim( $datos['plan_name'] ) ), ENT
 // Así 'wcm-paused' se convierte en 'paused', y 'active' se queda como 'active'.
 $estado_limpio = str_replace( 'wcm-', '', $estado );
 
-if ( $estado_limpio === 'active' ) {
+if ( $estado_limpio === 'active' || $estado_limpio === 'free_trial' ) {
 
     // CASO A: El usuario tiene derecho a entrar
     // Lógica: Buscar en DB si existe el email.
@@ -72,7 +73,15 @@ if ( $estado_limpio === 'active' ) {
     if($dcli != ''){
         if($dcli['us_estado'] != '1'){
             // Si el usuario existe pero no está activo, lo activamos actualizando su estado a '1' (Activo) y el token
-            $token_usuario = encriptar($email.'%%'.$dcli['us_idusuario']);
+            // Obtenemos un token nuevo con la función generate_token y nos aseguramos que no esté duplicado en la tabla usuarios campo wp_token
+            $token_usuario = generate_token();
+            // Comprobamos que el token generado no exista ya en la tabla usuarios
+            $token_existe = num_rows("select us_idusuario from usuarios where wp_token='$token_usuario'");
+            while($token_existe > 0){
+                // Si el token ya existe, generamos uno nuevo
+                $token_usuario = generate_token();
+                $token_existe = num_rows("select us_idusuario from usuarios where wp_token='$token_usuario'");
+            }
             $q = "update usuarios set us_estado='1', wp_token='$token_usuario' where us_idusuario='{$dcli['us_idusuario']}'";
             query($q);
         }
@@ -83,9 +92,23 @@ if ( $estado_limpio === 'active' ) {
         $q = "INSERT INTO usuarios (us_nick, us_correo, us_pass, us_fecha_alta, us_estado, wp_token) VALUES ('$email', '$email', '', '".date("Y-m-d H:i:s")."', '0', 0)";
         query($q);
         $id_usuario = insertado();
-        $token_usuario = encriptar($email.'%%'.$id_usuario);
+        $token_usuario = generate_token();
+        // Comprobamos que el token generado no exista ya en la tabla usuarios
+        $token_existe = num_rows("select us_idusuario from usuarios where wp_token='$token_usuario'");
+        while($token_existe > 0){
+            // Si el token ya existe, generamos uno nuevo
+            $token_usuario = generate_token();
+            $token_existe = num_rows("select us_idusuario from usuarios where wp_token='$token_usuario'");
+        }
         // Ahora actualizamos el token generado para ese usuario y cambiamos el estado a activo (1)
         $q = "update usuarios set wp_token='$token_usuario', us_estado = '1' where us_idusuario='$id_usuario'";
+        query($q);
+        // Ahora tenemos que crear el taller asociado al usuario, para eso insertamos un nuevo taller con el mismo nombre que el email y el idtaller igual al id_usuario creado, y luego actualizamos el idtaller del usuario con el id del taller creado
+        $q = "INSERT INTO talleres (ta_idtipo, ta_iddirfac, ta_idparent, ta_nombre, ta_contacto, ta_telefono1, ta_email, ta_direccion, ta_cp, ta_localidad, ta_provincia, ta_contrato, ta_abono, ta_vencimiento, ta_testing) VALUES ('1', '0', '0', '$nombre', '$nombre', '', '$email', '', '', '', '', '$plan_id', '', '', 0)";
+        query($q);
+        $id_taller = insertado();
+        // Ahora actualizamos el idtaller del usuario con el id del taller creado
+        $q = "update usuarios set us_idtaller='$id_taller' where us_idusuario='$id_usuario'";
         query($q);
     }
     $mensaje = 'Usuario activo (Estado recibido: ' . $estado_limpio . ')';
@@ -124,7 +147,7 @@ if ( $estado_limpio === 'active' ) {
             query($q);
         }
     }
-    $mensaje = 'Estado no reconocido: ' . $estado_limpio . '. Se ha desactivado el usaurio. Por favor, revisa la documentación de WooCommerce para ver los posibles estados de suscripciones.';
+    $mensaje = 'Estado no reconocido: ' . $estado_limpio . '. Se ha desactivado el usuario. Por favor, revisa la documentación de WooCommerce para ver los posibles estados de suscripciones.';
     __log_error( $mensaje, 3, 'integracion-cuadro-de-mando' );
 
 }
