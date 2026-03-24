@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Documents/Desarrollo/themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template/conca/.idea/conca.iml" filepath="$USER_HOME$/Documents/Desarrollo/themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template/conca/.idea/conca.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/plataforma_assistec.iml" filepath="$PROJECT_DIR$/.idea/plataforma_assistec.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/Desarrollo/themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template/.idea/themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template.iml" filepath="$USER_HOME$/Documents/Desarrollo/themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template/.idea/themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template.iml" />
     </modules>
   </component>
 </project>

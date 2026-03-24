@@ -90,71 +90,9 @@ function drawChart_columnas_legend(contenido, dato, titulo, contenedor){
 	});
 }
 
-function hacer_autobusq(campo){
-	$( '#'+campo ).autocomplete({
-		source: function (request, response) {
-			contenido='ajax_busca_talleres';
-			$.ajax({
-				dataType: 'json',
-				type: "POST",
-				url: "base_ajax/",
-				data: {contenido:contenido, term: request.term},
-				success: function (data) {
-					//res=$('#data' , data).html();
-					response($.map(data, function (item) {
-						return {
-							label: item.ta_nombre,
-							value: item.ta_nombre,
-							idtaller: item.ta_idtaller,
-							idtipo: item.ta_idtipo
-						}
-					}));
-					//console.log(data);
-				},
-				error: function (data) {
-					//alert('error '+data);
-					console.log(data);
-				}
-			});
-			 
-		},
-		//source: lista_referencias,
-		minLength: 3,
-		autoFocus: true,
-		//change: function( event, ui ) {console.log(ui)}
-		change: function( event, ui ) {
-			if(ui['item']==null){
-				$( '#'+campo ).val('');
-				$("#f_id_taller").val('');
-				$("#f_tipo_taller").val(1);
-				actualiza_busqueda_taller('');
-				//vacio_borra(campo)
-			}
-		},
-		select: function( event, ui ) {
-			if(ui['item']==null){
-				$( '#'+campo ).val('');
-				$("#f_id_taller").val('');
-				$("#f_tipo_taller").val(1);
-				actualiza_busqueda_taller('');
-				//vacio_borra(campo)
-			}
-			else{
-				$("#f_id_taller").val(ui['item']['idtaller']);
-				$("#f_tipo_taller").val(ui['item']['idtipo']);
-				actualiza_busqueda_taller(ui['item']['value']);
-				//alert(ui['item']['idtaller']);
-			}
-		},
-		close: function( event, ui ) {
-			return false;
-		}
-	});
-}
 
 $(document).ready(function() {
 	// SECCIÓN DE LISTADOS
-	hacer_autobusq('f_nombre_taller');
 	$( "#f_nombre_taller" ).keyup(function() {
 		if($(this).val().length<3){
 			$("#f_id_taller").val('');
@@ -254,12 +192,6 @@ $(document).ready(function() {
 		$('#banda_'+iddiv).toggleClass("active");
 	});
 
-
-	$('.colder .scroll').perfectScrollbar({
-		wheelSpeed: 1,
-		maxScrollbarLength: 40,
-		wheelPropagation: false
-	});
 
     // Menú hamburguesa
     var toggle = document.getElementById('menuToggle');
@@ -412,13 +344,13 @@ function cambiapos(id){
 
 $(function() {
 	$( ".check_ui" ).button();
-	$( document ).tooltip({
-	  content: function(callback) {
-		 callback(
-		 	$(this).prop('title').replace(/<br>/g, '<br />').replace(/<strong>/g, '<strong>').replace(/<\/strong>/g, '</strong>')
-		 );
-	  }
-	});
+});
+$(document).ready(function() {
+    // 1. Apuntamos solo a los elementos que tienen el atributo title (o data-bs-toggle)
+    // 2. Le decimos a Bootstrap que permita leer el HTML interno
+    $('[title], [data-bs-toggle="tooltip"]').tooltip({
+        html: true
+    });
 });
 
 function mueveReloj(){

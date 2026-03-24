@@ -11,10 +11,10 @@ if($datos==''){
     goto end;
 }
 
-//$datos=encriptar('pruebas_red%%123456');
+//$datos=encriptar('pruebas%%jk&y@FF6');
 //echo $datos;exit;
 $datos=explode('%%',desencriptar($datos));
-
+//vd__($datos);exit;
 $url_dest='';
 
 if(count($datos)!=2){
@@ -46,7 +46,7 @@ else if(count($dato_cli)==0){//No hay usuarios con estos datos
 	$lista_errores[]='astc_email';
 }
 else{//Hay un cliente con ese correo
-	if($dato_cli[0]->us_pass!=$password){//La contraseña no coincide
+	if($dato_cli[0]->us_pass!=secure_md5($password)){//La contraseña no coincide
 		$_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']=1;
 		$lista_errores[]='astc_pass';
 	}
@@ -55,7 +55,7 @@ else{//Hay un cliente con ese correo
 		$lista_errores[]='activo';
 	}
 }
-
+//vd__($lista_errores);exit;
 $_SESSION['datos_'._ID_PAG_]['acceder']['lista_errores']=$lista_errores;
 
 $_SESSION['datos_'._ID_PAG_]['acceder']['hayerrores']==1?fuera_de_aqui($url_dest):'';

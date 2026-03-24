@@ -1,3 +1,10 @@
+:root {
+    /* 1. La variable estándar (usada para textos y bordes) */
+    --bs-primary: #EF7F1F !important;
+
+    /* 2. OBLIGATORIO: La versión desglosada en RGB (usada para fondos y botones) */
+    --bs-primary-rgb: 239, 127, 31 !important;
+}
 body{
 	margin:0px;
 	padding:0px;

@@ -7,8 +7,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spipu/html2pdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tecnickcom/tcpdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twbs/bootstrap" />
+      <excludeFolder url="file://$MODULE_DIR$/BROZA" />
+      <excludeFolder url="file://$MODULE_DIR$/datos" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="themeforest-a0cgv4Jv-conca-bootstrap-5-admin-dashboard-template" />
+    <orderEntry type="module" module-name="conca" />
   </component>
 </module>
