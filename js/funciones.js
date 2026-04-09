@@ -1118,9 +1118,9 @@ function drawChart_columnas_upd(contenido, dato, titulo, contenedor){
             var labels = jsonData.rows.map(function(r){ return r.c && r.c[0] ? r.c[0].v : null; });
             var datasets = [];
             var palette = [
-                'rgba(54, 162, 235, 0.8)',
+                'rgba(239, 127, 31, 0.8)',
+                'rgba(171, 140, 22, 0.8)',
                 'rgba(255, 99, 132, 0.8)',
-                'rgba(255, 205, 86, 0.8)',
                 'rgba(75, 192, 192, 0.8)',
                 'rgba(153, 102, 255, 0.8)',
                 'rgba(201, 203, 207, 0.8)'
@@ -1162,6 +1162,7 @@ function drawChart_columnas_upd(contenido, dato, titulo, contenedor){
             }
 
             // Reutilizar instancia de chart si existe
+            titulo = titulo + ' (' + (col+1) + ' meses)';
             if(canvas._chartInstance){
                 canvas._chartInstance.data.labels = labels;
                 canvas._chartInstance.data.datasets = datasets;
@@ -1190,9 +1191,15 @@ function drawChart_columnas_upd(contenido, dato, titulo, contenedor){
                         },
                         scales: {
                             x: {
+                                border: {
+                                    color: '#838387FF' // Color de la línea del eje
+                                },
                                 stacked: false
                             },
                             y: {
+                                border: {
+                                    color: '#838387FF' // Color de la línea del eje
+                                },
                                 beginAtZero: true
                             }
                         }

@@ -145,7 +145,7 @@ function nom_seccion($seccion){
 function modulo_ico($modulo){
     switch($modulo) {
         case 'inicio':
-            $ico = 'fa fa-home';
+            $ico = 'bi bi-speedometer2';
             break;
         case 'informes_del_mes':
             $ico = 'fa-solid fa-file-contract';

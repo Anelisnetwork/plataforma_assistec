@@ -21,6 +21,7 @@ $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SES
 $img_logo_w=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']!='' && file_exists(_PATH_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo'])?_RAIZ_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']:_RAIZ_.'imagenes/assistec_wh.png';
 $nick_usuario = dame_dato_usuario('us_nick');
 //var_dump($_SESSION['datos_'._ID_PAG_]['datos_user']);exit();
+$nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 ?>
 <body>
 
@@ -58,7 +59,7 @@ $nick_usuario = dame_dato_usuario('us_nick');
                         <li class="app-sidebar-menu-item<?=count($seccpage) > 0 ? ' has-dropdown' : '' ?>">
                             <a href="<?=count($seccpage) > 0 ? 'javascript:void(0);' : _RAIZ_.$npage->mo_url.'/' ?>" class="menu-link d-flex align-items-center">
                                 <span class="menu-icon fs_20 flex-shrink-0 <?=modulo_ico($npage->mo_url)?>"></span>
-                                <span class="menu-title flex-grow-1"><?=nom_modulo($npage->mo_url)?></span>
+                                <span class="menu-title flex-grow-1"><?=nom_modulo($npage->mo_url) === 'Inicio' ? 'Dashboard' : nom_modulo($npage->mo_url)?></span>
                                 <?php if(count($seccpage)>0){?>
                                     <span class="menu-arrow flex-shrink-0 d-flex align-items-center justify-content-center">
                                         <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +85,35 @@ $nick_usuario = dame_dato_usuario('us_nick');
                         <?php }
                         }?>
 
+                        <!-- Sección de documentación -->
+                        <li class="app-sidebar-menu-item has-dropdown">
+                            <a href="javascript:void(0);" class="menu-link d-flex align-items-center">
+                                <span class="menu-icon fs_20 flex-shrink-0 fa fa-file-circle-question"></span>
+                                <span class="menu-title flex-grow-1">Guías y documentos</span>
+                                <span class="menu-arrow flex-shrink-0 d-flex align-items-center justify-content-center">
+                                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 9L5 5L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <ul class="app-sidebar-submenu">
+                                <li class="app-sidebar-menu-item">
+                                    <a href="<?=_RAIZ_?>documentos/Guia alta Assistec_v2.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
+                                        <span class="menu-title flex-grow-1">Guía de alta</span>
+                                    </a>
+                                </li>
+                                <li class="app-sidebar-menu-item">
+                                    <a href="<?=_RAIZ_?>documentos/Guía interpretación KPISCuadro Mando Assistec.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
+                                        <span class="menu-title flex-grow-1">Guía de interpretación</span>
+                                    </a>
+                                </li>
+                                <li class="app-sidebar-menu-item">
+                                    <a href="<?=_RAIZ_?>documentos/Guía entrada manual de datos_v2.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
+                                        <span class="menu-title flex-grow-1">Guía de entrada de datos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- app sidebar menu end -->
@@ -227,16 +257,20 @@ $nick_usuario = dame_dato_usuario('us_nick');
         <!-- app header end -->
 
         <!-- app content start -->
-        <div class="app-content-wrapper pt-13 pb-13 px-5">
+        <div class="app-content-wrapper pt-6 pb-6 px-1 px-md-5">
 
             <div class="container-fluid">
 
                 <div class="page-header pb-7">
-                    <h2 class="fw-semibold fs-7"><?=$seccion !== '' ? nom_seccion($seccion) : nom_modulo($m)?></h2>
+                    <h2 class="fw-semibold fs-5">
+                        <i class="<?=modulo_ico($m)?>"></i>
+                        <?=$nombreModulo?>
+                        <?=$seccion !== '' ? ' - ' . nom_seccion($seccion) : ''?>
+                    </h2>
                 </div> <!-- breadcrumb end -->
 
-                <div class="page-content">
-
+                <div class="page-content" style="max-width: 1300px; margin-left: auto; margin-right: auto;">
+                    <?php include('pages/'.$m.'.php');?>
                 </div><!-- page content end -->
 
             </div>
@@ -279,6 +313,10 @@ $nick_usuario = dame_dato_usuario('us_nick');
     })();
 </script>
 <?php include_javascript();?>
+
+<?php if(file_exists(_PATH_.'includes/js_'.$m.'.php')){
+    include_once(_PATH_.'includes/js_'.$m.'.php');
+}?>
 
 </body>
 </html>

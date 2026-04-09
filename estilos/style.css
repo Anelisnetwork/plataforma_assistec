@@ -54,6 +54,15 @@ a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
     --bs-btn-hover-border-color: var(--colorSecondaryHover);
     --bs-btn-active-bg: var(--colorSecondaryHover);
     --bs-btn-active-border-color: var(--colorSecondaryHover);
+    color: #fff;
+    background-color: var(--colorSecondary);
+    border-color: var(--colorSecondary);
+    box-shadow: 0px 1px 2px 0 rgba(239, 127, 31, 0.25), 0px 0px 1px 0 var(--colorSecondary);
+}
+.btn-secondary:hover {
+    color: #fff !important;
+    background-color: var(--colorSecondaryHover) !important;
+    box-shadow: none;
 }
 .btn-outline-secondary {
     --bs-btn-color: var(--colorSecondary);
@@ -92,3 +101,5 @@ a.bg-light:hover, a.bg-light:focus, btn.bg-light:hover, btn.bg-light:focus {
 .bg-secondaryl{
     background-color: var(--colorSecondaryL) !important;
 }
+
+/* gráfica velocímetro */
