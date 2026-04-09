@@ -32,43 +32,40 @@ if ($iddato == '' || $iddato == NULL) {
 
     $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user']['idtaller']);
 
+    include('pages/secc_' . $seccion . '_data.php');
+
     ?>
-    <div class="d-flex flex-column align-items-center justify-content-start w-100 p-2 p-sm-5">
-        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100">
-            <?php
-            if (count($secciones) > 0 && isset($masget)) {
-            ?>
-            <div class="col col-12 col-sm-8 d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-sm-start">
-                <?php foreach ($secciones as $secc) {
-                    ?>
-                    <a href="<?= _RAIZ_ . $m . '/' . $secc->sc_url . $masget . '/' ?>"
-                       title="<?= nom_seccion($secc->sc_url) ?>"
-                       class="fs_16 w-100 w-sm-auto px-3 py-1 m-1 btn btn-outline-secondary <?= $secc->sc_url == $seccion ? ' active' : '' ?>"><?= nom_seccion($secc->sc_url) ?></a>
-                <?php } ?>
-            </div>
-                <?php
-            } ?>
 
-            <div class="col col-12 col-sm-4 d-flex flex-column align-items-center justify-content-start align-items-sm-end">
-                <?php if (count($anhos) == 0) { ?>
-                    <span class="dato_hist">NO HAY MÁS DATOS</span>
-                <?php } else {
-                    ?>
-                    <span class="oswald" style="float: left; margin-right: 10px">Seleccione período</span>
-                    <select class="form-select w-auto form-select-sm d-inline-block"
-                            onchange="window.location.href ='<?= _RAIZ_ ?>ratios_acumulados/<?= $seccion ?>/'+this.value+'/'">
-                        <?php foreach ($anhos as $anho) { ?>
-                            <option value="<?= $anho->da_ano ?>"<?= $anho->da_ano == $anho_acumulado ? ' selected' : '' ?>>
-                                A&ntilde;o <?= $anho->da_ano ?></option>
-                        <?php } ?>
-                    </select>
-                <?php } ?>
+    <div class="row g-3 mt-1">
+        <div class="col">
+            <div class="card shadow-custom rounded-custom">
+                <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-7">
+                    <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-center">
+                        <div class="col-12 col-sm-6">
+                            <h3 class="card-title d-flex align-items-center m-0">
+                                <?=isset($anho_acumulado)?"Año ".$anho_acumulado : "No hay informe"?>
+                            </h3>
+                        </div>
+                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-between justify-content-sm-end">
+                            <span class="fs_12 me-2 text-nowrap">Seleccione año</span>
+                            <select class="form-select form-select-sm w-auto d-inline-block"
+                                    onchange="window.location.href ='<?= _RAIZ_ ?>ratios_acumulados/<?= $seccion ?>/'+this.value+'/'">
+                                <?php foreach ($anhos as $anho) { ?>
+                                    <option value="<?= $anho->da_ano ?>"<?= $anho->da_ano == $anho_acumulado ? ' selected' : '' ?>>
+                                       <?= $anho->da_ano ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-6 position-relative z-1">
+                    <div class="row d-flex align-items-center justify-content-between">
+                        <div class="col-12 d-flex flex-column flex-md-row align-items-start justify-content-center mb-4">
+                            <?php include('pages/secc_' . $seccion . '.php'); ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br clear="all"/>
-
-        <div class="col col-12 d-flex flex-column flex-md-row align-items-center align-items-md-start" id="secc-<?= $seccion ?>">
-            <?php include('pages/secc_' . $seccion . '.php'); ?>
         </div>
     </div>
 <?php }

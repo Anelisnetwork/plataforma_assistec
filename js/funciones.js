@@ -1231,9 +1231,9 @@ function drawChart_columnas_legend_upd(contenido, dato, titulo, contenedor){
             var labels = jsonData.rows.map(function(r){ return r.c && r.c[0] ? r.c[0].v : null; });
             var datasets = [];
             var palette = [
-                'rgba(54, 162, 235, 0.8)',
+                'rgba(239, 127, 31, 0.8)',
+                'rgba(171, 140, 22, 0.8)',
                 'rgba(255, 99, 132, 0.8)',
-                'rgba(255, 205, 86, 0.8)',
                 'rgba(75, 192, 192, 0.8)',
                 'rgba(153, 102, 255, 0.8)',
                 'rgba(201, 203, 207, 0.8)'
@@ -1308,8 +1308,18 @@ function drawChart_columnas_legend_upd(contenido, dato, titulo, contenedor){
                             }
                         },
                         scales: {
-                            x: { stacked: false },
-                            y: { beginAtZero: true }
+                            x: {
+                                border: {
+                                    color: '#838387FF' // Color de la línea del eje
+                                },
+                                stacked: false
+                            },
+                            y: {
+                                border: {
+                                    color: '#838387FF' // Color de la línea del eje
+                                },
+                                beginAtZero: true
+                            }
                         }
                     }
                 });
@@ -1341,12 +1351,12 @@ function drawChart_linear_upd(contenido, dato, titulo, contenedor){
             // Construir datasets desde la segunda columna en adelante
             var datasets = [];
             var palette = [
-                'rgba(54, 162, 235, 0.9)',
-                'rgba(255, 99, 132, 0.9)',
-                'rgba(255, 205, 86, 0.9)',
-                'rgba(75, 192, 192, 0.9)',
-                'rgba(153, 102, 255, 0.9)',
-                'rgba(201, 203, 207, 0.9)'
+                'rgba(239, 127, 31, 0.8)',
+                'rgba(171, 140, 22, 0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(201, 203, 207, 0.8)'
             ];
 
             for(var col = 1; col < jsonData.cols.length; col++){
@@ -1419,10 +1429,16 @@ function drawChart_linear_upd(contenido, dato, titulo, contenedor){
                         },
                         scales: {
                             x: {
+                                border: {
+                                    color: '#838387FF' // Color de la línea del eje
+                                },
                                 display: true,
                                 ticks: { autoSkip: true }
                             },
                             y: {
+                                border: {
+                                    color: '#838387FF' // Color de la línea del eje
+                                },
                                 beginAtZero: true,
                                 display: true
                             }
