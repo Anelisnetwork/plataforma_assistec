@@ -43,7 +43,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
                         <img class="app-main-logo logo-white d-none" width="105" src="<?=$img_logo_w?>" alt="<?=$nick_usuario?>">
                     </a>
 
-                    <button type="button" class="app-sidebar-close-btn app-sidebar-mobile-close d-xl-none">
+                    <button type="button" class="app-sidebar-close-btn app-sidebar-mobile-close d-xl-none" style="position: absolute; right: 0; margin-right: 15px">
                         <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.6923 10.2857L6.53846 6M6.53846 6L10.6923 1.71429M6.53846 6L19 6M1 11L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
