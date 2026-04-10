@@ -663,7 +663,7 @@ function muestra_empleados(iddato){
         $('#showempleados').removeClass('active');
         // restaurar campo de horas a editable y estilo original
         $('#horaspresencia_'+iddato).prop('readonly', false);
-        $('#horaspresencia_'+iddato).css('background-color', 'transparent');
+        $('#horaspresencia_'+iddato).removeClass('text-bg-secondary');
         // accesibilidad
         $('#showempleados').attr('aria-expanded', 'false');
     }
@@ -673,7 +673,7 @@ function muestra_empleados(iddato){
         $('#showempleados').addClass('active');
         // marcar campo como readonly y estilo visual
         $('#horaspresencia_'+iddato).prop('readonly', true);
-        $('#horaspresencia_'+iddato).css('background-color', '#ffd7b4');
+        $('#horaspresencia_'+iddato).addClass('text-bg-secondary');
         // Llamada a la función de datos solo si existe
         if (typeof datos_presencia === 'function') datos_presencia(iddato);
         // accesibilidad
