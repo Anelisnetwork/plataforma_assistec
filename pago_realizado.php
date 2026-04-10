@@ -44,7 +44,7 @@ a:hover{
 </style>
 <div style="width:600px; text-align:center; margin:5% auto 0% auto; line-height:140%; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#555">
     <img src="<?=_RAIZ_?>imagenes/assistec.png" /><br /><br />
-    El pago ha sido realizado correctamente; ya puede acceder a su panel de control desde el siguiente enlace: <a href="http://www.plataforma.assistec.es/"><strong style="color:#EF7F1F">Acceder a Assistec Online</strong></a>
+    El pago ha sido realizado correctamente; ya puede acceder a su panel de control desde el siguiente enlace: <a href="http://www.cuadrodemando.assistec.es/"><strong style="color:#EF7F1F">Acceder a Assistec Online</strong></a>
     <br /><br />
     Muchas gracias por su confianza.
     <br /><br /><br /><br />

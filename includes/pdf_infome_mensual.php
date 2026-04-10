@@ -398,7 +398,7 @@ tr {
                 <td width="720">
                     <div style="padding: 5px 20px; border: 1px solid #FF0000; text-align: center">
                         Puede acceder a su panel privado para un análisis más detallado de indicadores a través de:
-                        <strong><a href="https://plataforma.assistec.es/" style="color:#FF0000">https://plataforma.assistec.es/</a></strong>
+                        <strong><a href="https://cuadrodemando.assistec.es/" style="color:#FF0000">https://cuadrodemando.assistec.es/</a></strong>
                     </div>
                 </td>
             </tr>

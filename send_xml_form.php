@@ -9,7 +9,7 @@
 
 <?php $prexml=file_get_contents("plantilla_xml.xml");?>
 
-<form action="http://www.plataforma.assistec.es/take_xml_test.php" enctype="application/x-www-form-urlencoded" id="xml_assistec" method="post" name="xml_assistec">
+<form action="http://www.cuadrodemando.assistec.es/take_xml_test.php" enctype="application/x-www-form-urlencoded" id="xml_assistec" method="post" name="xml_assistec">
 
     <textarea name="dato"><?=$prexml?></textarea>
     <input type="hidden" name="envio_form" value="1" />

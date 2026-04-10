@@ -10,9 +10,9 @@ include('core/clases/apiRedsys.php');
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 $url = 'https://sis.redsys.es/sis/realizarPago';
-$urlnot='http://www.plataforma.assistec.es/proceso_de_pago/';
-$urlsi='http://www.plataforma.assistec.es/pago_realizado/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'').'/';
-$urlno='http://www.plataforma.assistec.es/error_pago/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'').'/';
+$urlnot='http://www.cuadrodemando.assistec.es/proceso_de_pago/';
+$urlsi='http://www.cuadrodemando.assistec.es/pago_realizado/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'').'/';
+$urlno='http://www.cuadrodemando.assistec.es/error_pago/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idtaller.'').'/';
 $clave='JpDBLiqEKtmPkG9rw9b8xVVo09zLtD/b';
 $code = '031022312';
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,9 +27,9 @@ $code = '031022312';
 	//////////////////////////////////////////////////////////////////////////////////////////////
 /*
 $url = 'https://sis-t.redsys.es:25443/sis/realizarPago';
-$urlnot='http://www.plataforma.assistec.es/proceso_de_pago_test/assistech_test/';
-$urlsi='http://www.plataforma.assistec.es/pago_realizado/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idcli.'').'/';
-$urlno='http://www.plataforma.assistec.es/error_pago/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idcli.'').'/';
+$urlnot='http://www.cuadrodemando.assistec.es/proceso_de_pago_test/assistech_test/';
+$urlsi='http://www.cuadrodemando.assistec.es/pago_realizado/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idcli.'').'/';
+$urlno='http://www.cuadrodemando.assistec.es/error_pago/'.en__('pdf_factura%%imprimir%%'.$idfactura.'%%'.$idcli.'').'/';
 $clave='sq7HjrUOBfKmC576ILgskD5srU870gJ7';
 $code = '031022312';
 */
@@ -84,7 +84,7 @@ $amount = $total*100;
 
 $trans_type=0;
 
-$url_comercio='http://www.plataforma.assistec.es/proceso_de_pago_test/assistech_test/';
+$url_comercio='http://www.cuadrodemando.assistec.es/proceso_de_pago_test/assistech_test/';
 
 $firma=sha1($amount.$orderid.$merchantid.$curr.$trans_type.$url_comercio.$secret);
 */

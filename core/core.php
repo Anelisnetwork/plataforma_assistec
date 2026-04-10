@@ -75,10 +75,10 @@ if(_TEST_){
     define( '_BD_PASS_', 'fP1y449w_$1wF8l46w');
 }
 else{
-    define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS);
-    define( '_RAIZ_', 'https://plataforma.assistec.es/');
+    define( '_PATH_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'cuadrodemando.assistec.es'.DS);
+    define( '_RAIZ_', 'https://cuadrodemando.assistec.es/');
     define( '_WEB_', 'https://assistec.es/');
-    define( '_ZEND_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'plataforma.assistec.es'.DS.'core'.DS);
+    define( '_ZEND_', DS.'var'.DS.'www'.DS.'vhosts'.DS.'assistec.es'.DS.'cuadrodemando.assistec.es'.DS.'core'.DS);
 
     define( '_BD_NAME_', 'bbdd_assistec');
     define( '_BD_USER_', 'usr_assistec');
