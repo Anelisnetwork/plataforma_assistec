@@ -98,7 +98,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
                             </a>
                             <ul class="app-sidebar-submenu">
                                 <li class="app-sidebar-menu-item">
-                                    <a href="<?=_RAIZ_?>documentos/Guia alta Assistec_v2.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
+                                    <a href="<?=_RAIZ_?>documentos/Guia alta Assistec_v3.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
                                         <span class="menu-title flex-grow-1">Guía de alta</span>
                                     </a>
                                 </li>
@@ -108,7 +108,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
                                     </a>
                                 </li>
                                 <li class="app-sidebar-menu-item">
-                                    <a href="<?=_RAIZ_?>documentos/Guía entrada manual de datos_v2.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
+                                    <a href="<?=_RAIZ_?>documentos/Guía entrada manual de datos.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
                                         <span class="menu-title flex-grow-1">Guía de entrada de datos</span>
                                     </a>
                                 </li>
