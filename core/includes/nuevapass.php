@@ -42,17 +42,17 @@ $token_silent=encriptar($dato_cli[0]->us_correo.'%%'.$cod_pass);
 query('update usuarios set us_pass="'.$cod_pass.'", us_accesosilent="'.$token_silent.'" where us_idusuario='.$dato_cli[0]->us_idusuario.'');
 
 $asunto=u8_('Assistec - Nuevos datos de acceso');
-$contenido='Estimado cliente, ha solicitado una nueva contrase&ntilde;a de acceso a nuestra plataforma. Su nueva contrase&ntilde;a es: <strong>'.$nuevapass.'</strong><br>Recuerde respetar may&uacute;sculas; una vez haya accedido a la plataforma le recomendamos que cambie la contrase&ntilde;a por una que le resulte f&aacute;cil de recordar.<br><br>Gracias por confiar en nosotros.<br>El equipo de <strong>Assistec</strong>.';
+$contenido='Estimado cliente, ha solicitado una nueva contrase&ntilde;a de acceso a nuestro cuadro de mando. Su nueva contrase&ntilde;a es: <strong>'.$nuevapass.'</strong><br>Recuerde respetar may&uacute;sculas; una vez haya accedido a la plataforma le recomendamos que cambie la contrase&ntilde;a por una que le resulte f&aacute;cil de recordar.<br><br>Gracias por confiar en nosotros.<br>El equipo de <strong>Assistec</strong>.';
 ob_start(); # apertura de bufer
 include( _ZEND_.'templates/mail_template_def.php' );
 $cuerpo = ob_get_clean();
-$altbody=u8_('Estimado cliente, ha solicitado una nueva contraseña de acceso a nuestra plataforma. Su nueva contraseña es: '.$nuevapass.'
-Recuerde respetar mayúsculas; una vez haya accedido a la plataforma le recomendamos que cambie la contraseña por una que le resulte fácil de recordar.
+$altbody=u8_('Estimado cliente, ha solicitado una nueva contraseña de acceso a nuestro cuadro de mando. Su nueva contraseña es: '.$nuevapass.'
+Recuerde respetar mayúsculas; una vez haya accedido al cuadro de mando le recomendamos que cambie la contraseña por una que le resulte fácil de recordar.
 
 Gracias por confiar en nosotros.
 El equipo de Assistec.');
 	
-enviar_email($dato_cli[0]->us_correo, $dato_cli[0]->us_correo, '', '', $asunto, $cuerpo, 'Plataforma Assitec Online', 'web@assistec.es', '', '', '', '', '', '', '', $altbody);
+enviar_email($dato_cli[0]->us_correo, $dato_cli[0]->us_correo, '', '', $asunto, $cuerpo, 'Cuadro de mando Assitec Online', 'web@assistec.es', '', '', '', '', '', '', '', $altbody);
 
 fuera_de_aqui($url_dest);
 

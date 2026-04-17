@@ -23,7 +23,7 @@ if($_SESSION['datos_'._ID_PAG_]['contacto']['hayerrores']==0){
 	';
 	
 	
-	$asunto='Contacto desde plataforma Assistec - Taller: '.$nombretaller;
+	$asunto='Contacto desde cuadro de mando Assistec - Taller: '.$nombretaller;
 	$contenido='<strong>Persona de contacto</strong>: '.$perscont.'<br>
 	<strong>Tel&eacute;fono de contacto</strong>: '.$tlfcont.'<br>
 	<strong>Correo de contacto</strong>: '.$mailcont.'<br>
@@ -39,7 +39,7 @@ if($_SESSION['datos_'._ID_PAG_]['contacto']['hayerrores']==0){
 	'.$horario.'Asunto: '.$asuntocont.'
 	Comentarios: '.$comentcont.'';
 		
-	!enviar_email('web@assistec.es', 'Plataforma Assitec Online', '', '', $asunto, $cuerpo, $nombretaller, $mailcont, '', '', '', '', '', $altbody)?$_SESSION['datos_'._ID_PAG_]['contacto']['hayerrores']=1:'';
+	!enviar_email('web@assistec.es', 'Cuadro de mando Assitec', '', '', $asunto, $cuerpo, $nombretaller, $mailcont, '', '', '', '', '', $altbody)?$_SESSION['datos_'._ID_PAG_]['contacto']['hayerrores']=1:'';
 }
 
 fuera_de_aqui($url_dest);
