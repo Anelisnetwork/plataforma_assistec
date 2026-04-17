@@ -18,6 +18,9 @@ SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+RewriteCond %{HTTP_HOST} ^plataforma\.assistec\.es$ [NC]
+RewriteRule ^(.*)$ https://cuadrodemando.assistec.es/$1 [L,R=301]
+
 #Rewritebase /proyectos/plataforma_assistec/
 # QUITAR 
 
