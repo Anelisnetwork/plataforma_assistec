@@ -273,7 +273,7 @@ tr {
             </td>
             <td style=" width:200px;"></td>
         </tr>
-        <? if($horaspotenciales-$hfacturadas>0){?>
+        <?php if($horaspotenciales-$hfacturadas>0){?>
         <tr>
             <td colspan="4">
                 <br>
@@ -286,7 +286,7 @@ tr {
                 <?=strtoupper(u8d_(dato_taller('ta_nombre',$datos['da_idtaller'])))?> dejó de facturar <?=number_format(($horaspotenciales-$hfacturadas)*$coste_horat,2,',','.')?> € de mano de obra.
             </td>
         </tr>
-        <? }?>
+        <?php }?>
         <tr>
             <td style=" width:55px;">
             </td>
