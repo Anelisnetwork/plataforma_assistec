@@ -300,9 +300,9 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 
 <!-- app js -->
 <script src="<?=_RAIZ_?>theme/assets/js/conca-sidebar.js"></script>
-<script src="<?=_RAIZ_?>theme/assets/js/conca.js"></script>
+<script src="<?=_RAIZ_?>theme/assets/js/conca.js?v=<?=time()?>"></script>
 
-<script src="<?=_RAIZ_?>js/funciones.js?v=30032023" type="text/javascript"></script>
+<script src="<?=_RAIZ_?>js/funciones.js?v=<?=time()?>" type="text/javascript"></script>
 
 <script>
     (function(){
