@@ -1,16 +1,4 @@
 <?php 
-if(isset($_SESSION['datos_'._ID_PAG_]['edita_info']['hayerrores'])){
-	if($_SESSION['datos_'._ID_PAG_]['edita_info']['hayerrores']==1){?>
-    <script>
-	alertify.error("No se ha podido guardar");
-	</script>
-	<?php }
-	else{?>
-    <script>
-	alertify.success("Guardado correctamente");
-	</script>
-	<?php }
-}
 $infotaller=dame_info($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
 $idtaller=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'];
 $hay_datos=count($infotaller)>0;
@@ -220,4 +208,13 @@ $hay_datos=count($infotaller)>0;
 
     </form>
 
-<?php unset($_SESSION['datos_'._ID_PAG_]['edita_info']);?>
+<?php
+if (isset($_SESSION['datos_' . _ID_PAG_]['edita_info']['hayerrores'])) {
+    $jsHayerrores = 0;
+    $jsMensaje = "Guardado correctamente";
+    if ($_SESSION['datos_' . _ID_PAG_]['edita_info']['hayerrores'] == 1) {
+        $jsHayerrores = 1;
+        $jsMensaje = empty($_SESSION['datos_' . _ID_PAG_]['edita_info']['error']) ? "No se ha podido guardar" : $_SESSION['datos_' . _ID_PAG_]['edita_info']['error'];
+    }
+    unset($_SESSION['datos_' . _ID_PAG_]['edita_info']);
+}

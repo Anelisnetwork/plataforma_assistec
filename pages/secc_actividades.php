@@ -1,16 +1,4 @@
 <?php 
-if(isset($_SESSION['datos_'._ID_PAG_]['edita_actividad']['hayerrores'])){
-	if($_SESSION['datos_'._ID_PAG_]['edita_actividad']['hayerrores']==1){?>
-    <script>
-	alertify.error("Han ocurrido errores al guardar");
-	</script>
-	<?php }
-	else{?>
-    <script>
-	alertify.success("Guardado correctamente");
-	</script>
-	<?php }
-}
 $actividades=tipos_actividad();
 ?>
     <form action="<?=_RAIZ_?>procesando.php" method="post" class="w-100" name="edita_actividad" id="edita_actividad">
@@ -79,4 +67,13 @@ $actividades=tipos_actividad();
 
 
 
-<?php unset($_SESSION['datos_'._ID_PAG_]['edita_actividad']);?>
+<?php
+if (isset($_SESSION['datos_' . _ID_PAG_]['edita_actividad']['hayerrores'])) {
+    $jsHayerrores = 0;
+    $jsMensaje = "Guardado correctamente";
+    if ($_SESSION['datos_' . _ID_PAG_]['edita_actividad']['hayerrores'] == 1) {
+        $jsHayerrores = 1;
+        $jsMensaje = empty($_SESSION['datos_' . _ID_PAG_]['edita_actividad']['error']) ? "No se ha podido guardar" : $_SESSION['datos_' . _ID_PAG_]['edita_actividad']['error'];
+    }
+    unset($_SESSION['datos_' . _ID_PAG_]['edita_actividad']);
+}

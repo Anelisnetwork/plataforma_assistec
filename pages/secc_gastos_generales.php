@@ -3,18 +3,6 @@
  * INSERT INTO `secciones` (`sc_idseccion`, `sc_idmodulo`, `sc_nombre`, `sc_url`, `sc_orden`) VALUES (NULL, '2', 'gastos generales', 'gastos_generales', '7');
  * UPDATE `secciones` SET `sc_nombre` = 'Gastos generales' WHERE `secciones`.`sc_idseccion` = 29;
  */
-if(isset($_SESSION['datos_'._ID_PAG_]['edita_gastos']['hayerrores'])){
-    if($_SESSION['datos_'._ID_PAG_]['edita_gastos']['hayerrores']==1){?>
-        <script>
-            alertify.error("No se ha podido guardar");
-        </script>
-    <?php }
-    else{?>
-        <script>
-            alertify.success("Guardado correctamente");
-        </script>
-    <?php }
-}
 $infotaller=dame_gastos($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
 
 $idtaller=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'];
@@ -179,4 +167,13 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
 
 
 
-<?php unset($_SESSION['datos_'._ID_PAG_]['edita_gastos']);?>
+<?php
+if (isset($_SESSION['datos_' . _ID_PAG_]['edita_gastos']['hayerrores'])) {
+    $jsHayerrores = 0;
+    $jsMensaje = "Guardado correctamente";
+    if ($_SESSION['datos_' . _ID_PAG_]['edita_gastos']['hayerrores'] == 1) {
+        $jsHayerrores = 1;
+        $jsMensaje = empty($_SESSION['datos_' . _ID_PAG_]['edita_gastos']['error']) ? "No se ha podido guardar" : $_SESSION['datos_' . _ID_PAG_]['edita_gastos']['error'];
+    }
+    unset($_SESSION['datos_' . _ID_PAG_]['edita_gastos']);
+}
