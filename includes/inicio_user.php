@@ -199,7 +199,7 @@ $margenTrg = $objmargenrec==0?25:moneda_puntocoma($objmargenrec);
                 <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-center">
                     <div class="col-12 col-sm-6">
                         <h3 class="card-title d-flex align-items-center m-0">
-                            Eficacia
+                            Eficacia/Productividad
                         </h3>
                         <span class="fs_12 text-secondary">(horas facturadas/horas presencia)</span>
                     </div>
@@ -348,7 +348,7 @@ $margenTrg = $objmargenrec==0?25:moneda_puntocoma($objmargenrec);
                 <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-center">
                     <div class="col-12">
                         <h3 class="card-title d-flex align-items-center m-0">
-                            Ingresos por entradas al taller
+                            Ticket medio
                         </h3>
                     </div>
                 </div>

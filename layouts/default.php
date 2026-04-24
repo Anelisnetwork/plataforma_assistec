@@ -295,6 +295,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 <!-- global js scripts for all pages -->
 <script src="<?=_RAIZ_?>theme/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="<?=_RAIZ_?>js/jquery-ui-1.11.4.custom/jquery-ui.js" type="text/javascript"></script>
+<script src="<?=_RAIZ_?>js/alertify/alertify.js" type="text/javascript"></script>
 <script src="<?=_RAIZ_?>theme/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="<?=_RAIZ_?>theme/assets/js/bootstrap.js"></script>
 
@@ -316,7 +317,27 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 
 <?php if(file_exists(_PATH_.'includes/js_'.$m.'.php')){
     include_once(_PATH_.'includes/js_'.$m.'.php');
-}?>
+}
+
+// Mostramos alertify de errores
+if (isset($jsHayerrores)) {
+    if($jsHayerrores === 1) {
+        ?>
+        <script>
+            $(document).ready(function() {
+                alertify.error("<?=empty($jsMensaje) ? "No se ha podido guardar" : $jsMensaje?>");
+            });
+        </script>
+    <?php }
+ else {
+        ?>
+        <script>
+            $(document).ready(function() {
+                alertify.success("<?=$jsMensaje?>");
+            });
+        </script>
+    <?php }
+    }?>
 
 </body>
 </html>

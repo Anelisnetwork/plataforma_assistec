@@ -609,9 +609,9 @@ function personal_porcentaje($idtaller){
 	$horas_indirecto=fetch_array('select sum(pf_porcentaje*pt_jornada/100) as DIRECTO, pt_idpersonal from personal_taller, personal_funciones, cargos_personal where pt_idpersonal=pf_idpersonal and pf_idcargo=cp_idpersonal and cp_idtipo=2 and pt_activo=1 and pt_idtaller='.$idtaller.'','DIRECTO');
 
 	$porc_directo=round(porcentaje_($horas_directo, $horas_totales),0);
-	$emp_directo=round($n_empleados*$porc_directo/100,0);
+	$emp_directo=round($n_empleados*$porc_directo/100,2);
 	$porc_indirecto=round(porcentaje_($horas_indirecto, $horas_totales),0);
-	$emp_indirecto=round($n_empleados*$porc_indirecto/100,0);
+	$emp_indirecto=round($n_empleados*$porc_indirecto/100,2);
 
 	return array($n_empleados, $horas_totales, $porc_directo, $porc_indirecto, $emp_directo, $emp_indirecto);
 }

@@ -1,17 +1,4 @@
 <?php
-if (isset($_SESSION['datos_' . _ID_PAG_]['edita_empleado']['hayerrores'])) {
-    if ($_SESSION['datos_' . _ID_PAG_]['edita_empleado']['hayerrores'] == 1) {
-        ?>
-        <script>
-            alertify.error("No se ha podido guardar");
-        </script>
-    <?php } else {
-        ?>
-        <script>
-            alertify.success("Guardado correctamente");
-        </script>
-    <?php }
-}
 $empleados = dame_empleados();
 
 $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user']['idtaller']);
@@ -210,7 +197,6 @@ $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user'][
                                         <?php }
                                     }?>
                                 </div>
-                                <?php unset($_SESSION['datos_' . _ID_PAG_]['edita_empleado']); ?>
                             </div>
                         </div>
                     </div>
@@ -220,4 +206,13 @@ $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user'][
     </div>
 </div>
 
-
+<?php
+if (isset($_SESSION['datos_' . _ID_PAG_]['edita_empleado']['hayerrores'])) {
+    $jsHayerrores = 0;
+    $jsMensaje = "Guardado correctamente";
+    if ($_SESSION['datos_' . _ID_PAG_]['edita_empleado']['hayerrores'] == 1) {
+        $jsHayerrores = 1;
+        $jsMensaje = empty($_SESSION['datos_' . _ID_PAG_]['edita_empleado']['error']) ? "No se ha podido guardar" : $_SESSION['datos_' . _ID_PAG_]['edita_empleado']['error'];
+    }
+    unset($_SESSION['datos_' . _ID_PAG_]['edita_empleado']);
+}

@@ -1019,6 +1019,7 @@ function include_javascript(){
         '89.131.66.1',// Jose
         '91.242.149.68',//Gerardo
         '91.243.132.83',// Sergi
+        '185.73.171.215',// Sergi
         '185.73.171.223'//Sergi
     ];
     $client_ip = get_client_ip();

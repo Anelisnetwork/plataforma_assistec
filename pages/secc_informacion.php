@@ -40,18 +40,18 @@ $hay_datos=count($infotaller)>0;
                                     <input type="hidden" id="url_dest" name="url_dest" value="<?=_RAIZ_?>datos_del_taller/informacion" />
                                     <input type="hidden" id="idtaller" name="idtaller" value="<?=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']?>" />
                                     <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
-                                        <label for="pvpmo_<?=$idtaller?>" class="col col-12 col-sm-6 d-flex flex-row">Importe de la MO:</label>
+                                        <label for="pvpmo_<?=$idtaller?>" class="col col-12 col-sm-6 d-flex flex-row"><span class="text-danger me-1">*</span>Importe de la MO:</label>
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-start justify-content-sm-end">
-                                            <input type="text" id="pvpmo_<?=$idtaller?>" name="pvpmo_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$hay_datos?$infotaller[0]->it_impmo:0?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_info')">
+                                            <input type="text" id="pvpmo_<?=$idtaller?>" name="pvpmo_<?=$idtaller?>" required class="peq orig form-control form-control-sm border-danger" value="<?=$hay_datos?$infotaller[0]->it_impmo:0?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_info')">
                                             <span class="fs_14"">&euro;/H. jornada</span>
                                             <input type="hidden" id="pvpmo_<?=$idtaller?>_def" name="pvpmo_<?=$idtaller?>_def" value="<?=$hay_datos?$infotaller[0]->it_impmo:0?>" />
                                         </div>
 
                                     </div>
                                     <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
-                                        <label for="hconvenio_<?=$idtaller?>" class="col col-12 col-sm-6 d-flex flex-row">Horas convenio anuales:</label>
+                                        <label for="hconvenio_<?=$idtaller?>" class="col col-12 col-sm-6 d-flex flex-row"><span class="text-danger me-1">*</span>Horas convenio anuales:</label>
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-start justify-content-sm-end">
-                                            <input type="text" id="hconvenio_<?=$idtaller?>" name="hconvenio_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$hay_datos?$infotaller[0]->hconvenio:0?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_info')">
+                                            <input type="text" id="hconvenio_<?=$idtaller?>" name="hconvenio_<?=$idtaller?>" required class="peq orig form-control form-control-sm border-danger" value="<?=$hay_datos?$infotaller[0]->hconvenio:0?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_info')">
                                             <input type="hidden" id="hconvenio_<?=$idtaller?>_def" name="hconvenio_<?=$idtaller?>_def" value="<?=$hay_datos?$infotaller[0]->hconvenio:0?>" />
                                         </div>
                                     </div>

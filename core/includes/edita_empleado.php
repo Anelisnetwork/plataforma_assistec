@@ -1,6 +1,7 @@
 <?php
 
 $_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=0;
+$_SESSION['datos_'._ID_PAG_]['edita_empleado']['error']='';
 
 $url_dest=clean_post('url_dest');
 
@@ -19,10 +20,18 @@ for($n=1; $n<=4; $n++){
 	${'porcent'.$n}=$_SESSION['datos_'._ID_PAG_]['edita_empleado']['porcent_'.$n.'_'.$id_empleado]=${'funcion'.$n}==''?0:clean_post('porcent_'.$n.'_'.$id_empleado);
 	${'funcion'.$n}!=''&&${'porcent'.$n}!=0?$funciones[]=array('funcion'=>${'funcion'.$n}, 'porcentaje'=>${'porcent'.$n}):'';
 }
-
-$nombre==''?$_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=1:'';
-$jornada==''||$jornada==0||!is_numeric($jornada)?$_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=1:'';
-($porcent1+$porcent2+$porcent3+$porcent4)!=100?$_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=1:'';
+if($nombre==''){
+    $_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=1;
+    $_SESSION['datos_'._ID_PAG_]['edita_empleado']['error']='El nombre del empleado no puede estar vacio';
+}
+if($jornada==''||$jornada==0||!is_numeric($jornada)){
+    $_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=1;
+    $_SESSION['datos_'._ID_PAG_]['edita_empleado']['error']='La jornada del empleado no puede estar vacia, indica el número de horas diarias que trabaja.';
+}
+if(($porcent1+$porcent2+$porcent3+$porcent4)!=100){
+    $_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']=1;
+    $_SESSION['datos_'._ID_PAG_]['edita_empleado']['error']='El porcentaje de funciones del empleado debe sumar 100%';
+}
 
 if($_SESSION['datos_'._ID_PAG_]['edita_empleado']['hayerrores']==0){
 	if($id_empleado=='NEW'){//Creamos nuevo
