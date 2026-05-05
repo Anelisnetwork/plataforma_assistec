@@ -73,7 +73,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
                                                 <label for="gastos_pers_<?=$idtaller?>" class="texto_r ancho">Total gastos de personal:</label>
                                             </div>
                                             <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
-                                                <input type="text" id="gastos_pers_<?=$idtaller?>" name="gastos_pers_<?=$idtaller?>" class="peq orig form-control form-control-sm text-bg-secondary" value="<?=$nominas+$seg_social?>" style="width:auto; text-align:right; " readonly>
+                                                <input type="text" id="gastos_pers_<?=$idtaller?>" name="gastos_pers_<?=$idtaller?>" class="peq orig form-control form-control-sm text-bg-secondary" value="<?=moneda_punto(($nominas+$seg_social),2)?>" style="width:auto; text-align:right; " readonly>
                                                 <span class="fs_14"">&euro;</span>
                                             </div>
                                         </div>
@@ -150,7 +150,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
                                                 <label for="gastos_estruc_<?=$idtaller?>" class="texto_r ancho">Total gastos de estructura:</label>
                                             </div>
                                             <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
-                                                <input type="text" id="gastos_estruc_<?=$idtaller?>" name="gastos_estruc_<?=$idtaller?>" class="peq orig form-control form-control-sm text-bg-secondary" value="<?=$alquileres+$suministros+$renting+$serv_prof+$cuotas+$amortizaciones+$otros?>" style="width:auto; text-align:right; " disabled>
+                                                <input type="text" id="gastos_estruc_<?=$idtaller?>" name="gastos_estruc_<?=$idtaller?>" class="peq orig form-control form-control-sm text-bg-secondary" value="<?=moneda_punto(($alquileres+$suministros+$renting+$serv_prof+$cuotas+$amortizaciones+$otros),2)?>" style="width:auto; text-align:right; " disabled>
                                                 <span class="fs_14">&euro;</span>
                                             </div>
                                         </div>
