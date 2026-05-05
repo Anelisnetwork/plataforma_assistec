@@ -65,7 +65,7 @@ if (isset($mes) && isset($ano)) {
         $proximo_ano = date('Y');
     } else {
         $proximo_mes = $datos_guardados[0]->da_mes == 12 ? 1 : $datos_guardados[0]->da_mes + 1;
-        $proximo_ano = $proximo_mes == 1 ? $datos_guardados[0]->da_ano + 1 : $datos_guardados[0]->da_ano;
+        $proximo_ano = date('Y') + 1;
     }
 }
 $empleados_directos = dame_empleados(1);
