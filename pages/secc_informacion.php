@@ -50,7 +50,7 @@ $hay_datos=count($infotaller)>0;
                                             <input type="hidden" id="vstock_<?=$idtaller?>_def" name="vstock_<?=$idtaller?>_def" value="<?=$hay_datos?$infotaller[0]->it_valorstock:0?>" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
+                                    <div class="d-none flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
                                         <label for="parking_<?=$idtaller?>" class="col col-12 col-sm-6 d-flex flex-row">Puestos aparcamiento:</label>
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-start justify-content-sm-end">
                                             <input type="text" id="parking_<?=$idtaller?>" name="parking_<?=$idtaller?>" class="peq orig form-control form-control-sm" value="<?=$hay_datos?$infotaller[0]->it_parking:0?>" style="width:70px; text-align:right" onkeyup="comprueba_cambios('edita_info')">
@@ -111,7 +111,7 @@ $hay_datos=count($infotaller)>0;
                                             <input type="hidden" id="fichancomo_<?=$idtaller?>_def" name="fichancomo_<?=$idtaller?>_def" value="<?=$hay_datos?u8d_($infotaller[0]->it_comofichan):''?>" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
+                                    <div class="d-none flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-between">
                                             <label for="distrip_<?=$idtaller?>" class="col col-10 d-flex flex-row">Distribuidor piezas principal:</label>
                                             <div class="col col-2 d-flex flex-row align-items-center justify-content-end justify-content-sm-center">
@@ -124,7 +124,7 @@ $hay_datos=count($infotaller)>0;
                                             <input type="hidden" id="ndistrip_<?=$idtaller?>_def" name="ndistrip_<?=$idtaller?>_def" value="<?=$hay_datos?u8d_($infotaller[0]->it_nomdistri):''?>" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
+                                    <div class="d-none flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-between">
                                             <label for="asist_<?=$idtaller?>" class="col col-10 d-flex flex-row">Asistencia t&eacute;cnica:</label>
                                             <div class="col col-2 d-flex flex-row align-items-center justify-content-end justify-content-sm-center">
@@ -137,7 +137,7 @@ $hay_datos=count($infotaller)>0;
                                             <input type="hidden" id="nasist_<?=$idtaller?>_def" name="nasist_<?=$idtaller?>_def" value="<?=$hay_datos?u8d_($infotaller[0]->it_nomasist):''?>" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
+                                    <div class="d-none flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-between">
                                             <label for="ecom_<?=$idtaller?>" class="col col-10 d-flex flex-row">Comercio electr&oacute;nico:</label>
                                             <div class="col col-2 d-flex flex-row align-items-center justify-content-end justify-content-sm-center">
@@ -150,7 +150,7 @@ $hay_datos=count($infotaller)>0;
                                             <input type="hidden" id="necom_<?=$idtaller?>_def" name="necom_<?=$idtaller?>_def" value="<?=$hay_datos?u8d_($infotaller[0]->it_nomcomelec):''?>" />
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
+                                    <div class="d-none flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-between">
                                             <label for="espera_<?=$idtaller?>" class="col col-10 d-flex flex-row">Zona de espera:</label>
                                             <div class="col col-2 d-flex flex-row align-items-center justify-content-center">
@@ -182,7 +182,7 @@ $hay_datos=count($infotaller)>0;
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
+                                    <div class="d-none flex-sm-row align-items-center justify-content-between w-100 px-2 py-1">
                                         <div class="col col-12 col-sm-6 d-flex flex-row align-items-center justify-content-between">
                                             <label for="tlfase_<?=$idtaller?>" class="col col-10 d-flex flex-row">Tel&eacute;fonos inal&aacute;mbricos asesores:</label>
                                             <div class="col col-2 d-flex flex-row align-items-center justify-content-center">
