@@ -65,7 +65,7 @@ if (isset($mes) && isset($ano)) {
         $proximo_ano = date('Y');
     } else {
         $proximo_mes = $datos_guardados[0]->da_mes == 12 ? 1 : $datos_guardados[0]->da_mes + 1;
-        $proximo_ano = date('Y') + 1;
+        $proximo_ano = $proximo_mes == 1 ? $datos_guardados[0]->da_ano + 1 : $datos_guardados[0]->da_ano;
     }
 }
 $empleados_directos = dame_empleados(1);
@@ -98,7 +98,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                             <?php } ?>
                                         </select>
                                         <select name="anodato_<?= $iddato ?>" id="anodato_<?= $iddato ?>" class="form-select form-select-sm" style="width:auto; margin-left:15px">
-                                            <?php for ($a = date('Y') - 2; $a <= $proximo_ano + 1; $a++) { ?>
+                                            <?php for ($a = date('Y') - 2; $a <= date('Y') + 1; $a++) { ?>
                                                 <option<?= $proximo_ano == $a ? ' selected="selected"' : '' ?>
                                                         value="<?= $a ?>"><?= $a ?></option>
                                             <?php } ?>
