@@ -28,76 +28,93 @@ function insertado(){
 function query($sql){
     $link = $_SESSION['datos_'._ID_PAG_]['bd_connection'];
     $res = false;
-    try {
-        $res = mysqli_query($link,$sql);
-    } catch (Exception $e) {
-        $message = date('Y-m-d H:i:s').' - Query: '.$sql.' - '.$e->getMessage();
+    $res = mysqli_query($link, $sql);
+    if ($res === false) {
+        $message = date('Y-m-d H:i:s').' - Query error: '.mysqli_error($link).' - SQL: '.$sql;
+        // registrar en errores de query (tipo 99)
         __log_error($message, 99);
     }
-	return $res;
+    return $res;
 }
 
 /* Devuelve array con datos encontrados, o bien el dato en concreto, si lo conocemos */
 function fetch_array($sql,$query=''){
-	$r = mysqli_fetch_array( query($sql) );
-	if ( $r && $query != '' ){
-		return $r[$query];
-	}
-	else{
-		return $r;			
-	}
+    $res = query($sql);
+    if (!$res) {
+        return false;
+    }
+    $r = mysqli_fetch_array($res);
+    if ( $r && $query != '' ){
+        return isset($r[$query]) ? $r[$query] : false;
+    }
+    return $r;
 }
 
 
 function fetch_assoc($sql){
-	$r = mysqli_fetch_assoc( query($sql) );
-	return $r;			
+    $res = query($sql);
+    if (!$res) {
+        return false;
+    }
+    $r = mysqli_fetch_assoc($res);
+    return $r;            
 }
 
 
 /* Devuelve un listado con objetos */
 function list_object($sql){
-	$res = query($sql);
-	$cant = mysqli_num_rows($res);
-	$lista = array();
-	for ( $i=0; $i<$cant; $i++ ){
-		$lista[$i] = mysqli_fetch_object($res);	
-	}
-	return $lista;
+    $res = query($sql);
+    if (!$res) {
+        return array();
+    }
+    $cant = mysqli_num_rows($res);
+    $lista = array();
+    for ( $i=0; $i<$cant; $i++ ){
+        $lista[$i] = mysqli_fetch_object($res);    
+    }
+    return $lista;
 }
 
 /* Devuelve un listado separado por comas */
 function array_comas($sql){
-	$res = query($sql);
-	$cant = mysqli_num_rows($res);
-	$lista='';
-	$i=0;
-	while ($lista2 = mysqli_fetch_array($res, MYSQLI_NUM)) {
-		if ($i==0){$sep='';} else {$sep=',';}
-			$lista=$lista.$sep.$lista2[0];
-			$i++;
-		}
-	return $lista;
+    $res = query($sql);
+    if (!$res) {
+        return '';
+    }
+    $lista='';
+    $i=0;
+    while ($lista2 = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        if ($i==0){$sep='';} else {$sep=',';}
+        $lista=$lista.$sep.$lista2[0];
+        $i++;
+    }
+    return $lista;
 }
 
 /* Devuelve un listado separado por comas y entre comillas dobles */
 function array_comas_par($sql){
-	$res = query($sql);
-	$cant = mysqli_num_rows($res);
-	$lista='';
-	$i=0;
-	while ($lista2 = mysqli_fetch_array($res, MYSQLI_NUM)) {
-		if ($i==0){$sep='';} else {$sep=',';}
-		$lista=$lista.$sep.'"'.$lista2[0].'"';
-		$i++;
-	}
-	return $lista;
+    $res = query($sql);
+    if (!$res) {
+        return '';
+    }
+    $lista='';
+    $i=0;
+    while ($lista2 = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        if ($i==0){$sep='';} else {$sep=',';}
+        $lista=$lista.$sep.'"'.$lista2[0].'"';
+        $i++;
+    }
+    return $lista;
 }
 
 /* Cuenta filas */
 function num_rows($sql){
-	$n = mysqli_num_rows( query($sql) );
-	return $n;			
+    $res = query($sql);
+    if (!$res) {
+        return 0;
+    }
+    $n = mysqli_num_rows($res);
+    return $n;            
 }
 
 	

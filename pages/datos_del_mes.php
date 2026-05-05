@@ -91,13 +91,13 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <?php if($iddato === 'NEW'){?>
                                     <span class="card-title d-flex align-items-center m-0 h3">Datos nuevos de: </span>
                                     <div class="d-flex flex-row flex-nowrap align-items-center justify-content-start">
-                                        <select name="mesdato_<?= $iddato ?>" id="mesdato_<?= $iddato ?>" class="form-select form-select-sm ms-2" style="width:auto">
+                                        <select name="mesdato_<?= $iddato ?>" id="mesdato_<?= $iddato ?>" class="form-select form-select-sm ms-2" style="width:auto" form="edita_datomensual">
                                             <?php for ($m = 1; $m <= 12; $m++) { ?>
                                                 <option<?= $proximo_mes == $m ? ' selected="selected"' : '' ?>
                                                         value="<?= $m ?>"><?= nom_mes($m) ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select name="anodato_<?= $iddato ?>" id="anodato_<?= $iddato ?>" class="form-select form-select-sm" style="width:auto; margin-left:15px">
+                                        <select name="anodato_<?= $iddato ?>" id="anodato_<?= $iddato ?>" class="form-select form-select-sm" style="width:auto; margin-left:15px" form="edita_datomensual">
                                             <?php for ($a = date('Y') - 2; $a <= date('Y') + 1; $a++) { ?>
                                                 <option<?= $proximo_ano == $a ? ' selected="selected"' : '' ?>
                                                         value="<?= $a ?>"><?= $a ?></option>
@@ -112,7 +112,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                         </div>
                         <div class="col-12 col-sm-6 d-flex align-items-center justify-content-between justify-content-sm-end">
                             <span class="fs_12 me-2 text-nowrap">Ver datos de</span>
-                            <select class="form-select form-select-sm w-auto d-inline-block" onchange="window.location.href ='<?= _RAIZ_ ?>datos_del_mes/'+this.value+'/'">
+                            <select class="form-select form-select-sm w-auto d-inline-block" onchange="window.location.href ='<?= _RAIZ_ ?>datos_del_mes/'+this.value+'/'" form="">
                                 <option value="NEW"<?= $iddato === 'NEW' ? ' selected' : '' ?> disabled>Seleccione...</option>
                                 <?php foreach ($datos_guardados as $dato_guardado) { ?>
                                     <option value="<?= $dato_guardado->da_mes . '/' . $dato_guardado->da_ano ?>"<?= isset($dato_mensual[0]) && (nom_mes($dato_mensual[0]->da_mes) . ' ' . $dato_mensual[0]->da_ano) == (nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano) ? ' selected' : '' ?>><?= nom_mes($dato_guardado->da_mes) . ' ' . $dato_guardado->da_ano ?></option>
