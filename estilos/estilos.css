@@ -1044,3 +1044,42 @@ Nuevos estilos
     justify-content:center;
     padding:50px;
 }
+
+
+/* ---- Print helpers added: noprint / onlyprint and basic A4 rules ---- */
+/* Elementos con .noprint se ocultan en la impresión. Elementos con .onlyprint se muestran solo al imprimir. */
+.noprint {
+    display: inherit !important; /* por defecto se muestran en pantalla */
+}
+.onlyprint {
+    display: none !important; /* por defecto ocultos en pantalla */
+}
+
+@media print {
+    /* Página A4 y márgenes por defecto */
+    @page { size: A4; margin: 15mm; }
+
+    /* Ocultar elementos de la UI que normalmente no se desean en la impresión
+       (si quieres controlar más finamente, añade/elimina clases noprint sobre elementos concretos) */
+    .app-header, .app-sidebar, .app-footer, .app-backdrop { display: none !important; }
+
+    /* Mostrar solo lo marcado con .onlyprint */
+    .onlyprint { display: block !important; }
+
+    /* Ocultar los elementos marcados como noprint */
+    .noprint { display: none !important; }
+
+    .n8n-chat-widget { display: none !important; }
+
+    /* Ajustes generales para impresión */
+    html, body { background: #fff !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    img { max-width: 100% !important; height: auto !important; }
+    .page-content, .container-fluid { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+    .app-main { background-color: #FFFFFF }
+
+    /* Evitar que tarjetas y tablas se corten por la mitad si es posible */
+    .card, table, .borde_gris { page-break-inside: avoid; }
+
+    /* Tipografías y tamaños más legibles en A4 */
+    body, .page-content * { font-size: 12pt !important; }
+}

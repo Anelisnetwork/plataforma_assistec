@@ -33,7 +33,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
     <div id="app-wrapper" class="app-wrapper d-flex flex-column align-items-stretch min-vh-100">
 
         <!-- app sidebar start -->
-        <div id="app-sidebar" class="app-sidebar overflow-hidden">
+        <div id="app-sidebar" class="app-sidebar overflow-hidden noprint">
 
             <div class="app-sidebar-wrapper">
                 <!-- app sidebar header -->
@@ -123,7 +123,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
         <!-- app sidebar end -->
 
         <!-- app header start -->
-        <div class="app-header bg-card py-2 px-4 px-md-6 d-flex align-items-center">
+        <div class="app-header bg-card py-2 px-4 px-md-6 d-flex align-items-center noprint">
             <div class="row align-items-center w-100 gx-0">
                 <div class="col-xl-4 col-lg-5 col-md-6 col-sm-4 col-3">
                     <div class="app-header-left d-flex align-items-center">

@@ -55,7 +55,7 @@
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1 text-bg-light rounded" >
                 <label class="ancho">Tiempo medio por entrada:</label>
                 <div class="dato">
-                    <span class="oswald fs_14"><?=faltan2(($horas_productivas/$dato_mensual[0]->da_entradastaller)*3600)?></span>
+                    <span class="oswald fs_14"><?=faltan2(($dato_mensual[0]->da_entradastaller==0?0:($horas_productivas/$dato_mensual[0]->da_entradastaller))*3600)?></span>
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
@@ -97,7 +97,13 @@
             </div>-->
             
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1" style="margin-top:25px;">
-                <span class="oswald fs_16" style="float:right;">Descargar informe<a href="<?=_RAIZ_.'genera_informe/'.en__('pdf_infome_mensual%%imprimir%%'.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'].'%%'.$dato_mensual[0]->da_mes.'%%'.$dato_mensual[0]->da_ano.'').'/'?>" target="_blank" style="float:right; margin:3px 15px"><img src="<?=_RAIZ_?>imagenes/pdf.png" /></a></span>
+                <div style="float:right;">
+                    <!-- Botón que abre el diálogo de impresión. Tiene clase .noprint para que no salga en la impresión -->
+                    <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint" onclick="window.print();">
+                        <i class="fa fa-print" aria-hidden="true" style="margin-right:6px"></i>
+                        Imprimir
+                    </button>
+                </div>
             </div>
             
 		</div>

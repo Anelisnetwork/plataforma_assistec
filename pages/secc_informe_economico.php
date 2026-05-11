@@ -86,7 +86,13 @@
             
             <div class="linea" style="margin-top:25px;">
                 <?php if(isset($dato_mensual[0])){?>
-                <span class="oswald fs_16" style="float:right;">Descargar informe<a href="<?=_RAIZ_.'genera_informe/'.en__('pdf_infome_mensual%%imprimir%%'.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'].'%%'.$dato_mensual[0]->da_mes.'%%'.$dato_mensual[0]->da_ano.'').'/'?>" target="_blank" style="float:right; margin:3px 15px"><img src="<?=_RAIZ_?>imagenes/pdf.png" /></a></span>
+                <div style="float:right;">
+                    <!-- Botón que abre el diálogo de impresión. Tiene clase .noprint para que no salga en la impresión -->
+                    <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint" onclick="window.print();">
+                        <i class="fa fa-print" aria-hidden="true" style="margin-right:6px"></i>
+                        Imprimir
+                    </button>
+                </div>
                 <?php }?>
             </div>
             

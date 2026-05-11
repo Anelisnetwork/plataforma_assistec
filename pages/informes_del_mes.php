@@ -42,7 +42,10 @@ $iddato = $dato_mensual[0]->da_iddato;
                                 <?=isset($dato_mensual[0])?nom_mes($dato_mensual[0]->da_mes)." de ".$dato_mensual[0]->da_ano : "No hay informe"?>
                             </h3>
                         </div>
-                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-between justify-content-sm-end">
+                        <div class="col-12 col-sm-6 d-flex flex-row align-items-center justify-content-end justify-content-sm-end fs_16 fw-bold text-nowrap onlyprint">
+                            <?=dato_taller('ta_nombre', $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])?>
+                        </div>
+                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-between justify-content-sm-end noprint">
                             <span class="fs_12 me-2 text-nowrap">Seleccione mes</span>
                             <select class="form-select form-select-sm w-auto d-inline-block"
                                     onchange="window.location.href ='<?= _RAIZ_ ?>informes_del_mes/<?= $seccion ?>/'+this.value+'/'">

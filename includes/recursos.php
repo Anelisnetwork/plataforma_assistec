@@ -9,4 +9,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <link href="<?=_RAIZ_?>estilos/style.css?v=30032023" rel="stylesheet" type="text/css" />
 <link href="<?=_RAIZ_?>chatbot/chat.css?v=<?=time()?>" rel="stylesheet" type="text/css" />
-<link href="<?=_RAIZ_?>estilos/estilos.css?v=30032023" rel="stylesheet" type="text/css" />
+<link href="<?=_RAIZ_?>estilos/estilos.css?v=<?=time()?>" rel="stylesheet" type="text/css" />
