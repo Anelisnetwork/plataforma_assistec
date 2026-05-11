@@ -37,10 +37,13 @@ $iddato = $dato_mensual[0]->da_iddato;
             <div class="card shadow-custom rounded-custom">
                 <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-7">
                     <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-center">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6 d-flex flex-row justify-content-between align-items-center">
                             <h3 class="card-title d-flex align-items-center m-0">
                                 <?=isset($dato_mensual[0])?nom_mes($dato_mensual[0]->da_mes)." de ".$dato_mensual[0]->da_ano : "No hay informe"?>
                             </h3>
+                            <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint" onclick="window.print();">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                            </button>
                         </div>
                         <div class="col-12 col-sm-6 d-flex flex-row align-items-center justify-content-end justify-content-sm-end fs_16 fw-bold text-nowrap onlyprint">
                             <?=dato_taller('ta_nombre', $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])?>

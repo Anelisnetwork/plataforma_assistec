@@ -83,17 +83,5 @@
                     <span class="oswald fs_16 texto_<?=$porcmargenbruto<0?'r':'v'?>"><?=moneda_puntocoma($porcmargenbruto)?> %</span>
                 </div>
             </div>
-            
-            <div class="linea" style="margin-top:25px;">
-                <?php if(isset($dato_mensual[0])){?>
-                <div style="float:right;">
-                    <!-- Botón que abre el diálogo de impresión. Tiene clase .noprint para que no salga en la impresión -->
-                    <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint" onclick="window.print();">
-                        <i class="fa fa-print" aria-hidden="true" style="margin-right:6px"></i>
-                        Imprimir
-                    </button>
-                </div>
-                <?php }?>
-            </div>
-            
+
 		</div>

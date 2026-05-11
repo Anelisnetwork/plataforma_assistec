@@ -88,22 +88,4 @@
                     <span class="oswald fs_14"><?=moneda_puntocoma(porcentaje_($mediapr,$mediaor))?>%</span>
                 </div>
             </div>
-            
-            <!--<div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1">
-                <label class="ancho">Fidelizaci&oacute;n de clientes:</label>
-                <div class="dato">
-                    <span class="oswald"><?/*=moneda_puntocoma($fidelizacion)*/?> %</span>
-                </div>
-            </div>-->
-            
-            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1" style="margin-top:25px;">
-                <div style="float:right;">
-                    <!-- Botón que abre el diálogo de impresión. Tiene clase .noprint para que no salga en la impresión -->
-                    <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint" onclick="window.print();">
-                        <i class="fa fa-print" aria-hidden="true" style="margin-right:6px"></i>
-                        Imprimir
-                    </button>
-                </div>
-            </div>
-            
 		</div>

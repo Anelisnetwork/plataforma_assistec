@@ -267,6 +267,12 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
                         <?=$nombreModulo?>
                         <?=$seccion !== '' ? ' - ' . nom_seccion($seccion) : ''?>
                     </h2>
+                    <?php if($nombreModulo == 'Dashboard'){?>
+                    <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint w-auto" onclick="window.print();">
+                        <i class="fa fa-print" aria-hidden="true"></i>
+                        Imprimir
+                    </button>
+                    <?php }?>
                 </div> <!-- breadcrumb end -->
 
                 <div class="page-content" style="max-width: 1300px; margin-left: auto; margin-right: auto;">
