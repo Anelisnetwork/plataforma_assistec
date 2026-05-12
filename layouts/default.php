@@ -103,7 +103,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
                                     </a>
                                 </li>
                                 <li class="app-sidebar-menu-item">
-                                    <a href="<?=_RAIZ_?>documentos/Guía interpretación KPISCuadro Mando Assistec.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
+                                    <a href="<?=_RAIZ_?>documentos/Guía interpretación KPISCuadro Mando Assistec_2026.pdf" target="_blank" rel="nofollow" class="menu-link d-flex align-items-center">
                                         <span class="menu-title flex-grow-1">Guía de interpretación</span>
                                     </a>
                                 </li>
@@ -257,11 +257,11 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
         <!-- app header end -->
 
         <!-- app content start -->
-        <div class="app-content-wrapper pt-6 pb-6 px-1 px-md-5">
+        <div class="app-content-wrapper pt-6 pb-6 px-1 px-md-5 keep-with-next">
 
             <div class="container-fluid">
 
-                <div class="page-header pb-7">
+                <div class="page-header pb-7 noprint">
                     <h2 class="fw-semibold fs-5">
                         <i class="<?=modulo_ico($m)?>"></i>
                         <?=$nombreModulo?>
@@ -281,7 +281,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 
             </div>
         </div><!-- app content end -->
-        <footer class="app-footer mt-auto py-3 text-center">
+        <footer class="app-footer mt-auto py-3 text-center noprint">
             <div class="container">
                     <span class="text-muted">Assistec Copyright ©
                         <span id="footer-year"></span> Todos los derechos reservados

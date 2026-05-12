@@ -1072,14 +1072,42 @@ Nuevos estilos
     .n8n-chat-widget { display: none !important; }
 
     /* Ajustes generales para impresión */
-    html, body { background: #fff !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body {
+        background: #fff !important;
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
     img { max-width: 100% !important; height: auto !important; }
     .page-content, .container-fluid { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
     .app-main { background-color: #FFFFFF }
 
-    /* Evitar que tarjetas y tablas se corten por la mitad si es posible */
-    .card, table, .borde_gris { page-break-inside: avoid; }
+    .app-content-wrapper, .nomargin {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 
-    /* Tipografías y tamaños más legibles en A4 */
-    body, .page-content * { font-size: 12pt !important; }
+	/* Evitar que tarjetas y tablas se corten por la mitad si es posible */
+	.card, table, .borde_gris { page-break-inside: avoid; break-inside: avoid; }
+
+	/* Helpers explícitos para control de saltos de página (útiles en plantillas/HTML->PDF) */
+	/* Forzar salto de página después del elemento (solo en impresión) */
+	.page-break { display:block; page-break-after: always !important; break-after: page !important; }
+
+	/* Forzar salto de página antes del elemento (solo en impresión) */
+	.page-break-before { display:block; page-break-before: always !important; break-before: page !important; }
+
+	/* Evitar romper dentro del elemento */
+	.avoid-break, .no-break-inside { page-break-inside: avoid !important; break-inside: avoid !important; }
+
+	/* Forzar que un elemento inicie en la misma página que el siguiente (útil para pies o bloques unidos) */
+	.keep-with-next { page-break-inside: avoid !important; break-inside: avoid !important; }
+
+	/* Tipografías y tamaños más legibles en A4 */
+	body, .page-content * { font-size: 12pt !important; }
 }

@@ -36,17 +36,23 @@ if ($iddato == '' || $iddato == NULL) {
 
     ?>
 
-    <div class="row g-3 mt-1">
-        <div class="col">
+    <div class="row g-3 mt-1 nomargin">
+        <div class="col nomargin">
             <div class="card shadow-custom rounded-custom">
                 <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-7">
                     <div class="col-12 d-flex flex-column flex-sm-row justify-content-between align-items-center">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6 d-flex flex-row justify-content-between align-items-center">
                             <h3 class="card-title d-flex align-items-center m-0">
                                 <?=isset($anho_acumulado)?"Año ".$anho_acumulado : "No hay informe"?>
                             </h3>
+                            <button type="button" id="btn-open-print" class="btn btn-secondary btn-sm noprint" onclick="window.print();">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                            </button>
                         </div>
-                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-between justify-content-sm-end">
+                        <div class="col-12 col-sm-6 d-flex flex-row align-items-center justify-content-end justify-content-sm-end fs_16 fw-bold text-nowrap onlyprint">
+                            <?=dato_taller('ta_nombre', $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])?>
+                        </div>
+                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-between justify-content-sm-end noprint">
                             <span class="fs_12 me-2 text-nowrap">Seleccione año</span>
                             <select class="form-select form-select-sm w-auto d-inline-block"
                                     onchange="window.location.href ='<?= _RAIZ_ ?>ratios_acumulados/<?= $seccion ?>/'+this.value+'/'">
