@@ -115,6 +115,7 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
                             </ul>
                         </li>
                     </ul>
+                    <a href="https://assistec.es/club-re-evolution/" class="btn btn-sm btn-secondary w-100">Volver a Assitec</a>
                 </div>
                 <!-- app sidebar menu end -->
             </div>
