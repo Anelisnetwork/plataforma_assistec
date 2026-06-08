@@ -28,7 +28,8 @@ $mediapr=$dato_mensual[0]->da_entradastaller==0?0:$ventapr/$dato_mensual[0]->da_
 
 $infotaller=dame_info($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
 $totalbbdd=$infotaller[0]->it_totalclientes;
-$fidelizacion=porcentaje_($dato_mensual[0]->da_entradastaller,$totalbbdd);;
+$fidelizacion=porcentaje_($dato_mensual[0]->da_entradastaller,$totalbbdd);
+$ticketmedioc = $dato_mensual[0]->da_entradastaller==0?0:$ventapr/$dato_mensual[0]->da_entradastaller;
 
 
 

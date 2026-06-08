@@ -17,7 +17,7 @@
     </div>
 
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Importe medio por OR:</label>
+        <label class="ancho">Ticket medio:</label>
         <div class="dato">
             <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['mediaor'])?> &euro;</span>
         </div>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Importe MO por OR:</label>
+        <label class="ancho">Ticket medio MO:</label>
         <div class="dato">
             <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['mediamo'])?> &euro;</span>
         </div>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Importe PR por OR:</label>
+        <label class="ancho">Ticket medio piezas:</label>
         <div class="dato">
             <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['mediapr'])?> &euro;</span>
         </div>
@@ -56,6 +56,24 @@
         <label class="ancho">% PR por OR:</label>
         <div class="dato">
             <span class=" fs_14"><?=moneda_puntocoma(porcentaje_($datos_acumulados['mediapr'],$datos_acumulados['mediaor']))?>%</span>
+        </div>
+        <div class="dato">
+            <span class=" fs_14"><?='---'?></span>
+        </div>
+    </div>
+    <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
+        <label class="ancho">Ticket medio de compra:</label>
+        <div class="dato">
+            <span class=" fs_14"><?=moneda_puntocoma($ticketmedioc)?> €</span>
+        </div>
+        <div class="dato">
+            <span class=" fs_14"><?='---'?></span>
+        </div>
+    </div>
+    <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
+        <label class="ancho">Margen operativo:</label>
+        <div class="dato">
+            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['mediaor']-$ticketmedioc)?> €</span>
         </div>
         <div class="dato">
             <span class=" fs_14"><?='---'?></span>

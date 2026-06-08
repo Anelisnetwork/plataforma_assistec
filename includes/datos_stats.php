@@ -316,7 +316,7 @@ else if($dato=='acum_gest_1'){
 	
 	$col2=array();
 	$col2["id"]="";
-	$col2["label"]="Productividad";
+	$col2["label"]="Ocupación";
 	$col2["pattern"]="";
 	$col2["type"]="number";
 	$col3=array();

@@ -1,12 +1,12 @@
 <div id="informemes" class="div_mostrarocultar  col col-12 col-md-6 d-flex flex-column align-items-start justify-content-start p-3">
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Productividad:</label>
+        <label class="ancho">Ocupación:</label>
         <div class="dato">
             <span class="oswald fs_14 texto_<?=$datos_acumulados['productividad']<$datos_acumulados['objproductividad']?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['productividad'])?> %</span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Eficacia:</label>
+        <label class="ancho">Eficacia/Productividad:</label>
         <div class="dato">
             <span class="oswald fs_14 texto_<?=$datos_acumulados['eficacia']<$datos_acumulados['objeficacia']?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['eficacia'])?> %</span>
         </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Margen venta PR:</label>
+        <label class="ancho">Margen Recambio:</label>
         <div class="dato">
             <span class="oswald fs_14 texto_<?=$datos_acumulados['porcentpr']<$datos_acumulados['objmargenrec']?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['porcentpr'])?> %</span>
         </div>

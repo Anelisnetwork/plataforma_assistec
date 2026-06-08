@@ -5,13 +5,13 @@
             </div>
             
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho faq" title="(horas trabajadas/horas presencia)">Productividad:</label>
+                <label class="ancho faq" title="(horas trabajadas/horas presencia)">Ocupación:</label>
                 <div class="dato">
                     <span class="oswald fs_14 texto_<?=$productividad<$obj_prod?'r':'v'?>"><?=moneda_puntocoma($productividad)?> %</span>
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho faq" title="(horas facturadas/horas presencia)">Eficacia:</label>
+                <label class="ancho faq" title="(horas facturadas/horas presencia)">Eficacia/Productividad:</label>
                 <div class="dato">
                     <span class="oswald fs_14 texto_<?=$eficacia<$obj_efic?'r':'v'?>"><?=moneda_puntocoma($eficacia)?> %</span>
                 </div>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho">Margen venta PR:</label>
+                <label class="ancho">Margen Recambio:</label>
                 <div class="dato">
                 	<span class="oswald fs_14 texto_<?=$porcentpr<$obj_ventapr?'r':'v'?>"><?=moneda_puntocoma($porcentpr)?> %</span>
                 </div>
@@ -59,13 +59,13 @@
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho">Importe medio por OR:</label>
+                <label class="ancho">Ticket medio:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($mediaor)?> &euro;</span>
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho">Importe MO por OR:</label>
+                <label class="ancho">Ticket medio MO:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($mediamo)?> &euro;</span>
                 </div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho">Importe PR por OR:</label>
+                <label class="ancho">Ticket medio piezas:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma($mediapr)?> &euro;</span>
                 </div>
@@ -86,6 +86,18 @@
                 <label class="ancho">% PR por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma(porcentaje_($mediapr,$mediaor))?>%</span>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
+                <label class="ancho">Ticket medio de compra:</label>
+                <div class="dato">
+                    <span class="oswald fs_14"><?=moneda_puntocoma($ticketmedioc)?> €</span>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
+                <label class="ancho">Margen operativo:</label>
+                <div class="dato">
+                    <span class="oswald fs_14"><?=moneda_puntocoma($mediaor-$ticketmedioc)?> €</span>
                 </div>
             </div>
 		</div>
