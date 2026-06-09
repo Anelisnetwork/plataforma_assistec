@@ -1,4 +1,7 @@
 <?php
+function carga_datos_cuadro($datos_usuario){
+    return true;
+}
 	
 function datos_usuario($iduser){
     $idtaller = '';
@@ -24,7 +27,19 @@ function datos_usuario($iduser){
         $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']=fetch_array("SELECT ta_logotipo from talleres where 1{$f_logo}",'ta_logotipo');
 	}
     if($idtaller !== ''){
-        $_SESSION['datos_'._ID_PAG_]['datos_user']['hayKm0'] = hayKm0($idtaller);
+        $datos_taller_info          = parse_taller_info($idtaller);
+        $datos_taller_actividad     = parse_taller_actividad($idtaller);
+        $datos_taller_personal      = parse_taller_personal($idtaller);
+        $datos_taller_equipamiento  = parse_taller_equipamiento($idtaller);
+        $datos_taller_gastos        = parse_taller_gastos($idtaller);
+        //vd__($datos_taller_info);
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionInfo']           = $datos_taller_info;
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionActividad']      = $datos_taller_actividad;
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionPersonal']       = $datos_taller_personal;
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']  = $datos_taller_equipamiento;
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']         = $datos_taller_gastos;
+        $_SESSION['datos_'._ID_PAG_]['datos_user']['hayKm0']        = $datos_taller_gastos['coste_personal'] > 0 && $datos_taller_gastos['suministros']>0 && $datos_taller_gastos['servicios_profesionales'] > 0 && $datos_taller_info['importe_mo'] > 0 && $datos_taller_info['horas_convenio'] > 0 && $datos_taller_personal['empleados_total'] > 0;
+
         $_SESSION['datos_'._ID_PAG_]['datos_user']['mesPasado'] = mesPasado($idtaller);
     }
     $_SESSION['datos_'._ID_PAG_]['datos_user']['nick'] = dame_dato_usuario('us_nick', $iduser);
@@ -43,6 +58,96 @@ function de__id($id){
 	$id3=$paso2[1][3].$paso2[1][2].$paso2[1][1].$paso2[1][0];
 	$id2=$paso2[0][5].$paso2[0][4].$paso2[0][3].$paso2[0][2];
 	return intval($id1.$id2.$id3);
+}
+
+function parse_taller_info($idtaller){
+    $ti = fetch_assoc("SELECT * FROM info_taller WHERE 1 AND it_idtaller='$idtaller'");
+    $tallerInfo = array();
+    $tallerInfo['importe_mo'] = $ti['it_impmo']??'0';
+    $tallerInfo['horas_convenio'] = $ti['hconvenio']??'0';
+    $tallerInfo['valor_stock'] = $ti['it_valorstock']??'0';
+    $tallerInfo['vehiculos_sustitucion'] = $ti['it_vehicsus']??'0';
+    $tallerInfo['clientes_bbdd'] = $ti['it_totalclientes']??'0';
+    $tallerInfo['clientes_visitas'] = $ti['it_clivisitas']??'0';
+    $tallerInfo['clientes_nuevos'] = $ti['it_clinuevos']??'0';
+    $tallerInfo['dms'] = $ti['it_tienedms']??'0';
+    $tallerInfo['dms_proveedor'] = $ti['it_provdms']??'';
+    $tallerInfo['fichan'] = $ti['it_fichan']??'0';
+    $tallerInfo['fichan_sistema'] = $ti['it_comofichan']??'';
+    $tallerInfo['maquinas_bebidas'] = $ti['it_maqcafe']??'0';
+    $tallerInfo['ofertas_comerciales'] = $ti['it_ofrecep']??'0';
+    return $tallerInfo;
+}
+
+function parse_taller_actividad($idtaller){
+    $tallerActividad = array();
+    $actividades=tipos_actividad();
+    foreach($actividades as $key=>$actividad) {
+        $activ_taller = dame_actividad($actividad->tac_idactiv, $idtaller);
+        $tallerActividad[$actividad->tac_nombre] = array(
+            'metros' => isset($activ_taller['at_metros']) ? $activ_taller['at_metros'] : 0.00,
+            'puestos' => isset($activ_taller['at_puestos']) ? $activ_taller['at_puestos'] : 0,
+            'elevadores' => isset($activ_taller['at_elevadores']) ? $activ_taller['at_elevadores'] : 0
+        );
+    }
+    return $tallerActividad;
+}
+
+function parse_taller_personal($idtaller){
+    $tallerPersonal = array();
+    $porcentajes = personal_porcentaje($idtaller);
+    $tallerPersonal['empleados_total'] = $porcentajes[0];
+    $tallerPersonal['empleados_directos_cantidad'] = $porcentajes[4];
+    $tallerPersonal['empleados_directos_porcentaje'] = $porcentajes[2];
+    $tallerPersonal['empleados_indirectos_cantidad'] = $porcentajes[5];
+    $tallerPersonal['empleados_indirectos_porcentaje'] = $porcentajes[3];
+    $empleados = taller_personal_funciones($idtaller);
+    foreach($empleados as $empleado) {
+        $tallerPersonal[$empleado->pt_nombre] = array(
+            'activo'    => $empleado->pt_activo,
+            'jornada'   => $empleado->pt_jornada,
+            'notas'     => $empleado->pt_notas,
+            'funcion'   => $empleado->cp_nombre,
+            'tipo'      => $empleado->tp_definicion,
+        );
+    }
+    return $tallerPersonal;
+}
+
+function parse_taller_equipamiento($idtaller){
+    $tallerEquipamiento = array();
+    $equipamientos = taller_equipamientos($idtaller);
+    foreach($equipamientos as $equipamiento) {
+        $tallerEquipamiento[$equipamiento->te_nombre] = array(
+            'cantidad'  => $equipamiento->et_cantidad,
+            'notas'     => $equipamiento->et_notas
+        );
+    }
+    return $tallerEquipamiento;
+}
+
+function parse_taller_gastos($idtaller){
+    $gastos = dame_gastos($idtaller);
+    $tallerGastos['coste_personal']             = $gastos[0]->nominas ?? 0;
+    $tallerGastos['ss_trabajadores']            = $gastos[0]->seg_social ?? 0;
+    $tallerGastos['alquileres']                 = $gastos[0]->alquileres ?? 0;
+    $tallerGastos['suministros']                = $gastos[0]->suministros ?? 0;
+    $tallerGastos['renting_equipos']            = $gastos[0]->renting ?? 0;
+    $tallerGastos['servicios_profesionales']    = $gastos[0]->serv_prof ?? 0;
+    $tallerGastos['cuotas']                     = $gastos[0]->cuotas ?? 0;
+    $tallerGastos['amortizaciones']             = $gastos[0]->amortizaciones ?? 0;
+    $tallerGastos['otros_gastos']               = $gastos[0]->otros ?? 0;
+    return $tallerGastos;
+}
+
+function taller_equipamientos($idtaller){
+    $sql = "SELECT et_cantidad, et_notas, te.te_nombre FROM equipamiento_taller et JOIN tipos_equipamiento te ON et_idtipo=te.te_idequip WHERE 1 AND et_idtaller='$idtaller'";
+    return list_object($sql);
+}
+
+function taller_personal_funciones($idtaller){
+    $sql = "SELECT pt_nombre, pt_jornada, pt_notas, pt_activo, cp_nombre, tp_definicion FROM personal_taller pt JOIN personal_funciones pf ON pt.pt_idpersonal=pf.pf_idpersonal JOIN cargos_personal cp ON cp.cp_idpersonal=pf.pf_idcargo JOIN tipos_personal tp ON tp.tp_idtipo=cp.cp_idpersonal WHERE 1 AND pt_idtaller='$idtaller'";
+    return list_object($sql);
 }
 
 function dame_red_talleres(){
@@ -118,12 +223,12 @@ function dame_actividad($idactiv, $idtaller){
 	return fetch_array('select * from actividad_taller where at_idactividad='.$idactiv.' and at_idtaller='.$idtaller);
 }
 
-function dame_empleados($idtipo=''){//Devuelve el listado de empleados completo o sólo del tipo indicado
+function dame_empleados($idtaller, $idtipo=''){//Devuelve el listado de empleados completo o sólo del tipo indicado
 	if($idtipo==''){
-		$empleados=list_object('select * from personal_taller where pt_idtaller='.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
+		$empleados=list_object('select * from personal_taller where pt_idtaller='.$idtaller);
 	}
 	else{
-		$empleados=list_object('select personal_taller.* from personal_taller, personal_funciones, cargos_personal where cp_idtipo='.$idtipo.' and pf_idcargo=cp_idpersonal and pt_idpersonal=pf_idpersonal and pt_idtaller='.$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'].' group by pt_idpersonal');
+		$empleados=list_object('select personal_taller.* from personal_taller, personal_funciones, cargos_personal where cp_idtipo='.$idtipo.' and pf_idcargo=cp_idpersonal and pt_idpersonal=pf_idpersonal and pt_idtaller='.$idtaller.' group by pt_idpersonal');
 	}
 	return $empleados;
 }

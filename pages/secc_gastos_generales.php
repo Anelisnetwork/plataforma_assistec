@@ -50,6 +50,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
                                         <input type="hidden" id="idtaller" name="idtaller" value="<?=$idtaller?>" />
                                         <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
                                             <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                                                <span class="text-danger me-1">*</span>
                                                 <label for="nominas_<?=$idtaller?>">Coste personal:</label>
                                             </div>
                                             <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
@@ -90,6 +91,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
                                         </div>
                                         <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
                                             <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                                                <span class="text-danger me-1">*</span>
                                                 <label for="suministros_<?=$idtaller?>" class="ancho">Suministros:</label>
                                             </div>
                                             <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">
@@ -109,6 +111,7 @@ $porcentajes=personal_porcentaje($_SESSION['datos_'._ID_PAG_]['datos_user']['idt
                                         </div>
                                         <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-start justify-content-sm-between w-100 mb-2">
                                             <div class="d-flex flex-row align-items-center justify-content-start w-100">
+                                                <span class="text-danger me-1">*</span>
                                                 <label for="serv_prof_<?=$idtaller?>" class="ancho">Servicios profesionales:</label>
                                             </div>
                                             <div class="d-flex flex-row align-items-center justify-content-start justify-content-sm-end w-100 ms-0 ms-sm-2">

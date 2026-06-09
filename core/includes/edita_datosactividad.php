@@ -10,7 +10,7 @@ $id_taller==''||$url_dest==''?fuera_de_aqui():'';
 
 $iddatoact=explode(',',clean_post('iddatoact'));
 
-$empleados_directos=dame_empleados(1);
+$empleados_directos=dame_empleados($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'],1);
 
 $nempleados=0;
 foreach($empleados_directos as $empleado_directo){

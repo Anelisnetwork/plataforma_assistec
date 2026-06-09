@@ -37,11 +37,10 @@ $datos_taller=dame_datos_taller($datos_usuario['us_idtaller']);
         <span class="fs_12 ubuntu texto_n"><strong style="float: left">Silent login:</strong> <span style="width: 400px; overflow: hidden; height: 50px; overflow-wrap: break-word; float: left; margin-left: 15px;"><?=$datos_usuario['us_accesosilent']?></span></span>
     </div>
 
-    <div class="d-flex flex-row align-items-start justify-content-between w-100 mb-3 p-2 bg-primary rounded mostrarocultar" id="mostrarocultar_datosacceso" style="cursor: pointer">
+    <div class="d-none flex-row align-items-start justify-content-between w-100 mb-3 p-2 bg-primary rounded " id="mostrarocultar_datosacceso" style="cursor: pointer">
         <span style="float:left" class="oswald fs_16 text-white">Datos de acceso:</span>
-        <div class="fa fa-plus fs_20 text-white"></div>
     </div>
-    <div id="datosacceso" class="div_mostrarocultar  col-12 col-md-10">
+    <div id="datosacceso" class="  col-12 col-md-10 d-none">
         <form action="<?=_RAIZ_?>procesando.php" onsubmit="return comprueba_pass('<?=$datos_usuario['us_idusuario']?>');" method="post" name="datos_acceso" id="datos_acceso" class="w-100">
             <input type="hidden" id="idproceso" name="idproceso" value="datos_acceso" />
             <input type="hidden" id="url_dest" name="url_dest" value="<?=_RAIZ_?>datos_del_taller/cuenta" />
@@ -77,11 +76,11 @@ $datos_taller=dame_datos_taller($datos_usuario['us_idtaller']);
         </form>
     </div>
 
-    <div class="d-flex flex-row align-items-start justify-content-between w-100 mb-3 p-2 bg-primary rounded mostrarocultar" style="cursor: pointer" id="mostrarocultar_datosgen">
+    <div class="d-none flex-row align-items-start justify-content-between w-100 mb-3 p-2 bg-primary rounded mostrarocultar" style="cursor: pointer" id="mostrarocultar_datosgen">
         <span style="" class="oswald fs_16 text-white">Datos de generales:</span>
         <div class="fa fa-plus fs_20 text-white " style="cursor: pointer"></div>
     </div>
-    <div id="datosgen" class="div_mostrarocultar col-12 col-md-10" style=" display:none">
+    <div id="datosgen" class=" col-12 col-md-10" style=" display:none">
         <form action="<?=_RAIZ_?>procesando.php" method="post" name="datos_generales" id="datos_generales">
             <input type="hidden" id="idproceso" name="idproceso" value="datos_generales" />
             <input type="hidden" id="url_dest" name="url_dest" value="<?=_RAIZ_?>datos_del_taller/cuenta" />
@@ -139,11 +138,11 @@ $datos_taller=dame_datos_taller($datos_usuario['us_idtaller']);
 
 
 
-    <div class="d-flex flex-row align-items-start justify-content-between w-100 mb-3 p-2 bg-primary rounded mostrarocultar" style="cursor: pointer" id="mostrarocultar_datosfac">
+    <div class="d-none flex-row align-items-start justify-content-between w-100 mb-3 p-2 bg-primary rounded mostrarocultar" style="cursor: pointer" id="mostrarocultar_datosfac">
         <span style="float:left" class="oswald fs_16 text-white">Datos de facturaci&oacute;n:</span>
         <div class="fa fa-plus fs_20 text-white  " ></div>
     </div>
-    <div id="datosfac" class="div_mostrarocultar  col-12 col-md-10" style="display:none">
+    <div id="datosfac" class=" col-12 col-md-10" style="display:none">
         <?php $datos_facturacion=dame_datos_facturacion($taller->ta_iddirfac);?>
         <form action="<?=_RAIZ_?>procesando.php" method="post" name="datos_facturacion" id="datos_facturacion">
             <input type="hidden" id="idproceso" name="idproceso" value="datos_facturacion" />

@@ -13,7 +13,7 @@ if(isset($_SESSION['datos_'._ID_PAG_]['edita_datosactividad']['hayerrores'])){
 	<?php }
 }
 $datos_actividad=datos_actividad();
-$empleados_directos=dame_empleados(1);
+$empleados_directos=dame_empleados($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'],1);
 
 $imp_mo=dame_impmo_actual();
 

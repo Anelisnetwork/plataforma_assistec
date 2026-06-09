@@ -16,7 +16,6 @@
     <?php include 'includes/recursos.php';?>
 </head>
 <?php
-$jsSession = json_encode($_SESSION['datos_'._ID_PAG_]['datos_user']);
 $img_logo=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']!='' && file_exists(_PATH_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo'])?_RAIZ_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']:_RAIZ_.'imagenes/assistec.png';
 $img_logo_w=isset($_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']) && $_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']!='' && file_exists(_PATH_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo'])?_RAIZ_.'imagenes/talleres/logotipos/'.$_SESSION['datos_'._ID_PAG_]['datos_user']['logotipo']:_RAIZ_.'imagenes/assistec_wh.png';
 $nick_usuario = dame_dato_usuario('us_nick');
@@ -312,12 +311,30 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 
 <script src="<?=_RAIZ_?>js/funciones.js?v=<?=time()?>" type="text/javascript"></script>
 
+<?php
+$jsSession              = json_encode($_SESSION['datos_'._ID_PAG_]['datos_user']);
+$tallerSessionInfo      = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionInfo']);
+$tallerSessionActividad = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionActividad']);
+$tallerSessionPersonal  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionPersonal']);
+$tallerSessionEquipamientos  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']);
+$tallerSessionGastos  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']);
+?>
 <script>
     (function(){
         // JSON seguro generado por PHP
         const sessionData = <?= $jsSession ?>;
+        const tallerSessionInfo = <?= $tallerSessionInfo ?>;
+        const tallerSessionActividad = <?= $tallerSessionActividad ?>;
+        const tallerSessionPersonal = <?= $tallerSessionPersonal ?>;
+        const tallerSessionEquipamientos = <?= $tallerSessionEquipamientos ?>;
+        const tallerSessionGastos = <?= $tallerSessionGastos ?>;
         // Guardar en sessionStorage como string
         sessionStorage.setItem('appSession', JSON.stringify(sessionData));
+        sessionStorage.setItem('tallerSessionInfo', JSON.stringify(tallerSessionInfo));
+        sessionStorage.setItem('tallerSessionActividad', JSON.stringify(tallerSessionActividad));
+        sessionStorage.setItem('tallerSessionPersonal', JSON.stringify(tallerSessionPersonal));
+        sessionStorage.setItem('tallerSessionEquipamientos', JSON.stringify(tallerSessionEquipamientos));
+        sessionStorage.setItem('tallerSessionGastos', JSON.stringify(tallerSessionGastos));
     })();
 </script>
 <?php include_javascript();?>

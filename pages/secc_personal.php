@@ -1,5 +1,5 @@
 <?php
-$empleados = dame_empleados();
+$empleados = dame_empleados($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
 
 $porcentajes = personal_porcentaje($_SESSION['datos_' . _ID_PAG_]['datos_user']['idtaller']);
 

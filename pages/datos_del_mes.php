@@ -68,7 +68,7 @@ if (isset($mes) && isset($ano)) {
         $proximo_ano = $proximo_mes == 1 ? $datos_guardados[0]->da_ano + 1 : $datos_guardados[0]->da_ano;
     }
 }
-$empleados_directos = dame_empleados(1);
+$empleados_directos = dame_empleados($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'],1);
 
 $imp_mo = dame_impmo_actual();
 
