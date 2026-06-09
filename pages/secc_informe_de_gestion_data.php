@@ -11,8 +11,8 @@ $obj_efic=$dato_mensual[0]->da_objeficacia;
 $rendimiento=porcentaje_($hfacturadas,$dato_mensual[0]->da_horasfichadasor);
 $obj_rendi=$dato_mensual[0]->da_objrendimiento;
 
-$ventapr=$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros;
-$costepr=$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros;
+$ventapr=$dato_mensual[0]->da_facturadorec;
+$costepr=$dato_mensual[0]->da_pagadoprovrec;
 //$porcentpr=margen_sobre_coste($costepr,$ventapr);
 $margenpr=$ventapr-$dato_mensual[0]->da_pagadoprovrec;
 $porcentpr=$margenpr/$ventapr*100;

@@ -312,12 +312,13 @@ $nombreModulo = nom_modulo($m) === 'Inicio' ? 'Dashboard' : nom_modulo($m)
 <script src="<?=_RAIZ_?>js/funciones.js?v=<?=time()?>" type="text/javascript"></script>
 
 <?php
-$jsSession              = json_encode($_SESSION['datos_'._ID_PAG_]['datos_user']);
-$tallerSessionInfo      = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionInfo']);
-$tallerSessionActividad = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionActividad']);
-$tallerSessionPersonal  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionPersonal']);
-$tallerSessionEquipamientos  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']);
-$tallerSessionGastos  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']);
+$jsSession                      = json_encode($_SESSION['datos_'._ID_PAG_]['datos_user']);
+$tallerSessionInfo              = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionInfo']);
+$tallerSessionActividad         = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionActividad']);
+$tallerSessionPersonal          = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionPersonal']);
+$tallerSessionEquipamientos     = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']);
+$tallerSessionGastos            = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']);
+$tallerSessionDatosMes          = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionDatosMes']);
 ?>
 <script>
     (function(){
@@ -328,6 +329,7 @@ $tallerSessionGastos  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionG
         const tallerSessionPersonal = <?= $tallerSessionPersonal ?>;
         const tallerSessionEquipamientos = <?= $tallerSessionEquipamientos ?>;
         const tallerSessionGastos = <?= $tallerSessionGastos ?>;
+        const tallerSessionDatosMes = <?= $tallerSessionDatosMes ?>;
         // Guardar en sessionStorage como string
         sessionStorage.setItem('appSession', JSON.stringify(sessionData));
         sessionStorage.setItem('tallerSessionInfo', JSON.stringify(tallerSessionInfo));
@@ -335,6 +337,7 @@ $tallerSessionGastos  = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionG
         sessionStorage.setItem('tallerSessionPersonal', JSON.stringify(tallerSessionPersonal));
         sessionStorage.setItem('tallerSessionEquipamientos', JSON.stringify(tallerSessionEquipamientos));
         sessionStorage.setItem('tallerSessionGastos', JSON.stringify(tallerSessionGastos));
+        sessionStorage.setItem('tallerSessionDatosMes', JSON.stringify(tallerSessionDatosMes));
     })();
 </script>
 <?php include_javascript();?>

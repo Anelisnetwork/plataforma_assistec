@@ -32,12 +32,15 @@ function datos_usuario($iduser){
         $datos_taller_personal      = parse_taller_personal($idtaller);
         $datos_taller_equipamiento  = parse_taller_equipamiento($idtaller);
         $datos_taller_gastos        = parse_taller_gastos($idtaller);
+        $datos_taller_mensual       = parse_taller_datos_mes($idtaller);
         //vd__($datos_taller_info);
         $_SESSION['datos_'._ID_PAG_]['tallerSessionInfo']           = $datos_taller_info;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionActividad']      = $datos_taller_actividad;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionPersonal']       = $datos_taller_personal;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']  = $datos_taller_equipamiento;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']         = $datos_taller_gastos;
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionDatosMes']       = $datos_taller_mensual;
+
         $_SESSION['datos_'._ID_PAG_]['datos_user']['hayKm0']        = $datos_taller_gastos['coste_personal'] > 0 && $datos_taller_gastos['suministros']>0 && $datos_taller_gastos['servicios_profesionales'] > 0 && $datos_taller_info['importe_mo'] > 0 && $datos_taller_info['horas_convenio'] > 0 && $datos_taller_personal['empleados_total'] > 0;
 
         $_SESSION['datos_'._ID_PAG_]['datos_user']['mesPasado'] = mesPasado($idtaller);
@@ -58,6 +61,87 @@ function de__id($id){
 	$id3=$paso2[1][3].$paso2[1][2].$paso2[1][1].$paso2[1][0];
 	$id2=$paso2[0][5].$paso2[0][4].$paso2[0][3].$paso2[0][2];
 	return intval($id1.$id2.$id3);
+}
+
+function parse_taller_datos_mes($idtaller){
+	$idtaller = (int)$idtaller;
+	$hoy = new DateTime('first day of this month');
+	$inicio = clone $hoy;
+	$inicio->modify('-11 months');
+
+	$inicioMes = (int)$inicio->format('n');
+	$inicioAnho = (int)$inicio->format('Y');
+	$finMes = (int)$hoy->format('n');
+	$finAnho = (int)$hoy->format('Y');
+
+	// Estructura base de los ultimos 12 meses: [anio][mes] => null | datos de actividad.
+	$actividadMensual = array();
+	$cursor = clone $inicio;
+	while ($cursor <= $hoy) {
+		$anho = (int)$cursor->format('Y');
+		$mes = (int)$cursor->format('n');
+		if (!isset($actividadMensual[$anho])) {
+			$actividadMensual[$anho] = array();
+		}
+		$actividadMensual[$anho][$mes] = null;
+		$cursor->modify('+1 month');
+	}
+
+	$sql = "SELECT da_ano, da_mes,"
+        ." da_diaslaborables as dias_laborables,"
+        ." da_horaspresencia as horas_presencia,"
+        ." da_horasfac as horas_facturadas,"
+        ." da_horasimproductivas as horas_perdidas,"
+        ." da_nofacturado as importe_no_facturado,"
+        ." da_facturadomo as facturado_mo,"
+        ." da_facturadorec as facturado_rec,"
+        ." da_facturadootros as facturado_varios,"
+        ." da_pagadoprovrec as pagado_prov_rec,"
+        ." da_pagadoprovotros as pagado_otros,"
+        ." da_costepersonal as coste_personal,"
+        ." da_costeestructura as coste_estructura,"
+        ." da_horasfichadasor as horas_fichadas_or,"
+        ." da_horasasignadas as horas_asignadas,"
+        ." da_entradastaller as entradas_taller,"
+        ." da_objproductividad as objetivo_productividad,"
+        ." da_objeficacia as objetivo_eficacia"
+        ." FROM datos_actividad "
+		. "WHERE da_idtipo=1 "
+		. "AND da_idtaller=$idtaller "
+		. "AND ((da_ano>$inicioAnho) OR (da_ano=$inicioAnho AND da_mes>=$inicioMes)) "
+		. "AND ((da_ano<$finAnho) OR (da_ano=$finAnho AND da_mes<=$finMes)) "
+		. "ORDER BY da_ano ASC, da_mes ASC";
+
+	$datos = list_object($sql);
+	foreach ($datos as $fila) {
+		$anho = (int)$fila->da_ano;
+		$mes = (int)$fila->da_mes;
+		if (!isset($actividadMensual[$anho])) {
+			$actividadMensual[$anho] = array();
+		}
+        $tiempo_medio_cliente        = $fila->entradas_taller==0 ? 0 : round($fila->horas_facturadas/$fila->entradas_taller);
+		$actividadMensual[$anho][$mes] = $fila;
+        $actividadMensual[$anho][$mes]->total_facturado             = $fila->facturado_mo + $fila->facturado_rec + $fila->facturado_varios;
+        $actividadMensual[$anho][$mes]->total_gastos                = $fila->pagado_prov_rec + $fila->pagado_otros + $fila->coste_personal + $fila->coste_estructura;
+        $actividadMensual[$anho][$mes]->ocupacion                   = $fila->horas_presencia > 0 ? round($fila->horas_fichadas_or*100/$fila->horas_presencia,2) : 0;
+        $actividadMensual[$anho][$mes]->eficacia                    = round($fila->horas_facturadas*100/$fila->horas_presencia,2);
+        $actividadMensual[$anho][$mes]->rendimiento                 = round($fila->horas_facturadas*100/$fila->horas_fichadas_or,2);
+        $actividadMensual[$anho][$mes]->margen_recambios            = round(($fila->facturado_rec-$fila->pagado_prov_rec)/$fila->facturado_rec*100,2);
+        $actividadMensual[$anho][$mes]->entradas_dia                = round($fila->entradas_taller/$fila->dias_laborables);
+        $actividadMensual[$anho][$mes]->horas_presencia_potenciales = horas_presencia_pot($idtaller);
+        $actividadMensual[$anho][$mes]->horas_presencia_productivas = round($actividadMensual[$anho][$mes]->horas_presencia_potenciales*($fila->objetivo_productividad/100));
+        $actividadMensual[$anho][$mes]->capacidad_teorica           = round($fila->horas_facturadas/$tiempo_medio_cliente/$fila->dias_laborables);
+        $actividadMensual[$anho][$mes]->tiempo_medio_entrada        = faltan2(($fila->entradas_taller==0?0:($actividadMensual[$anho][$mes]->horas_presencia_productivas/$fila->entradas_taller))*3600);
+        $actividadMensual[$anho][$mes]->ticket_medio                = round($fila->entradas_taller==0?0:$actividadMensual[$anho][$mes]->total_facturado/$fila->entradas_taller,2);
+        $actividadMensual[$anho][$mes]->ticket_medio_mo             = round($fila->entradas_taller==0?0:$actividadMensual[$anho][$mes]->facturado_mo/$fila->entradas_taller,2);
+        $actividadMensual[$anho][$mes]->porcentaje_mo_or            = round($actividadMensual[$anho][$mes]->ticket_medio==0?0:$actividadMensual[$anho][$mes]->ticket_medio_mo*100/$actividadMensual[$anho][$mes]->ticket_medio,2);
+        $actividadMensual[$anho][$mes]->ticket_medio_pr             = round($fila->entradas_taller==0?0:$fila->facturado_rec/$fila->entradas_taller,2);
+        $actividadMensual[$anho][$mes]->porcentaje_mo_pr            = round($actividadMensual[$anho][$mes]->ticket_medio==0?0:$actividadMensual[$anho][$mes]->ticket_medio_pr*100/$actividadMensual[$anho][$mes]->ticket_medio,2);
+        $actividadMensual[$anho][$mes]->ticket_medio_compra         = round($fila->entradas_taller==0?0:$fila->pagado_prov_rec/$fila->entradas_taller,2);
+        $actividadMensual[$anho][$mes]->margen_operativo            = round($actividadMensual[$anho][$mes]->ticket_medio-$actividadMensual[$anho][$mes]->ticket_medio_compra,2);
+	}
+
+	return $actividadMensual;
 }
 
 function parse_taller_info($idtaller){

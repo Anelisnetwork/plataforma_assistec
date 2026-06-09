@@ -1,7 +1,7 @@
 <?php
 $total_facturado=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadomo+$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros:0;
 $ventamo=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadomo:0;
-$ventapr=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadorec+$dato_mensual[0]->da_facturadootros:0;
+$ventapr=isset($dato_mensual[0])?$dato_mensual[0]->da_facturadorec:0;
 $costepr=isset($dato_mensual[0])?$dato_mensual[0]->da_pagadoprovrec+$dato_mensual[0]->da_pagadoprovotros:0;
 $margenpr=isset($dato_mensual[0])?$ventapr-$dato_mensual[0]->da_pagadoprovrec:0;
 $obj_ventas=isset($dato_mensual[0])?$dato_mensual[0]->da_objventas:0;
