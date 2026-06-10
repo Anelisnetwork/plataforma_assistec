@@ -319,17 +319,19 @@ $tallerSessionPersonal          = json_encode($_SESSION['datos_'._ID_PAG_]['tall
 $tallerSessionEquipamientos     = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']);
 $tallerSessionGastos            = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']);
 $tallerSessionDatosMes          = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionDatosMes']);
+$tallerSessionDatosAcumulado    = json_encode($_SESSION['datos_'._ID_PAG_]['tallerSessionDatosAcumulado']);
 ?>
 <script>
     (function(){
         // JSON seguro generado por PHP
-        const sessionData = <?= $jsSession ?>;
-        const tallerSessionInfo = <?= $tallerSessionInfo ?>;
-        const tallerSessionActividad = <?= $tallerSessionActividad ?>;
-        const tallerSessionPersonal = <?= $tallerSessionPersonal ?>;
-        const tallerSessionEquipamientos = <?= $tallerSessionEquipamientos ?>;
-        const tallerSessionGastos = <?= $tallerSessionGastos ?>;
-        const tallerSessionDatosMes = <?= $tallerSessionDatosMes ?>;
+        const sessionData                   = <?= $jsSession ?>;
+        const tallerSessionInfo             = <?= $tallerSessionInfo ?>;
+        const tallerSessionActividad        = <?= $tallerSessionActividad ?>;
+        const tallerSessionPersonal         = <?= $tallerSessionPersonal ?>;
+        const tallerSessionEquipamientos    = <?= $tallerSessionEquipamientos ?>;
+        const tallerSessionGastos           = <?= $tallerSessionGastos ?>;
+        const tallerSessionDatosMes         = <?= $tallerSessionDatosMes ?>;
+        const tallerSessionDatosAcumulado   = <?= $tallerSessionDatosAcumulado ?>;
         // Guardar en sessionStorage como string
         sessionStorage.setItem('appSession', JSON.stringify(sessionData));
         sessionStorage.setItem('tallerSessionInfo', JSON.stringify(tallerSessionInfo));
@@ -338,6 +340,7 @@ $tallerSessionDatosMes          = json_encode($_SESSION['datos_'._ID_PAG_]['tall
         sessionStorage.setItem('tallerSessionEquipamientos', JSON.stringify(tallerSessionEquipamientos));
         sessionStorage.setItem('tallerSessionGastos', JSON.stringify(tallerSessionGastos));
         sessionStorage.setItem('tallerSessionDatosMes', JSON.stringify(tallerSessionDatosMes));
+        sessionStorage.setItem('tallerSessionDatosAcumulado', JSON.stringify(tallerSessionDatosAcumulado));
     })();
 </script>
 <?php include_javascript();?>

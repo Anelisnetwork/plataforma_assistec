@@ -33,6 +33,7 @@ function datos_usuario($iduser){
         $datos_taller_equipamiento  = parse_taller_equipamiento($idtaller);
         $datos_taller_gastos        = parse_taller_gastos($idtaller);
         $datos_taller_mensual       = parse_taller_datos_mes($idtaller);
+        $datos_taller_acumulado     = parse_taller_datos_acumulado($idtaller);
         //vd__($datos_taller_info);
         $_SESSION['datos_'._ID_PAG_]['tallerSessionInfo']           = $datos_taller_info;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionActividad']      = $datos_taller_actividad;
@@ -40,6 +41,7 @@ function datos_usuario($iduser){
         $_SESSION['datos_'._ID_PAG_]['tallerSessionEquipamientos']  = $datos_taller_equipamiento;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionGastos']         = $datos_taller_gastos;
         $_SESSION['datos_'._ID_PAG_]['tallerSessionDatosMes']       = $datos_taller_mensual;
+        $_SESSION['datos_'._ID_PAG_]['tallerSessionDatosAcumulado'] = $datos_taller_acumulado;
 
         $_SESSION['datos_'._ID_PAG_]['datos_user']['hayKm0']        = $datos_taller_gastos['coste_personal'] > 0 && $datos_taller_gastos['suministros']>0 && $datos_taller_gastos['servicios_profesionales'] > 0 && $datos_taller_info['importe_mo'] > 0 && $datos_taller_info['horas_convenio'] > 0 && $datos_taller_personal['empleados_total'] > 0;
 
@@ -142,6 +144,28 @@ function parse_taller_datos_mes($idtaller){
 	}
 
 	return $actividadMensual;
+}
+
+function parse_taller_datos_acumulado($idtaller){
+    $tallerInfo = array();
+    for($anho = date('Y')-1; $anho <= date('Y'); $anho++){
+        $acumulado = dame_acumulado($anho, $idtaller);
+        foreach($acumulado as $clave => $valor){
+            if (is_numeric($valor)) {
+                $numero = (float)$valor;
+                if (floor($numero) != $numero) {
+                    $acumulado[$clave] = round($numero, 2);
+                }
+            }
+        }
+        $tallerInfo[$anho] = $acumulado;
+        $tallerInfo[$anho]['tiempo_medio_cliente']  = $acumulado['entradastaller']==0?0:round($acumulado['hfacturadas']/$acumulado['entradastaller'],2);
+        $tallerInfo[$anho]['horas_productivas']     = round($acumulado['sum_hprod']*0.9,2);
+        $tallerInfo[$anho]['capacidad_teorica']     = $tallerInfo[$anho]['tiempo_medio_cliente']==0?0:round($tallerInfo[$anho]['horas_productivas']/$tallerInfo[$anho]['tiempo_medio_cliente'],2);
+        $tallerInfo[$anho]['entradas_dia']          = $acumulado['diaslaborables']==0?0:round($acumulado['entradastaller']/$acumulado['diaslaborables'],2);
+        $tallerInfo[$anho]['ticketmedioc']          = $acumulado['entradastaller']==0?0:round($acumulado['costepr']/$acumulado['entradastaller'],2);
+    }
+    return $tallerInfo;
 }
 
 function parse_taller_info($idtaller){
@@ -567,7 +591,7 @@ function dame_rendimiento($meses='',$idtaller=''){//Devuelve un array con la ren
 }
 
 function dame_acumulado($anho,$idtaller=''){
-    $idtaller==''?$idtaller=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']:null;
+    $idtaller!=''?:$idtaller=$_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'];
 	$total_facturado=0;
 	$ventamo=0;
 	$ventapr=0;
@@ -645,7 +669,7 @@ function dame_acumulado($anho,$idtaller=''){
     $coste_hora_teorico=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*80/100));
     $coste_hora_real=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100));
 	
-	return array('hpresencia'=>$hpresencia, 'total_facturado'=>$total_facturado, 'ventamo'=>$ventamo, 'ventapr'=>$ventapr, 'costepr'=>$costepr, 'costeprov'=>$costeprov, 'costeotro'=>$costeotro, 'margenpr'=>$margenpr, 'porcentpr'=>$porcentpr, 'costepers'=>$costepers, 'costeestr'=>$costeestr, 'total_ingresos'=>$total_ingresos, 'total_gastos'=>$total_gastos, 'margenbruto'=>$margenbruto, 'porcmargenbruto'=>$porcmargenbruto, 'productividad'=>$productividad, 'eficacia'=>$eficacia, 'rendimiento'=>$rendimiento, 'entradastaller'=>$entradastaller, 'mediaor'=>$mediaor, 'mediamo'=>$mediamo, 'mediapr'=>$mediapr, 'fidelizacion'=>$fidelizacion, 'objeficacia'=>$objeficacia, 'objproductividad'=>$objproductividad, 'objrendimiento'=>$objrendimiento, 'objventas'=>$objventas, 'objmargenrec'=>$objmargenrec, 'hfacturadas'=>$hfacturadas, 'horaspotenciales'=>$horaspotenciales, 'costehora'=>$costehora, 'impmo_media'=>$impmo_media, 'diaslaborables'=>$diaslaborables, 'sum_hprod'=>$sum_hprod, 'coste_medio_mo'=>$coste_medio_mo, 'nmeses'=>$nmeses, 'personal_directo'=>$porcentajes[4], 'coste_hora_real'=>$coste_hora_real, 'coste_hora_teorico'=>$coste_hora_teorico);
+	return array('hpresencia'=>$hpresencia, 'total_facturado'=>$total_facturado, 'ventamo'=>$ventamo, 'ventapr'=>$ventapr, 'costepr'=>$costepr, 'costeprov'=>$costeprov, 'costeotro'=>$costeotro, 'margenpr'=>$margenpr, 'porcentpr'=>$porcentpr, 'costepers'=>$costepers, 'costeestr'=>$costeestr, 'total_ingresos'=>$total_ingresos, 'total_gastos'=>$total_gastos, 'margenbruto'=>$margenbruto, 'porcmargenbruto'=>$porcmargenbruto, 'productividad'=>$productividad, 'eficacia'=>$eficacia, 'rendimiento'=>$rendimiento, 'entradastaller'=>$entradastaller, 'mediaor'=>$mediaor, 'mediamo'=>$mediamo, 'mediapr'=>$mediapr, 'fidelizacion'=>$fidelizacion, 'objeficacia'=>$objeficacia, 'objproductividad'=>$objproductividad, 'objrendimiento'=>$objrendimiento, 'objventas'=>$objventas, 'objmargenrec'=>$objmargenrec, 'hfacturadas'=>$hfacturadas, 'horaspotenciales'=>$horaspotenciales, 'horasimproductivas'=>$horasimproductivas, 'costehora'=>$costehora, 'impmo_media'=>$impmo_media, 'diaslaborables'=>$diaslaborables, 'sum_hprod'=>$sum_hprod, 'nmeses'=>$nmeses, 'personal_directo'=>$porcentajes[4], 'coste_medio_mo'=>$coste_medio_mo, 'coste_hora_real'=>$coste_hora_real, 'coste_hora_teorico'=>$coste_hora_teorico);
 }
 
 function dame_acumulado_ult($idtaller=''){
