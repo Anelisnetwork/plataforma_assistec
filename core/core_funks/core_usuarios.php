@@ -127,12 +127,12 @@ function parse_taller_datos_mes($idtaller){
         $actividadMensual[$anho][$mes]->total_gastos                = $fila->pagado_prov_rec + $fila->pagado_otros + $fila->coste_personal + $fila->coste_estructura;
         $actividadMensual[$anho][$mes]->ocupacion                   = $fila->horas_presencia > 0 ? round($fila->horas_fichadas_or*100/$fila->horas_presencia,2) : 0;
         $actividadMensual[$anho][$mes]->eficacia                    = round($fila->horas_facturadas*100/$fila->horas_presencia,2);
-        $actividadMensual[$anho][$mes]->rendimiento                 = round($fila->horas_facturadas*100/$fila->horas_fichadas_or,2);
+        $actividadMensual[$anho][$mes]->rendimiento                 = $fila->horas_fichadas_or > 0 ? round($fila->horas_facturadas*100/$fila->horas_fichadas_or,2) : 0;
         $actividadMensual[$anho][$mes]->margen_recambios            = round(($fila->facturado_rec-$fila->pagado_prov_rec)/$fila->facturado_rec*100,2);
         $actividadMensual[$anho][$mes]->entradas_dia                = round($fila->entradas_taller/$fila->dias_laborables);
         $actividadMensual[$anho][$mes]->horas_presencia_potenciales = horas_presencia_pot($idtaller);
         $actividadMensual[$anho][$mes]->horas_presencia_productivas = round($actividadMensual[$anho][$mes]->horas_presencia_potenciales*($fila->objetivo_productividad/100));
-        $actividadMensual[$anho][$mes]->capacidad_teorica           = round($fila->horas_facturadas/$tiempo_medio_cliente/$fila->dias_laborables);
+        $actividadMensual[$anho][$mes]->capacidad_teorica           = $tiempo_medio_cliente == 0 || $fila->dias_laborables == 0 ? 0 : round($fila->horas_facturadas/$tiempo_medio_cliente/$fila->dias_laborables);
         $actividadMensual[$anho][$mes]->tiempo_medio_entrada        = faltan2(($fila->entradas_taller==0?0:($actividadMensual[$anho][$mes]->horas_presencia_productivas/$fila->entradas_taller))*3600);
         $actividadMensual[$anho][$mes]->ticket_medio                = round($fila->entradas_taller==0?0:$actividadMensual[$anho][$mes]->total_facturado/$fila->entradas_taller,2);
         $actividadMensual[$anho][$mes]->ticket_medio_mo             = round($fila->entradas_taller==0?0:$actividadMensual[$anho][$mes]->facturado_mo/$fila->entradas_taller,2);
@@ -392,7 +392,7 @@ function datos_actividad_taller($idtaller, $idtipo=0, $mes='', $ano=''){//Por de
 function mes_anho_anterior(): array {
     $dt = new DateTime('first day of this month');
     $dt->modify('-1 month');
-    return ['mes' => $dt->format('m'), 'anho' => $dt->format('Y')];
+    return ['mes' => $dt->format('n'), 'anho' => $dt->format('Y')];
 }
 
 function hayKm0($idtaller){
