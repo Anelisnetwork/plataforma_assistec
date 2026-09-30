@@ -455,7 +455,7 @@ function dame_variacion($idtaller=''){//Devuelve un array con el porcentaje de i
 			$suma+=$mes->FACTURADO;
 		}
 		$media=$suma/$tot_meses;
-		$incremento=($ventas_anho[0]->FACTURADO-$media)/$ventas_anho[0]->FACTURADO*100;
+		$incremento=$ventas_anho[0]->FACTURADO>0?($ventas_anho[0]->FACTURADO-$media)/$ventas_anho[0]->FACTURADO*100:0;
 	}
 	else{
 		$incremento=0;
@@ -551,7 +551,7 @@ function dame_eficacia($meses='',$idtaller=''){//Devuelve un array con la eficac
 	$datos=list_object('select da_ano, da_mes, da_iddato, da_facturadomo, da_impmo from datos_actividad where da_idtipo=1 and da_idtaller='.$idtaller.' order by da_ano desc, da_mes desc');
 	foreach ($datos as $key=>$dato){
 		$sum_hprod+=horas_presencia($dato->da_iddato);
-		$sum_hfac+=($dato->da_facturadomo/$dato->da_impmo);
+		$sum_hfac+=($dato->da_impmo>0?$dato->da_facturadomo/$dato->da_impmo:0);
 		$key==0?$ef_ultmes=porcentaje_($sum_hfac,$sum_hprod):'';
 	}
 	$eficacia=porcentaje_($sum_hfac,$sum_hprod);
@@ -582,7 +582,7 @@ function dame_rendimiento($meses='',$idtaller=''){//Devuelve un array con la ren
     $rd_ultmes=0;
 	$datos=list_object('select da_ano, da_mes, da_iddato, da_horasfichadasor, da_facturadomo, da_impmo from datos_actividad where da_idtipo=1 and da_idtaller='.$idtaller.' order by da_ano desc, da_mes desc');
 	foreach ($datos as $key=>$dato){
-		$sum_hfac+=($dato->da_facturadomo/$dato->da_impmo);
+		$sum_hfac+=($dato->da_impmo>0?$dato->da_facturadomo/$dato->da_impmo:0);
 		$sum_hfich+=$dato->da_horasfichadasor;
 		$key==0?$rd_ultmes=porcentaje_($sum_hfac,$sum_hfich):'';
 	}
@@ -630,7 +630,7 @@ function dame_acumulado($anho,$idtaller=''){
 		$total_ingresos+=$dato->da_facturadomo+$dato->da_facturadorec+$dato->da_facturadootros;
 		$hpresencia+=horas_presencia($dato->da_iddato);
 		$fichadasor+=$dato->da_horasfichadasor;
-		$hfacturadas+=($dato->da_facturadomo/$dato->da_impmo);
+		$hfacturadas+=($dato->da_impmo>0?$dato->da_facturadomo/$dato->da_impmo:0);
 		$entradastaller+=$dato->da_entradastaller;
 		$objeficacia+=$dato->da_objeficacia;
 		$objproductividad+=$dato->da_objproductividad;
@@ -665,9 +665,9 @@ function dame_acumulado($anho,$idtaller=''){
 	$horaspotenciales=$objeficacia==0?0:($hpresencia/$nmeses*12)*$objeficacia/100;
 	$costehora=$horaspotenciales==0?0:(($costepers+$costeestr)/$nmeses*12)/$horaspotenciales;
 	$impmo_media=$nmeses==0?0:$impmo/$nmeses;
-	$coste_medio_mo=$nmeses==0?0:($ventamo/$hfacturadas)/$nmeses;
+	$coste_medio_mo=$nmeses==0||$hfacturadas==0?0:($ventamo/$hfacturadas)/$nmeses;
     $coste_hora_teorico=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*80/100));
-    $coste_hora_real=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100));
+    $coste_hora_real=$nmeses==0?0:(($porcentajes[4]==0||$eficacia==0)?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100));
 	
 	return array('hpresencia'=>$hpresencia, 'total_facturado'=>$total_facturado, 'ventamo'=>$ventamo, 'ventapr'=>$ventapr, 'costepr'=>$costepr, 'costeprov'=>$costeprov, 'costeotro'=>$costeotro, 'margenpr'=>$margenpr, 'porcentpr'=>$porcentpr, 'costepers'=>$costepers, 'costeestr'=>$costeestr, 'total_ingresos'=>$total_ingresos, 'total_gastos'=>$total_gastos, 'margenbruto'=>$margenbruto, 'porcmargenbruto'=>$porcmargenbruto, 'productividad'=>$productividad, 'eficacia'=>$eficacia, 'rendimiento'=>$rendimiento, 'entradastaller'=>$entradastaller, 'mediaor'=>$mediaor, 'mediamo'=>$mediamo, 'mediapr'=>$mediapr, 'fidelizacion'=>$fidelizacion, 'objeficacia'=>$objeficacia, 'objproductividad'=>$objproductividad, 'objrendimiento'=>$objrendimiento, 'objventas'=>$objventas, 'objmargenrec'=>$objmargenrec, 'hfacturadas'=>$hfacturadas, 'horaspotenciales'=>$horaspotenciales, 'costehora'=>$costehora, 'impmo_media'=>$impmo_media, 'diaslaborables'=>$diaslaborables, 'sum_hprod'=>$sum_hprod, 'coste_medio_mo'=>$coste_medio_mo, 'nmeses'=>$nmeses, 'personal_directo'=>$porcentajes[4], 'coste_hora_real'=>$coste_hora_real, 'coste_hora_teorico'=>$coste_hora_teorico);
 }
@@ -774,11 +774,11 @@ LIMIT 0,1");
         }
         $margenpr=$ventapr-$costeprov;
         //$porcentpr=margen_sobre_coste($costeprov,$ventapr);
-        $porcentpr=$margenpr/$ventapr*100;
+        $porcentpr=$ventapr>0?$margenpr/$ventapr*100:0;
         $total_gastos=$costepr+$costepers+$costeestr;
         $margenbruto=$total_ingresos-$total_gastos;
         //$porcmargenbruto=margen_sobre_coste($total_gastos,$total_ingresos);
-        $porcmargenbruto=$margenbruto/$total_ingresos*100;
+        $porcmargenbruto=$total_ingresos>0?$margenbruto/$total_ingresos*100:0;
         $productividad=porcentaje_($fichadasor,$hpresencia);
         $eficacia=porcentaje_($hfacturadas,$hpresencia);
         $rendimiento=porcentaje_($hfacturadas,$fichadasor);
@@ -788,17 +788,17 @@ LIMIT 0,1");
         $infotaller=dame_info($idtaller);
         $totalbbdd=$infotaller[0]->it_totalclientes;
         $fidelizacion=porcentaje_($entradastaller,$totalbbdd);
-        $objeficacia=$objeficacia/$nmeses;
-        $objproductividad=$objproductividad/$nmeses;
-        $objrendimiento=$objrendimiento/$nmeses;
-        $objventas=$objventas/$nmeses;
-        $objmargenrec=$objmargenrec/$nmeses;
-        $horaspotenciales=($hpresencia/$nmeses*12)*$objeficacia/100;
+        $objeficacia=$nmeses==0?0:$objeficacia/$nmeses;
+        $objproductividad=$nmeses==0?0:$objproductividad/$nmeses;
+        $objrendimiento=$nmeses==0?0:$objrendimiento/$nmeses;
+        $objventas=$nmeses==0?0:$objventas/$nmeses;
+        $objmargenrec=$nmeses==0?0:$objmargenrec/$nmeses;
+        $horaspotenciales=$nmeses==0?0:($hpresencia/$nmeses*12)*$objeficacia/100;
         $costehora=$horaspotenciales==0?0:(($costepers+$costeestr)/$nmeses*12)/$horaspotenciales;
-        $impmo_media=$impmo/$nmeses;
-        $coste_medio_mo=$ventamo/$hfacturadas;
-        $coste_hora_teorico=$porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*80/100);
-        $coste_hora_real=$porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100);
+        $impmo_media=$nmeses==0?0:$impmo/$nmeses;
+        $coste_medio_mo=$hfacturadas==0?0:$ventamo/$hfacturadas;
+        $coste_hora_teorico=$nmeses==0?0:($porcentajes[4]==0?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*80/100));
+        $coste_hora_real=$nmeses==0?0:(($porcentajes[4]==0||$eficacia==0)?0:(($costepers/$nmeses*12)+($costeestr/$nmeses*12))/($porcentajes[4]*1750*$eficacia/100));
     }
     
 
