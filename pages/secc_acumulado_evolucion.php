@@ -82,46 +82,46 @@
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
         <label class="ancho">Horas facturadas x operario:</label>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$porcentajes[4])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma($porcentajes[4]==0?0:$datos_acumulados['hfacturadas']/$porcentajes[4])?></span>
         </div>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$datos_acumulados['nmeses']/$porcentajes[4])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma(($porcentajes[4]==0||$datos_acumulados['nmeses']==0)?0:$datos_acumulados['hfacturadas']/$datos_acumulados['nmeses']/$porcentajes[4])?></span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
         <label class="ancho">€ MO x operario:</label>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma($porcentajes[4]==0?0:$datos_acumulados['ventamo']/$porcentajes[4])?></span>
         </div>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4]/$datos_acumulados['nmeses'])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma(($porcentajes[4]==0||$datos_acumulados['nmeses']==0)?0:$datos_acumulados['ventamo']/$porcentajes[4]/$datos_acumulados['nmeses'])?></span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
         <label class="ancho">€ PR x operario:</label>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['ventapr']/$porcentajes[4])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma($porcentajes[4]==0?0:$datos_acumulados['ventapr']/$porcentajes[4])?></span>
         </div>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['ventapr']/$porcentajes[4]/$datos_acumulados['nmeses'])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma(($porcentajes[4]==0||$datos_acumulados['nmeses']==0)?0:$datos_acumulados['ventapr']/$porcentajes[4]/$datos_acumulados['nmeses'])?></span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
         <label class="ancho">Total facturado x operario:</label>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma($porcentajes[4]==0?0:$datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])?></span>
         </div>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma(($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])/$datos_acumulados['nmeses'])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma(($porcentajes[4]==0||$datos_acumulados['nmeses']==0)?0:($datos_acumulados['ventamo']/$porcentajes[4]+$datos_acumulados['ventapr']/$porcentajes[4])/$datos_acumulados['nmeses'])?></span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
         <label class="ancho">Nº horas por OR:</label>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma($datos_acumulados['entradastaller']==0?0:$datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])?></span>
         </div>
         <div class="dato">
-            <span class=" fs_14"><?=moneda_puntocoma(($datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])/$datos_acumulados['nmeses'])?></span>
+            <span class=" fs_14"><?=moneda_puntocoma(($datos_acumulados['entradastaller']==0||$datos_acumulados['nmeses']==0)?0:($datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'])/$datos_acumulados['nmeses'])?></span>
         </div>
     </div>
 
