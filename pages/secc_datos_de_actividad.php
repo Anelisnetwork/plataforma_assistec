@@ -192,7 +192,8 @@ $imp_mo=dame_impmo_actual();
         
         <div class="linea">
             <label class="ancho"><strong>N&ordm; horas facturadas:</strong></label>
-            <input type="text" id="horasfac_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right; background-color:#ffd7b4" name="horasfac_<?=$datos_actividad[0]->da_iddato?>" class="peq" value="<?=moneda_punto($datos_actividad[0]->da_horasfac,2)?>" readonly="readonly">
+            <input type="text" id="horasfac_<?=$datos_actividad[0]->da_iddato?>" style="text-align:right;" name="horasfac_<?=$datos_actividad[0]->da_iddato?>" class="peq orig" value="<?=moneda_punto($datos_actividad[0]->da_horasfac,2)?>" onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datosactividad')">
+            <input type="hidden" id="horasfac_<?=$datos_actividad[0]->da_iddato?>_def" name="horasfac_<?=$datos_actividad[0]->da_iddato?>_def" value="<?=$datos_actividad[0]->da_horasfac?>" />
         </div>
         
         <div class="linea">

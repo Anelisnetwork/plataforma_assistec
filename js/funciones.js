@@ -623,7 +623,8 @@ function datos_presencia(idsdatos){
 		*/
 		facturado=parseFloat($('#facturadomo_'+value).val());
 		importemo=parseFloat($('#importemo_'+value).val());
-		hcobradas=(facturado/importemo).toFixed(2);
+        hcobradas=parseFloat($('#horasfac_'+value).val());
+		//hcobradas=(facturado/importemo).toFixed(2);
 		diaslab=parseFloat($('#diaslab_'+value).val());
 		if($('#presenciaxemp').prop('checked')){
 			$('.pres_emp').each(function(){
@@ -650,7 +651,7 @@ function datos_presencia(idsdatos){
 		//alert (hperdidas);
 		//$('#horaspresencia_'+value).val(hprod>0?hprod.toFixed(2):0.00);
 		$('#horasfac_'+value).val(hcobradas);
-		$('#horasimproductivas_'+value).val(hperdidas);
+		//$('#horasimproductivas_'+value).val(hperdidas);
 		$('#nofacturado_'+value).val(nofacturado);
 	})
 

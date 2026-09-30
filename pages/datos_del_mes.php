@@ -413,9 +413,11 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                                     <label class="ancho">N&ordm; horas facturadas:</label>
                                     <input type="text" id="horasfac_<?= $iddato ?>" style="text-align:right;width: auto; "
-                                           name="horasfac_<?= $iddato ?>" class="peq form-control form-control-sm text-bg-secondary"
+                                           name="horasfac_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($horasfac) ? $horasfac : 0) : $dato_mensual[0]->da_horasfac, 2) ?>"
-                                           readonly="readonly">
+                                           onkeyup="comprueba_num(this.id); comprueba_cambios('edita_datomensual')">
+                                    <input type="hidden" id="horasfac_<?= $iddato ?>_def" name="horasfac_<?= $iddato ?>_def"
+                                           value="<?= moneda_punto($iddato == 'NEW' ? (isset($horasfac) ? $horasfac : 0) : $dato_mensual[0]->da_horasfac, 2) ?>"/>
                                 </div>
                                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                                     <label class="ancho faq"
