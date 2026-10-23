@@ -77,7 +77,7 @@ function damearraypag($array,$pagina,$limite){
 }
 
 function margen_sobre_venta($coste, $venta){
-	$margen=($coste-$venta)/$venta*100;
+	$margen=$venta==0?0:($coste-$venta)/$venta*100;
 	return $margen;
 }
 
@@ -1015,7 +1015,8 @@ function cidr_match(string $ip, string $cidr): bool {
 }
 
 function include_javascript(){
-    $allowed_ips = [
+    $allowed = true;
+    /*$allowed_ips = [
         '89.131.66.1',// Jose
         '91.242.149.68',//Gerardo
         '91.243.132.83',// Sergi
@@ -1030,7 +1031,7 @@ function include_javascript(){
         } else {
             if ($client_ip === $allowed_ip) { $allowed = true; break; }
         }
-    }
+    }*/
 
     if ($allowed) {
         // Ruta al JS a cargar
