@@ -129,7 +129,7 @@ function parse_taller_datos_mes($idtaller){
         $actividadMensual[$anho][$mes]->eficacia                    = $fila->horas_presencia > 0 ? round($fila->horas_facturadas*100/$fila->horas_presencia,2) : 0;
         $actividadMensual[$anho][$mes]->rendimiento                 = $fila->horas_fichadas_or > 0 ? round($fila->horas_facturadas*100/$fila->horas_fichadas_or,2) : 0;
         $actividadMensual[$anho][$mes]->margen_recambios            = $fila->facturado_rec > 0 ? round(($fila->facturado_rec-$fila->pagado_prov_rec)/$fila->facturado_rec*100,2) : 0;
-        $actividadMensual[$anho][$mes]->entradas_dia                = round($fila->entradas_taller/$fila->dias_laborables);
+        $actividadMensual[$anho][$mes]->entradas_dia                = $fila->dias_laborables > 0 ? round($fila->entradas_taller/$fila->dias_laborables) : 0;
         $actividadMensual[$anho][$mes]->horas_presencia_potenciales = horas_presencia_pot($idtaller);
         $actividadMensual[$anho][$mes]->horas_presencia_productivas = round($actividadMensual[$anho][$mes]->horas_presencia_potenciales*($fila->objetivo_productividad/100));
         $actividadMensual[$anho][$mes]->capacidad_teorica           = $tiempo_medio_cliente == 0 || $fila->dias_laborables == 0 ? 0 : round($fila->horas_facturadas/$tiempo_medio_cliente/$fila->dias_laborables);
