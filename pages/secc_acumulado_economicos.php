@@ -12,25 +12,25 @@
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Importe venta PR:</label>
+        <label class="ancho faq" title="Pintura y Recambio">Importe venta MATERIALES:</label>
         <div class="dato">
             <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['ventapr'])?> &euro;</span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Coste venta PR:</label>
+        <label class="ancho faq" title="Pintura y Recambio">Coste venta MATERIALES:</label>
         <div class="dato">
             <span class="oswald fs_14"><?=moneda_puntocoma($datos_acumulados['costeprov'])?> &euro;</span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Margen venta PR:</label>
+        <label class="ancho faq" title="Pintura y Recambio">Margen venta MATERIALES:</label>
         <div class="dato">
             <span class="oswald fs_14<?=$datos_acumulados['margenpr']<0?' texto_r':''?>"><?=moneda_puntocoma($datos_acumulados['margenpr'])?> &euro;</span>
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">% Margen venta PR:</label>
+        <label class="ancho faq" title="Pintura y Recambio">% Margen venta MATERIALES:</label>
         <div class="dato">
             <span class="oswald fs_14<?=$datos_acumulados['porcentpr']<0?' texto_r':''?>"><?=moneda_puntocoma($datos_acumulados['porcentpr'])?> %</span>
         </div>

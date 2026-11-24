@@ -273,12 +273,12 @@ else if($dato=='acum_econ_2'){
 	$col2["type"]="number";
 	$col3=array();
 	$col3["id"]="";
-	$col3["label"]="Venta PR";
+	$col3["label"]="Venta MATERIALES";
 	$col3["pattern"]="";
 	$col3["type"]="number";
 	$col4=array();
 	$col4["id"]="";
-	$col4["label"]="Coste PR";
+	$col4["label"]="Coste MATERIALES";
 	$col4["pattern"]="";
 	$col4["type"]="number";
 	

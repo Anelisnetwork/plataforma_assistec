@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho">% PR por OR:</label>
+                <label class="ancho faq" title="Pintura y Recambio">% MATERIALES por OR:</label>
                 <div class="dato">
                     <span class="oswald fs_14"><?=moneda_puntocoma(porcentaje_($mediapr,$mediaor))?>%</span>
                 </div>
