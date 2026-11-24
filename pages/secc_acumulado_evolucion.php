@@ -1,4 +1,4 @@
-<div id="informemes" class="div_mostrarocultar   col col-12 col-md-6 d-flex flex-column align-items-start justify-content-start p-3">
+<div id="informemes" class="evolucion-columnas div_mostrarocultar   col col-12 col-md-6 d-flex flex-column align-items-start justify-content-start p-3">
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
         <span class=" fs_18">Informe de evoluci&oacute;n acumulado del a&ntilde;o <?=$anho_acumulado?></span>
     </div>

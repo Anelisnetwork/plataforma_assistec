@@ -494,6 +494,18 @@ input[type="submit"]{
 	width:100px;
 	text-align:right;
 }
+#informemes.evolucion-columnas > .d-flex:has(> .dato + .dato){
+	display:grid !important;
+	grid-template-columns:minmax(0, 1fr) 9.5rem 7rem;
+	column-gap:0.75rem;
+	align-items:center;
+}
+#informemes.evolucion-columnas > .d-flex:has(> .dato + .dato) > .dato:nth-child(2){
+	text-align:center;
+}
+#informemes.evolucion-columnas > .d-flex:has(> .dato + .dato) > .dato:nth-child(3){
+	text-align:right;
+}
 #panel .cont_seccion .linea.empleado{
 	margin:2px 0px 10px 0px;
 	border-bottom:1px dotted #555;
