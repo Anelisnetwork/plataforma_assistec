@@ -276,7 +276,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 </div>
                                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                                     <label class="ancho faq"
-                                           title="Introducir el importe de facturación del recambio (piezas y pintura)">Importe
+                                           title="Introducir el importe de facturación del recambio">Importe
                                         facturado de REC:</label>
                                     <input type="text" id="facturadorec_<?= $iddato ?>" style="text-align:right;width: auto"
                                            name="facturadorec_<?= $iddato ?>" class="peq orig form-control form-control-sm"
