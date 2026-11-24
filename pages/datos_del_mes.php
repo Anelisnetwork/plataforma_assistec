@@ -342,7 +342,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                                     <label class="ancho faq doslineas"
                                            title="Anotar el importe de los albaranes o facturas de proveedores de piezas de recambios / pintura del mes">Importe
-                                        pagado proveedores REC:</label>
+                                        Compra Piezas Rec.:</label>
                                     <input type="text" id="pagadoprovrec_<?= $iddato ?>" style="text-align:right;width: auto"
                                            name="pagadoprovrec_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($pagadoprovrec) ? $pagadoprovrec : 0) : $dato_mensual[0]->da_pagadoprovrec, 2) ?>"
@@ -353,7 +353,7 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
                                     <label class="ancho faq doslineas"
                                            title="Indicar cifra de importes pagados a proveedores de taller (protecciones, pequeño material, consumibles…)">Importe
-                                        pagado otros proveedores:</label>
+                                        Compra Mat. Pintura:</label>
                                     <input type="text" id="pagadoprovotros_<?= $iddato ?>" style="text-align:right;width: auto"
                                            name="pagadoprovotros_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($pagadoprovotros) ? $pagadoprovotros : 0) : $dato_mensual[0]->da_pagadoprovotros, 2) ?>"
