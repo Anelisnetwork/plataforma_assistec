@@ -286,8 +286,8 @@ else if(isset($dato_mensual[0]->da_tipopresencia) && $dato_mensual[0]->da_tipopr
                                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($facturadorec) ? $facturadorec : 0) : $dato_mensual[0]->da_facturadorec, 2) ?>"/>
                                 </div>
                                 <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between w-100 mb-1">
-                                    <label class="ancho faq" title="Importe facturados como material limpieza o gestión residuos">Importe
-                                        varios facturado:</label>
+                                    <label class="ancho faq" title="Introducir el importe de facturación de la pintura">Importe
+                                        facturado PINTURA:</label>
                                     <input type="text" id="facturadootros_<?= $iddato ?>" style="text-align:right;width: auto"
                                            name="facturadootros_<?= $iddato ?>" class="peq orig form-control form-control-sm"
                                            value="<?= moneda_punto($iddato == 'NEW' ? (isset($facturadootros) ? $facturadootros : 0) : $dato_mensual[0]->da_facturadootros, 2) ?>"
