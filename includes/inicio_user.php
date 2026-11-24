@@ -115,7 +115,7 @@ $margenTrg = $objmargenrec==0?25:moneda_puntocoma($objmargenrec);
                         <div class="p-px-2 border rounded-pill d-inline-flex align-items-center justify-content-center">
                             <span class="bg-label-warning px-px-8 py-px-1 rounded-pill d-inline-flex align-items-center justify-content-center fz-16px fw-medium">
                                 <i class="fa fa-triangle-exclamation me-2"></i>
-                                El taller ha dejado de facturar <?=number_format(($horaspotenciales-$hfacturadas)*$coste_hora_teorico,2,',','.')?> € de mano de obra.
+                                El taller ha dejado de facturar <?=number_format($horasimproductivas*$precio_medio_mo,2,',','.')?> € de mano de obra.
                             </span>
                         </div>
                     </div>
