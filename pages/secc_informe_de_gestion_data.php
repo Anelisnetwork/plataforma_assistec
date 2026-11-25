@@ -36,4 +36,4 @@ $ticketmedioc = $dato_mensual[0]->da_entradastaller==0?0:$costepr/$dato_mensual[
 $horas_productivas=horas_presencia_pot($_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller'])*($obj_prod/100);//Un 10% de tiempo no productivo
 $tiempo_medio_cliente=$dato_mensual[0]->da_entradastaller==0?0:$hfacturadas/$dato_mensual[0]->da_entradastaller;//21.6
 $entradas_dia=$dato_mensual[0]->da_diaslaborables==0?0:$dato_mensual[0]->da_entradastaller/$dato_mensual[0]->da_diaslaborables;
-$capacidad_teorica=($dato_mensual[0]->da_entradastaller==0||$tiempo_medio_cliente==0||$dato_mensual[0]->da_diaslaborables==0)?0:$hfacturadas/$tiempo_medio_cliente/$dato_mensual[0]->da_diaslaborables;
+$capacidad_teorica=$tiempo_medio_cliente==0?0:$horas_productivas/$tiempo_medio_cliente;
