@@ -80,7 +80,8 @@ foreach($talleres as $taller){
 
         // Acumulado gestión
         $tiempo_medio_cliente=$datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'];
-        $horas_productivas=$datos_acumulados['sum_hprod']*0.9;//Un 10% de tiempo no productivo
+        $obj_ocupacion=dato_taller('ta_objproductividad', $id_taller);
+        $horas_productivas=$datos_acumulados['sum_hprod']*((float)$obj_ocupacion/100);
         $capacidad_teorica=$horas_productivas/$tiempo_medio_cliente;
         $entradas_dia=round($datos_acumulados['entradastaller']/$datos_acumulados['diaslaborables'],2);
         $informe[$id_taller]['gestion']['header']="Informe de gestión acumulado de ".$n_taller." del año ".$anho;

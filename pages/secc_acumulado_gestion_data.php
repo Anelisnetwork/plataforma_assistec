@@ -1,6 +1,7 @@
 <?php
 $tiempo_medio_cliente=$datos_acumulados['entradastaller']==0?0:$datos_acumulados['hfacturadas']/$datos_acumulados['entradastaller'];
-$horas_productivas=$datos_acumulados['sum_hprod']*0.9;//Un 10% de tiempo no productivo
+$obj_ocupacion=dato_taller('ta_objproductividad', $_SESSION['datos_'._ID_PAG_]['datos_user']['idtaller']);
+$horas_productivas=$datos_acumulados['sum_hprod']*((float)$obj_ocupacion/100);
 $capacidad_teorica=$tiempo_medio_cliente==0?0:$horas_productivas/$tiempo_medio_cliente;
 $entradas_dia=$datos_acumulados['diaslaborables']==0?0:round($datos_acumulados['entradastaller']/$datos_acumulados['diaslaborables'],2);
 

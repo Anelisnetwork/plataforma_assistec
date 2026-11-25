@@ -160,7 +160,8 @@ function parse_taller_datos_acumulado($idtaller){
         }
         $tallerInfo[$anho] = $acumulado;
         $tallerInfo[$anho]['tiempo_medio_cliente']  = $acumulado['entradastaller']==0?0:round($acumulado['hfacturadas']/$acumulado['entradastaller'],2);
-        $tallerInfo[$anho]['horas_productivas']     = round($acumulado['sum_hprod']*0.9,2);
+        $obj_ocupacion=dato_taller('ta_objproductividad', $idtaller);
+        $tallerInfo[$anho]['horas_productivas']     = round($acumulado['sum_hprod']*((float)$obj_ocupacion/100),2);
         $tallerInfo[$anho]['capacidad_teorica']     = $tallerInfo[$anho]['tiempo_medio_cliente']==0?0:round($tallerInfo[$anho]['horas_productivas']/$tallerInfo[$anho]['tiempo_medio_cliente'],2);
         $tallerInfo[$anho]['entradas_dia']          = $acumulado['diaslaborables']==0?0:round($acumulado['entradastaller']/$acumulado['diaslaborables'],2);
         $tallerInfo[$anho]['ticketmedioc']          = $acumulado['entradastaller']==0?0:round($acumulado['costepr']/$acumulado['entradastaller'],2);
