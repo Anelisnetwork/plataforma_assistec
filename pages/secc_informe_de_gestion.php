@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-                <label class="ancho faq" title="(horas facturadas/horas fichadas OR)">Rendimiento:</label>
+                <label class="ancho faq" title="(horas facturadas/horas fichadas OR)">Eficiencia/Rendimiento:</label>
                 <div class="dato">
                     <span class="oswald fs_14 texto_<?=$rendimiento<$obj_rendi?'r':'v'?>"><?=moneda_puntocoma($rendimiento)?> %</span>
                 </div>

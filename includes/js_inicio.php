@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function() {
         drawChart_columnas_upd('datos_stats', 'ventas_mo_rec%%0', 'Ventas MO y piezas', 'stats_ventas');
-        drawChart_columnas_upd('datos_stats', 'eficacia%%0', 'Eficacia', 'stats_eficacia');
+        drawChart_columnas_upd('datos_stats', 'eficacia%%0', 'Eficacia/Productividad', 'stats_eficacia');
         drawChart_columnas_upd('datos_stats', 'margen_rec%%0', 'Margen de la venta de piezas', 'stats_margenrec');
         drawChart_columnas_upd('datos_stats', 'pvpentrada%%0', '€ por entrada al taller', 'stats_pvpentrada');
     })

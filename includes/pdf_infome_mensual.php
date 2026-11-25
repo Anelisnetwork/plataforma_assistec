@@ -152,7 +152,7 @@ tr {
         </tr>
         <tr>
             <td style="width: 199px; padding: 10px 7px; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;">
-                <strong><i><span style="color:#888">Eficacia</span></i></strong>
+                <strong><i><span style="color:#888">Eficacia/Productividad</span></i></strong>
             </td>
             <td style="width: 98px; text-align:center; border:1px solid #ccc; padding: 10px 7px">
                 <span style="color:#888"><?=number_format($datos['da_objeficacia'],0)?>%</span>

@@ -321,12 +321,12 @@ else if($dato=='acum_gest_1'){
 	$col2["type"]="number";
 	$col3=array();
 	$col3["id"]="";
-	$col3["label"]="Eficacia";
+	$col3["label"]="Eficacia/Productividad";
 	$col3["pattern"]="";
 	$col3["type"]="number";
 	$col4=array();
 	$col4["id"]="";
-	$col4["label"]="Rendimiento";
+	$col4["label"]="Eficiencia/Rendimiento";
 	$col4["pattern"]="";
 	$col4["type"]="number";
 	

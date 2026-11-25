@@ -1,5 +1,5 @@
 <?php
-$tipo_informes=array('Productividad', 'Eficacia', 'Rendimiento', 'Margen vta. PR', 'Nº de entradas', 'Tiempo por entrada', 'Importe medio por OR', 'Importe de MO por OR', 'Importe PR por OR', 'Coste personal');
+$tipo_informes=array('Ocupación', 'Eficacia/Productividad', 'Eficiencia/Rendimiento', 'Margen vta. PR', 'Nº de entradas', 'Tiempo por entrada', 'Importe medio por OR', 'Importe de MO por OR', 'Importe PR por OR', 'Coste personal');
 
 $prov_todas='ALL';
 $filtro_prov='';

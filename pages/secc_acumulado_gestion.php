@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between w-100 mb-1 p-1">
-        <label class="ancho">Rendimiento:</label>
+        <label class="ancho">Eficiencia/Rendimiento:</label>
         <div class="dato">
             <span class="oswald fs_14 texto_<?=$datos_acumulados['rendimiento']<$datos_acumulados['objrendimiento']?'r':'v'?>"><?=moneda_puntocoma($datos_acumulados['rendimiento'])?> %</span>
         </div>

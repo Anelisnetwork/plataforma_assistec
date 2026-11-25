@@ -25,7 +25,7 @@ valor_celda($col.$cell,'Importe MO');negrita($col.$cell);$cell++;
 valor_celda($col.$cell,'Facturado MO');negrita($col.$cell);$cell++;
 valor_celda($col.$cell,'Horas facturadas');negrita($col.$cell);$cell++;
 valor_celda($col.$cell,'Horas presencia');negrita($col.$cell);$cell++;
-valor_celda($col.$cell,'Eficacia');negrita($col.$cell);
+valor_celda($col.$cell,'Eficacia/Productividad');negrita($col.$cell);
 $cell='1';
 $col++;
 
